@@ -1,334 +1,295 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reorganização do Núcleo Emocional | O Código Interno</title>
+<title>Reorganização do Núcleo Emocional — O Código Interno</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+--cream:#f5f0e8;
+--warm:#ede5d4;
+--gold:#c9a84c;
+--gold-light:#e8c96a;
+--muted:#7a7065;
+--deep:#120f0a;
+--deep2:#1c1710;
+--ink:#0d0d0d;
+}
+
 body{
-margin:0;
-font-family:'Libre Baskerville', serif;
-background:#0f0f0f;
-color:#eaeaea;
+background:var(--cream);
+color:var(--ink);
+font-family:'DM Sans',sans-serif;
+font-weight:300;
+line-height:1.6;
 }
 
-header{
-text-align:center;
-padding:40px 20px;
-border-bottom:1px solid #333;
-}
-
-.logo{
-font-family:'Cinzel', serif;
-font-size:36px;
-letter-spacing:3px;
-}
-
-.container{
-max-width:800px;
+section{
+max-width:900px;
 margin:auto;
-padding:40px 25px;
+padding:80px 24px;
 }
 
-.step{
-display:none;
-}
-
-.step.active{
-display:block;
+h1{
+font-family:'Cormorant Garamond',serif;
+font-size:48px;
+font-weight:300;
+margin-bottom:20px;
 }
 
 h2{
-font-family:'Cinzel', serif;
+font-family:'Cormorant Garamond',serif;
+font-size:32px;
+font-weight:300;
+margin-bottom:15px;
+margin-top:50px;
+}
+
+p{
+color:var(--muted);
 margin-bottom:20px;
 }
 
-input,textarea,select{
+.hero{
+background:var(--deep);
+color:var(--cream);
+text-align:center;
+padding:120px 20px;
+}
+
+.hero h1{
+color:var(--cream);
+}
+
+.hero p{
+color:rgba(245,240,232,.6);
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+letter-spacing:2px;
+font-size:14px;
+color:var(--gold);
+margin-bottom:20px;
+text-transform:uppercase;
+}
+
+input,textarea{
 width:100%;
-padding:12px;
+padding:14px;
+border:1px solid #ddd;
 margin-top:8px;
 margin-bottom:20px;
-background:#1a1a1a;
-border:1px solid #444;
-color:#fff;
-font-size:14px;
+font-family:'DM Sans',sans-serif;
 }
 
 button{
-background:#eaeaea;
-color:#111;
-padding:12px 26px;
+background:var(--gold);
 border:none;
-font-family:'Cinzel', serif;
+padding:14px 30px;
+font-size:14px;
+letter-spacing:1px;
+text-transform:uppercase;
 cursor:pointer;
 }
 
-button:hover{
-background:white;
-}
-
-.progress{
-height:4px;
-background:#222;
-margin-bottom:30px;
-}
-
-.progress-bar{
-height:4px;
-background:#eaeaea;
-width:0%;
-transition:0.4s;
-}
-
-.resultado{
-display:none;
-background:#151515;
+.step{
+margin-top:40px;
 padding:30px;
-margin-top:30px;
-border:1px solid #333;
+background:var(--warm);
+border-left:4px solid var(--gold);
 }
 
 footer{
 text-align:center;
 padding:40px;
 font-size:12px;
-color:#777;
+color:var(--muted);
 }
 
 </style>
-
 </head>
 
 <body>
 
-<header>
+<section class="hero">
 
-<div class="logo">
-O CÓDIGO INTERNO
-</div>
+<div class="logo">O Código Interno</div>
 
-</header>
+<h1>Reorganização<br>do Núcleo Emocional</h1>
 
-<div class="container">
+<p>
+Uma dinâmica de percepção simbólica para reorganizar vínculos inconscientes
+que influenciam sua relação com <strong>dinheiro, saúde e relacionamentos</strong>.
+</p>
 
-<div class="progress">
-<div class="progress-bar" id="progress"></div>
-</div>
+</section>
 
-<form id="form">
+<section>
 
-<!-- ETAPA 1 -->
+<h2>Antes de começar</h2>
 
-<div class="step active">
+<p>
+Escolha uma área da sua vida que parece travada:
+</p>
 
-<h2>Área da Vida</h2>
+<ul>
+<li>Dinheiro</li>
+<li>Relacionamentos</li>
+<li>Saúde</li>
+</ul>
 
-<p>Qual área da sua vida parece travada neste momento?</p>
+<p>
+Agora escolha uma pessoa do seu núcleo emocional que possa estar ligada a essa área.
+</p>
 
-<select name="area">
-<option>Dinheiro</option>
-<option>Relacionamentos</option>
-<option>Saúde</option>
-</select>
+</section>
 
-<p>Quando você pensa nessa área, qual é a primeira pessoa que vem à sua mente?</p>
+<section>
 
-<input name="alvo">
-
-<button type="button" onclick="next()">Continuar</button>
-
-</div>
-
-<!-- ETAPA 2 -->
+<h2>1. O Ambiente</h2>
 
 <div class="step">
 
-<h2>A Sala</h2>
+<p>Imagine uma sala com quatro paredes e uma porta.</p>
 
-<p>Imagine uma sala.</p>
+<p>Observe:</p>
 
-<input name="sala" placeholder="Como é essa sala?">
+<ul>
+<li>Existe alguma janela?</li>
+<li>Como está a iluminação?</li>
+<li>Existe algum cheiro?</li>
+<li>Você ouve algum som?</li>
+<li>Existem móveis ou a sala está vazia?</li>
+</ul>
 
-<input name="luz" placeholder="Como está a iluminação?">
-
-<input name="som" placeholder="Existe algum som ou cheiro?">
-
-<button type="button" onclick="next()">Continuar</button>
+<label>Descreva o ambiente</label>
+<textarea></textarea>
 
 </div>
 
-<!-- ETAPA 3 -->
+<h2>2. A Mesa da Maturidade</h2>
 
 <div class="step">
 
-<h2>Mesa da Maturidade</h2>
+<p>Agora imagine uma mesa no centro da sala.</p>
 
-<input name="posicao" placeholder="Onde você está na mesa?">
+<p>Observe:</p>
 
-<input name="posicaoAlvo" placeholder="Onde está a outra pessoa?">
+<ul>
+<li>Existe cadeira?</li>
+<li>Você está sentado ou em pé?</li>
+<li>O alvo está sentado ou em pé?</li>
+<li>Onde cada um está posicionado?</li>
+<li>Existe algo em cima da mesa?</li>
+</ul>
 
-<input name="objetoMesa" placeholder="Existe algo em cima da mesa?">
-
-<button type="button" onclick="next()">Continuar</button>
+<label>Descreva a cena</label>
+<textarea></textarea>
 
 </div>
 
-<!-- ETAPA 4 -->
+<h2>3. O Vínculo</h2>
 
 <div class="step">
 
-<h2>O Vínculo</h2>
+<p>Existe algo ligando você a essa pessoa?</p>
 
-<input name="vinculo" placeholder="Existe algo ligando vocês?">
+<ul>
+<li>Corrente</li>
+<li>Corda</li>
+<li>Fio de energia</li>
+<li>Outro tipo de conexão</li>
+</ul>
 
-<select name="dependencia">
+<p>Agora observe:</p>
 
-<option>Eu sou puxado</option>
-<option>A pessoa é puxada</option>
-<option>Equilibrado</option>
+<ul>
+<li>Quem depende de quem?</li>
+<li>A dependência é ativa ou passiva?</li>
+</ul>
 
-</select>
-
-<button type="button" onclick="next()">Continuar</button>
+<label>Descreva o vínculo</label>
+<textarea></textarea>
 
 </div>
 
-<!-- ETAPA 5 -->
+<h2>4. O Objeto</h2>
 
 <div class="step">
 
-<h2>Objeto</h2>
+<p>Você carrega algo que pertence a essa pessoa?</p>
 
-<input name="objeto" placeholder="Você carrega algum objeto dessa pessoa?">
+<p>Esse objeto representa um padrão aprendido na relação.</p>
 
-<button type="button" onclick="next()">Continuar</button>
+<label>Qual é o objeto?</label>
+<textarea></textarea>
 
 </div>
 
-<!-- ETAPA 6 -->
+<h2>5. O Afastamento</h2>
 
 <div class="step">
 
-<h2>Distanciamento</h2>
+<p>Agora observe:</p>
 
-<select name="distancia">
+<ul>
+<li>Você se afasta da pessoa?</li>
+<li>Ou ela diminui de tamanho?</li>
+</ul>
 
-<option>Me afastar</option>
-<option>Ver a pessoa diminuir</option>
+<p>Existe alguma pedra no caminho?</p>
 
-</select>
+<p>A pedra simboliza culpa.</p>
 
-<input name="pedra" placeholder="Existe uma pedra ou algo no caminho?">
-
-<button type="button" onclick="gerar()">Finalizar</button>
-
-</div>
-
-</form>
-
-<div class="resultado" id="resultado">
-
-<h2>Leitura Simbólica</h2>
-
-<p id="leitura"></p>
-
-<button onclick="window.print()">Salvar Relatório</button>
+<label>O que acontece nesse momento?</label>
+<textarea></textarea>
 
 </div>
 
-</div>
+</section>
+
+<section>
+
+<h2>Reflexão Final</h2>
+
+<p>
+
+Toda relação emocional carrega utilidades inconscientes.
+
+Pergunte a si mesmo:
+
+</p>
+
+<ul>
+
+<li>Quem eu pioro a vida quando melhoro a minha?</li>
+<li>O que aconteceu quando tudo aconteceu?</li>
+<li>O que essa relação estava protegendo?</li>
+
+</ul>
+
+<p>
+
+A reorganização simbólica acontece quando você percebe
+o padrão e se autoriza a seguir adiante.
+
+</p>
+
+</section>
 
 <footer>
 
-O Código Interno
+O Código Interno — Ravel Dunningham
 
 </footer>
-
-<script>
-
-let step=0
-
-const steps=document.querySelectorAll(".step")
-
-function next(){
-
-steps[step].classList.remove("active")
-
-step++
-
-steps[step].classList.add("active")
-
-updateProgress()
-
-}
-
-function updateProgress(){
-
-let percent=(step/(steps.length-1))*100
-
-document.getElementById("progress").style.width=percent+"%"
-
-}
-
-function gerar(){
-
-const form=new FormData(document.getElementById("form"))
-
-let vinculo=form.get("vinculo")
-let dependencia=form.get("dependencia")
-let objeto=form.get("objeto")
-let pedra=form.get("pedra")
-
-let leitura=""
-
-if(vinculo){
-
-leitura+="O vínculo descrito indica uma ligação emocional que ainda influencia suas decisões. "
-
-}
-
-if(dependencia==="Eu sou puxado"){
-
-leitura+="Existe uma tendência de dependência emocional ativa nesta relação. "
-
-}
-
-if(dependencia==="A pessoa é puxada"){
-
-leitura+="Existe uma dependência emocional da outra pessoa em relação a você. "
-
-}
-
-if(objeto){
-
-leitura+="O objeto que apareceu pode representar um padrão emocional aprendido nessa relação. "
-
-}
-
-if(pedra){
-
-leitura+="A presença de um obstáculo no caminho pode simbolizar sentimentos de culpa ligados ao avanço da sua vida. "
-
-}
-
-leitura+="Reorganizar simbolicamente essa relação pode liberar energia emocional para avançar na área escolhida."
-
-document.getElementById("leitura").innerText=leitura
-
-document.getElementById("resultado").style.display="block"
-
-window.scrollTo(0,document.body.scrollHeight)
-
-}
-
-</script>
 
 </body>
 </html>
