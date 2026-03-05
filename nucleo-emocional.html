@@ -5,153 +5,103 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Reorganização do Núcleo Emocional | Ravel Dunningham</title>
+<title>Reorganização do Núcleo Emocional — Ravel Dunningham</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box}
-
 body{
-background:#050506;
-color:#f2eee6;
+background:#070607;
+color:#f2efe9;
 font-family:'DM Sans',sans-serif;
+margin:0;
+}
+
+header{
+padding:25px;
+text-align:center;
+border-bottom:1px solid rgba(201,168,76,.2);
+}
+
+header h1{
+font-family:'Cormorant Garamond',serif;
+font-weight:300;
+font-size:32px;
+letter-spacing:1px;
+}
+
+header span{
+color:#c9a84c;
 }
 
 .container{
-max-width:760px;
+max-width:800px;
 margin:auto;
-padding:40px 30px 120px;
+padding:40px 20px;
 }
 
-.brand{
+.intro{
 text-align:center;
 margin-bottom:40px;
 }
 
-.brand .symbol{
-font-size:46px;
-color:#c6a756;
-opacity:.5;
+.intro p{
+opacity:.8;
+line-height:1.6;
 }
 
-.brand h1{
-font-family:'Cinzel',serif;
-font-weight:400;
-letter-spacing:.2em;
-font-size:18px;
-margin-top:10px;
-}
-
-.brand p{
-font-size:.7rem;
-letter-spacing:.35em;
-opacity:.45;
-margin-top:8px;
-}
-
-.hero{
-text-align:center;
-margin-top:60px;
-}
-
-.hero h2{
-font-family:'Cormorant Garamond',serif;
-font-weight:300;
-font-size:42px;
-margin-bottom:20px;
-}
-
-.hero em{
-color:#d7b96a;
-}
-
-.hero p{
-opacity:.6;
-line-height:1.8;
-max-width:420px;
-margin:auto;
-}
-
-.start-btn{
-margin-top:40px;
-background:#c6a756;
+button{
+background:#c9a84c;
 border:none;
-padding:16px 36px;
-font-size:.75rem;
-letter-spacing:.2em;
+padding:14px 26px;
+color:#000;
+font-weight:bold;
 cursor:pointer;
+margin-top:20px;
 }
 
 .chat{
-margin-top:60px;
-display:none;
+margin-top:30px;
 }
 
 .msg{
-margin-bottom:25px;
-line-height:1.8;
+margin-bottom:18px;
 }
 
-.ai{
-color:#d7b96a;
+.ravel{
+color:#e7c873;
+font-family:'Cormorant Garamond',serif;
 }
 
 .user{
-color:#c6a756;
-font-style:italic;
+text-align:right;
+opacity:.9;
 }
 
 input{
 width:100%;
-background:#0f0e12;
-border:1px solid rgba(198,167,86,.35);
-padding:14px;
-color:white;
-margin-top:12px;
-}
-
-.send{
+padding:12px;
 margin-top:10px;
-background:#c6a756;
-border:none;
-padding:10px 18px;
-cursor:pointer;
+background:#111;
+border:1px solid rgba(201,168,76,.3);
+color:#fff;
 }
 
 .result{
 display:none;
-margin-top:60px;
+margin-top:40px;
+padding:30px;
+border:1px solid rgba(201,168,76,.2);
 }
 
-.result h3{
+.result h2{
 font-family:'Cormorant Garamond',serif;
-font-size:34px;
-margin-bottom:25px;
+font-weight:300;
 }
 
-.result p{
-line-height:1.9;
-margin-bottom:16px;
-}
-
-.download{
-margin-top:30px;
-background:#c6a756;
-border:none;
-padding:16px 30px;
-cursor:pointer;
-}
-
-.signature{
-margin-top:50px;
-font-family:'Cinzel',serif;
-opacity:.5;
-letter-spacing:.2em;
-font-size:12px;
+.save{
+margin-top:25px;
 }
 
 </style>
@@ -160,45 +110,52 @@ font-size:12px;
 
 <body>
 
+<header>
+
+<h1>Reorganização do <span>Núcleo Emocional</span></h1>
+<p style="opacity:.6;font-size:12px;">Dinâmica simbólica conduzida por Ravel Dunningham</p>
+
+</header>
+
 <div class="container">
 
-<div class="brand">
-<div class="symbol">◊</div>
-<h1>O CÓDIGO INTERNO</h1>
-<p>RAVEL DUNNINGHAM</p>
-</div>
-
-<div class="hero" id="intro">
-
-<h2>Reorganização do<br><em>Núcleo Emocional</em></h2>
+<div class="intro" id="intro">
 
 <p>
-Alguns bloqueios não estão nas circunstâncias da vida,
-mas nas relações que estruturam o nosso núcleo emocional.
+
+Antes de começarmos, encontre um lugar tranquilo.
+
+Respire fundo algumas vezes.
+
+A dinâmica que você vai vivenciar agora utiliza símbolos do inconsciente para revelar padrões emocionais que podem estar influenciando os resultados da sua vida.
+
+Não existe resposta certa ou errada.
+
+Apenas observe aquilo que surgir espontaneamente na sua mente.
+
 </p>
 
-<p style="margin-top:20px;">
-Esta dinâmica revela os vínculos simbólicos que influenciam
-seus resultados em dinheiro, saúde e relacionamentos.
-</p>
-
-<button class="start-btn" onclick="start()">Iniciar Diagnóstico</button>
+<button onclick="start()">Iniciar a dinâmica</button>
 
 </div>
 
 <div class="chat" id="chat"></div>
 
+<div id="inputArea" style="display:none">
+
+<input id="input" placeholder="Digite sua resposta">
+
+<button onclick="send()">Responder</button>
+
+</div>
+
 <div class="result" id="result">
 
-<h3>Análise Simbólica</h3>
+<h2>Sua análise simbólica</h2>
 
 <div id="analysis"></div>
 
-<button class="download" onclick="downloadPDF()">Baixar Relatório</button>
-
-<div class="signature">
-Método desenvolvido por Ravel Dunningham
-</div>
+<button class="save" onclick="window.print()">Salvar como PDF</button>
 
 </div>
 
@@ -208,43 +165,96 @@ Método desenvolvido por Ravel Dunningham
 
 let step=0
 
-const state={}
+let answers={}
 
-const chat=document.getElementById("chat")
+const perguntas=[
 
-function addMsg(text,cls="ai"){
+`Antes de começarmos essa jornada simbólica, me diga:  
+como posso te chamar?`,
+
+`Agora pense na sua vida neste momento.
+
+Existe alguma área onde os resultados parecem sempre demorar mais do que deveriam aparecer?
+
+Pode ser dinheiro, relacionamentos ou saúde.
+
+Qual dessas áreas parece mais travada neste momento?`,
+
+`Quando você pensa nessa área da sua vida, observe qual pessoa surge espontaneamente na sua mente.
+
+Não force a resposta.
+
+Apenas permita que o primeiro nome apareça.
+
+Quem é essa pessoa?`,
+
+`Agora imagine que você está diante de uma sala.
+
+Essa sala representa simbolicamente a relação emocional entre você e essa pessoa.
+
+Observe a porta dessa sala… e entre.
+
+Quando estiver dentro, olhe ao redor com calma.
+
+Como é essa sala?`,
+
+`Dentro dessa sala existe uma mesa.
+
+Essa mesa representa o nível de maturidade dessa relação.
+
+Observe onde você está em relação a essa mesa…  
+e onde essa pessoa está.
+
+Descreva essa cena.`,
+
+`Agora olhe com mais atenção para a mesa.
+
+Existe algo colocado sobre ela?
+
+Esse objeto representa um padrão emocional dentro dessa relação.
+
+O que você vê sobre a mesa?`,
+
+`Agora observe se existe algo conectando você e essa pessoa.
+
+Pode ser uma corrente, uma corda, um fio de energia ou qualquer outro tipo de ligação simbólica.
+
+Como é esse vínculo entre vocês?`,
+
+`Preste atenção agora na direção dessa ligação.
+
+Ela puxa mais você em direção a essa pessoa  
+ou puxa mais essa pessoa em direção a você?
+
+O que você percebe?`,
+
+`Agora imagine que você pode se afastar um pouco dessa pessoa dentro da sala.
+
+Observe o que acontece quando você faz isso.
+
+Existe algo no caminho que dificulta esse afastamento?`,
+
+`Agora olhe novamente para a porta da sala.
+
+Imagine que você pode se aproximar dela lentamente.
+
+Quando você olha através dessa porta…
+
+o que existe do outro lado?`
+
+]
+
+function addMsg(text,type){
 
 const div=document.createElement("div")
 
-div.className="msg "+cls
+div.className="msg "+type
 
 div.innerHTML=text
 
-chat.appendChild(div)
+document.getElementById("chat").appendChild(div)
 
 window.scrollTo(0,document.body.scrollHeight)
-
-}
-
-function input(){
-
-const field=document.createElement("input")
-
-field.id="input"
-
-chat.appendChild(field)
-
-const btn=document.createElement("button")
-
-btn.innerText="Enviar"
-
-btn.className="send"
-
-btn.onclick=send
-
-chat.appendChild(btn)
-
-field.focus()
 
 }
 
@@ -252,131 +262,73 @@ function start(){
 
 document.getElementById("intro").style.display="none"
 
-chat.style.display="block"
+document.getElementById("inputArea").style.display="block"
 
-next()
+addMsg(perguntas[0],"ravel")
 
 }
 
 function send(){
 
-const v=document.getElementById("input").value
+let input=document.getElementById("input")
 
-if(!v)return
+let value=input.value
 
-addMsg(v,"user")
+if(!value)return
 
-document.getElementById("input").remove()
+addMsg(value,"user")
 
-document.querySelector(".send").remove()
-
-save(v)
+answers["p"+step]=value
 
 step++
 
-next()
-
-}
-
-function save(v){
-
-const keys=[
-"nome",
-"area",
-"alvo",
-"sala",
-"mesa",
-"objeto",
-"vinculo",
-"dependencia",
-"porta"
-]
-
-state[keys[step]]=v
-
-}
-
-function next(){
-
-const perguntas=[
-
-"Como posso te chamar?",
-
-"Qual área da sua vida parece travada neste momento?",
-
-"Quando pensa nisso, qual pessoa surge imediatamente?",
-
-"Imagine uma sala que representa essa relação. Como ela é?",
-
-"Existe uma mesa nessa sala? Como ela aparece?",
-
-"Existe algo em cima da mesa?",
-
-"Existe algo conectando você e essa pessoa?",
-
-"Esse vínculo puxa mais você ou a outra pessoa?",
-
-"Se existir uma porta nessa sala, o que há do outro lado?"
-
-]
+input.value=""
 
 if(step<perguntas.length){
 
-addMsg(perguntas[step])
+setTimeout(()=>{
 
-input()
+addMsg(perguntas[step],"ravel")
+
+},600)
 
 }else{
 
-analysis()
+finish()
 
 }
 
 }
 
-function analysis(){
+function finish(){
 
-chat.style.display="none"
-
-const area=state.area
-
-const alvo=state.alvo
-
-let texto=
-
-`
-<p><strong>${state.nome}</strong>, os símbolos revelados durante a dinâmica indicam que sua estrutura emocional relacionada a <strong>${area}</strong> está conectada à figura de <strong>${alvo}</strong>.</p>
-
-<p>A sala descrita como "${state.sala}" indica o campo emocional onde essa relação opera.</p>
-
-<p>A presença de "${state.objeto}" na mesa simboliza padrões aprendidos que continuam ativos na dinâmica entre vocês.</p>
-
-<p>O vínculo descrito como "${state.vinculo}" mostra a forma como a energia emocional circula entre os dois.</p>
-
-<p>Quando você observa o que existe além da porta — "${state.porta}" — o inconsciente revela a direção de reorganização dessa relação.</p>
-
-<p>Ao reconhecer esse padrão conscientemente, a estrutura emocional tende a se reorganizar e permitir movimento real na área de ${area}.</p>
-`
-
-document.getElementById("analysis").innerHTML=texto
+document.getElementById("inputArea").style.display="none"
 
 document.getElementById("result").style.display="block"
 
-}
+document.getElementById("analysis").innerHTML=
 
-async function downloadPDF(){
+`<p>
 
-const { jsPDF } = window.jspdf
+A estrutura simbólica apresentada na sua dinâmica indica que existe um padrão emocional ativo na área que você identificou.
 
-const doc=new jsPDF()
+Os símbolos que apareceram — especialmente a sala, a mesa e o vínculo — revelam como seu inconsciente organiza essa relação.
 
-const text=document.getElementById("analysis").innerText
+Quando um vínculo emocional permanece ativo por muito tempo, ele pode influenciar decisões, percepções e até os resultados externos da vida.
 
-const split=doc.splitTextToSize(text,180)
+A reorganização do núcleo emocional consiste justamente em identificar esses símbolos e permitir que sua estrutura interna se reorganize de forma mais madura.
 
-doc.text(split,20,30)
+Observe os elementos que surgiram na sua experiência.
 
-doc.save("analise-nucleo-emocional.pdf")
+Eles indicam quais padrões emocionais ainda precisam ser ressignificados para que a energia dessa área da sua vida volte a fluir com mais liberdade.
+
+</p>
+
+<p style="margin-top:20px">
+
+— Ravel Dunningham
+
+</p>`
 
 }
 
