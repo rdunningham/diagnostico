@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sua Imersão — Diagnóstico de Estrutura Decisional</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#f5f0e8;--warm:#ede5d4;--gold:#c9a84c;--gold-light:#e8c96a;
+  --muted:#7a7065;--deep:#120f0a;--deep2:#1c1710;--ink:#0d0d0d;
+}
+html{scroll-behavior:smooth}
+body{background:var(--deep);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
+
+/* ── TOPO ── */
+.top-bar{
+  padding:1.2rem 1.5rem;
+  border-bottom:1px solid rgba(201,168,76,.15);
+  display:flex;align-items:center;justify-content:center;
+  background:var(--deep);
+  position:sticky;top:0;z-index:100;
+}
+.top-bar-inner{
+  display:flex;align-items:center;gap:0.8rem;
+}
+.top-bar .dot{
+  width:6px;height:6px;background:var(--gold);border-radius:50%;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.top-bar p{
+  font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(245,240,232,.4);
+}
+
+/* ── HERO INTRO ── */
+.intro{
+  padding:3.5rem 1.5rem 2.5rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.intro::before{
+  content:'';position:absolute;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.intro-label{
+  display:inline-block;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--gold);border:1px solid rgba(201,168,76,.3);
+  padding:.38rem 1rem;margin-bottom:1.5rem;
+  opacity:0;animation:fadeUp .7s ease forwards .1s;
+}
+.intro h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,8vw,4rem);
+  font-weight:300;line-height:1.05;
+  color:var(--cream);letter-spacing:-.02em;
+  margin-bottom:.8rem;
+  opacity:0;animation:fadeUp .7s ease forwards .3s;
+}
+.intro h1 em{font-style:italic;color:var(--gold-light)}
+.intro p{
+  font-size:.92rem;color:rgba(245,240,232,.5);
+  line-height:1.78;max-width:480px;margin:0 auto;
+  opacity:0;animation:fadeUp .7s ease forwards .5s;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── STEPS BAR ── */
+.steps-bar{
+  display:flex;align-items:center;justify-content:center;
+  gap:0;padding:2rem 1.5rem;
+  opacity:0;animation:fadeUp .7s ease forwards .6s;
+}
+.step-item{
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  flex:1;max-width:140px;
+}
+.step-circle{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);
+  background:var(--deep2);
+  transition:all .3s;
+}
+.step-circle.active{
+  background:var(--gold);color:var(--deep);
+  border-color:var(--gold);
+}
+.step-label{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.3);text-align:center;line-height:1.4}
+.step-label.active{color:var(--gold)}
+.step-line{flex:1;height:1px;background:rgba(201,168,76,.2);max-width:40px}
+
+/* ── INSTRUÇÃO ── */
+.instruction{
+  background:rgba(201,168,76,.06);
+  border:1px solid rgba(201,168,76,.18);
+  border-left:3px solid var(--gold);
+  padding:1.2rem 1.5rem;
+  margin:0 1.5rem 2rem;
+  border-radius:0;
+  opacity:0;animation:fadeUp .7s ease forwards .7s;
+}
+.instruction p{font-size:.88rem;line-height:1.75;color:rgba(245,240,232,.7)}
+.instruction strong{color:var(--gold-light);font-weight:500}
+
+/* ── VÍDEO ── */
+.video-section{
+  padding:0 1.5rem 2.5rem;
+  opacity:0;animation:fadeUp .7s ease forwards .8s;
+}
+.video-wrap{
+  position:relative;width:100%;padding-bottom:56.25%;
+  background:var(--deep2);
+  border:1px solid rgba(201,168,76,.2);
+  overflow:hidden;
+}
+.video-wrap iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:none;
+}
+
+/* ── DIVISOR ── */
+.divider{
+  display:flex;align-items:center;gap:1rem;
+  padding:2.5rem 1.5rem;
+  opacity:0;animation:fadeUp .7s ease forwards .9s;
+}
+.divider-line{flex:1;height:1px;background:rgba(201,168,76,.15)}
+.divider-icon{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1rem;color:rgba(201,168,76,.5);white-space:nowrap;
+}
+
+/* ── FORM SECTION ── */
+.form-section{
+  padding:0 1.5rem 1.5rem;
+  opacity:0;animation:fadeUp .7s ease forwards 1s;
+}
+.form-header{text-align:center;margin-bottom:2rem}
+.form-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.7rem,6vw,2.8rem);font-weight:300;
+  line-height:1.15;margin-bottom:.6rem;
+}
+.form-header h2 em{font-style:italic;color:var(--gold-light)}
+.form-header p{font-size:.88rem;color:rgba(245,240,232,.45);line-height:1.7;max-width:420px;margin:0 auto}
+
+/* ── BTN FORM ── */
+.btn-form{
+  display:block;
+  background:var(--gold);color:var(--deep);
+  font-family:'DM Sans',sans-serif;
+  font-size:.8rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  padding:1.15rem 2rem;text-decoration:none;
+  text-align:center;
+  transition:box-shadow .3s,transform .2s;
+  -webkit-tap-highlight-color:transparent;
+  max-width:480px;margin:0 auto;
+}
+.btn-form:active{transform:scale(.98)}
+.btn-form:hover{box-shadow:0 0 40px rgba(201,168,76,.35)}
+
+.btn-note{
+  text-align:center;margin-top:1rem;
+  font-size:.75rem;color:rgba(245,240,232,.25);
+  font-style:italic;
+}
+
+/* ── AVISO ENTREGA ── */
+.delivery-note{
+  margin:2.5rem 1.5rem;
+  padding:1.5rem;
+  border:1px solid rgba(201,168,76,.12);
+  background:rgba(255,255,255,.02);
+  text-align:center;
+}
+.delivery-note .icon{font-size:1.8rem;margin-bottom:.8rem}
+.delivery-note h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:300;margin-bottom:.5rem;
+}
+.delivery-note p{font-size:.85rem;color:rgba(245,240,232,.45);line-height:1.7}
+.delivery-note strong{color:var(--gold-light)}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid rgba(201,168,76,.1);
+  padding:1.5rem;text-align:center;
+  font-size:.68rem;color:rgba(245,240,232,.2);
+  letter-spacing:.04em;margin-top:1rem;
+}
+footer a{color:rgba(201,168,76,.4);text-decoration:none}
+</style>
+</head>
+<body>
+
+<!-- TOPO -->
+<div class="top-bar">
+  <div class="top-bar-inner">
+    <div class="dot"></div>
+    <p>Área de acesso · Diagnóstico de Estrutura Decisional</p>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="intro">
+  <span class="intro-label">Sua jornada começa agora</span>
+  <h1>Bem-vindo à sua<br><em>imersão.</em></h1>
+  <p>Siga os passos abaixo com calma e atenção. Este processo foi desenhado para revelar algo que já existe dentro de você.</p>
+</div>
+
+<!-- BARRA DE PASSOS -->
+<div class="steps-bar">
+  <div class="step-item">
+    <div class="step-circle active">1</div>
+    <span class="step-label active">Assista<br>ao vídeo</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step-item">
+    <div class="step-circle">2</div>
+    <span class="step-label">Preencha<br>o formulário</span>
+  </div>
+  <div class="step-line"></div>
+  <div class="step-item">
+    <div class="step-circle">3</div>
+    <span class="step-label">Receba no<br>WhatsApp</span>
+  </div>
+</div>
+
+<!-- INSTRUÇÃO -->
+<div class="instruction">
+  <p>🎧 <strong>Use fone de ouvido</strong> se possível. Encontre um lugar silencioso, sente-se confortavelmente e assista ao vídeo até o final antes de preencher o formulário.</p>
+</div>
+
+<!-- VÍDEO -->
+<div class="video-section">
+  <div class="video-wrap">
+    <iframe
+      src="https://drive.google.com/file/d/15qg7dC66RjyA_poa_gJOTzegHbrGed3V/preview"
+      title="Imersão Guiada — Diagnóstico de Estrutura Decisional"
+      allow="autoplay"
+      allowfullscreen>
+    </iframe>
+  </div>
+</div>
+
+<!-- DIVISOR -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-icon">Assistiu ao vídeo? Agora o próximo passo.</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- FORMULÁRIO -->
+<div class="form-section">
+  <div class="form-header">
+    <h2>Compartilhe<br>sua <em>visão</em></h2>
+    <p>Descreva o que apareceu durante a imersão. Com base nas suas respostas, Ravel Dunningham vai preparar seu diagnóstico personalizado.</p>
+  </div>
+
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLScdfG8otHV8coUEi6VzI7tFpIvU-h4ByL0_EcvB2wmjF08vQg/viewform?usp=sharing&ouid=110163151475737018391"
+     target="_blank"
+     class="btn-form">
+    ✦ &nbsp; Preencher o Formulário da Visão
+  </a>
+
+  <p class="btn-note">Abre em uma nova janela · leva cerca de 5 minutos</p>
+</div>
+
+<!-- AVISO DE ENTREGA -->
+<div class="delivery-note">
+  <div class="icon">📲</div>
+  <h3>O que acontece agora?</h3>
+  <p>Após preencher o formulário, Ravel vai analisar sua visão pessoalmente e entregar o seu <strong>diagnóstico em PDF + áudio explicativo</strong> diretamente no seu WhatsApp em até <strong>48 horas úteis.</strong></p>
+</div>
+
+<footer>
+  <p>© 2025 Ravel Dunningham · Diagnóstico de Estrutura Decisional &nbsp;·&nbsp; <a href="https://www.instagram.com/raveldunningham/" target="_blank">@raveldunningham</a></p>
+</footer>
+
+</body>
+</html>
