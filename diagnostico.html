@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Diagnóstico de Estrutura Decisional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+
+body{
+background:#120f0a;
+color:#f5f0e8;
+font-family:'DM Sans',sans-serif;
+margin:0;
+padding:0;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+padding:40px 20px;
+}
+
+h1{
+font-family:'Cormorant Garamond',serif;
+font-weight:300;
+font-size:38px;
+text-align:center;
+}
+
+p{
+line-height:1.6;
+color:#d8d2c6;
+}
+
+.video{
+margin-top:30px;
+}
+
+.video iframe{
+width:100%;
+height:400px;
+border:none;
+}
+
+form{
+margin-top:40px;
+}
+
+label{
+display:block;
+margin-top:20px;
+margin-bottom:6px;
+font-size:14px;
+color:#e8c96a;
+}
+
+textarea,input{
+width:100%;
+padding:10px;
+background:#1c1710;
+border:1px solid #c9a84c40;
+color:#fff;
+}
+
+button{
+margin-top:30px;
+width:100%;
+padding:16px;
+background:#c9a84c;
+border:none;
+font-weight:600;
+letter-spacing:1px;
+cursor:pointer;
+}
+
+button:hover{
+background:#e8c96a;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Diagnóstico de Estrutura Decisional</h1>
+
+<p>
+Assista ao vídeo abaixo e permita-se entrar na experiência.  
+Depois responda às perguntas com calma.  
+Seu diagnóstico simbólico será gerado automaticamente.
+</p>
+
+<div class="video">
+
+<iframe src="https://drive.google.com/file/d/15qg7dC66RjyA_poa_gJOTzegHbrGed3V/preview"></iframe>
+
+</div>
+
+<form id="form">
+
+<label>Seu nome</label>
+<input type="text" id="nome" required>
+
+<label>Como era o ambiente que você visualizou?</label>
+<textarea id="ambiente"></textarea>
+
+<label>Como era a mesa?</label>
+<textarea id="mesa"></textarea>
+
+<label>Onde você estava posicionado?</label>
+<textarea id="posicao"></textarea>
+
+<label>Onde estava a outra pessoa?</label>
+<textarea id="alvo"></textarea>
+
+<label>Existia algo ligando vocês?</label>
+<textarea id="vinculo"></textarea>
+
+<label>Você carregava algo dessa pessoa?</label>
+<textarea id="objeto"></textarea>
+
+<label>O que aconteceu quando houve afastamento?</label>
+<textarea id="distancia"></textarea>
+
+<label>Existia alguma pedra ou bloqueio?</label>
+<textarea id="pedra"></textarea>
+
+<button type="button" onclick="gerarPDF()">
+Gerar meu diagnóstico
+</button>
+
+</form>
+
+</div>
+
+<script>
+
+function gerarPDF(){
+
+var nome=document.getElementById("nome").value
+
+var ambiente=document.getElementById("ambiente").value
+var mesa=document.getElementById("mesa").value
+var posicao=document.getElementById("posicao").value
+var alvo=document.getElementById("alvo").value
+var vinculo=document.getElementById("vinculo").value
+var objeto=document.getElementById("objeto").value
+var distancia=document.getElementById("distancia").value
+var pedra=document.getElementById("pedra").value
+
+var conteudo=`
+
+<h1>Diagnóstico Simbólico</h1>
+
+<p><strong>${nome}</strong>, a sua imersão revelou alguns elementos importantes da sua estrutura emocional.</p>
+
+<h2>Ambiente emocional</h2>
+<p>${ambiente}</p>
+
+<h2>Estrutura da relação</h2>
+<p>Mesa: ${mesa}</p>
+
+<h2>Posicionamento</h2>
+<p>Você: ${posicao}</p>
+<p>Outra pessoa: ${alvo}</p>
+
+<h2>Vínculo</h2>
+<p>${vinculo}</p>
+
+<h2>Padrão aprendido</h2>
+<p>${objeto}</p>
+
+<h2>Movimento de afastamento</h2>
+<p>${distancia}</p>
+
+<h2>Possível culpa ou bloqueio</h2>
+<p>${pedra}</p>
+
+<hr>
+
+<h2>Direção simbólica</h2>
+
+<p>
+Quando uma relação permanece ativa no núcleo emocional, ela pode influenciar decisões e resultados de forma inconsciente.
+</p>
+
+<p>
+A clareza sobre esses símbolos permite reorganizar internamente aquilo que estava operando de forma invisível.
+</p>
+
+<hr>
+
+<h2>Sessão de Percepção</h2>
+
+<p>
+Se você deseja aprofundar essa leitura diretamente comigo, você pode agendar uma <strong>Sessão de Percepção</strong>.
+</p>
+
+<p>
+Durante a sessão, analisamos a estrutura simbólica da sua experiência e reorganizamos o núcleo emocional responsável pelos bloqueios atuais.
+</p>
+
+<p>
+<strong>Valor atual: R$300</strong>
+</p>
+
+<p>
+Agendamento pelo WhatsApp da minha assessora:
+</p>
+
+<p>
+Clique no link abaixo:
+</p>
+
+<p>
+https://wa.me/5574999943621
+</p>
+
+<p>
+— Ravel Dunningham
+</p>
+
+`
+
+var elemento=document.createElement("div")
+
+elemento.innerHTML=conteudo
+
+html2pdf().from(elemento).save("diagnostico-ravel.pdf")
+
+}
+
+</script>
+
+</body>
+</html>
