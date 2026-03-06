@@ -536,14 +536,24 @@ function f_nome(){
 
 // INTRO
 function f_intro(){
-  addMsg(`${S.nome}, vou te guiar por uma pequena experiência simbólica.\n\nNão existe resposta certa ou errada. <strong>O que aparecer no seu inconsciente é exatamente o que precisa aparecer.</strong>\n\nRespire fundo. Estamos prontos.`,'ravel');
-  think(1000,f_sala);
+  addMsg(`${S.nome}, vou te guiar por uma pequena experiência simbólica.\n\nNão existe resposta certa ou errada. <strong>O que aparecer no seu inconsciente é exatamente o que precisa aparecer.</strong>\n\nAntes de começar, vamos preparar o campo.`,'ravel');
+  think(1200,f_respiracao);
+}
+
+// RESPIRAÇÃO
+function f_respiracao(){
+  addDiv('Preparação');
+  addMsg(`Vamos fazer uma respiração simples — três vezes.\n\n<em>Inspire pelo nariz contando até 4.\nSegure contando até 2.\nSolte pela boca contando até 6.</em>\n\nFaça agora, com calma.`,'ravel');
+  think(3000,()=>{
+    addMsg(`Agora feche os olhos.\n\n<em>Imagine que você está dentro de uma sala.</em>\n\nDeixe a imagem aparecer naturalmente — sem forçar.`,'ravel');
+    think(2500,f_sala);
+  });
 }
 
 // ETAPA 1 — SALA
 function f_sala(){
   addDiv('Etapa 1 — A Sala');
-  addMsg(`Feche os olhos por alguns segundos.\n\n<em>Imagine que você está dentro de uma sala.</em>\n\nEssa sala representa o momento atual da sua vida financeira.\n\nObserve o tamanho, a iluminação, a sensação do ambiente.\n\n<strong>Como é essa sala?</strong>`,'ravel');
+  addMsg(`Essa sala representa o momento atual da sua vida financeira.\n\nObserve o tamanho, a iluminação, a sensação do ambiente.\n\n<strong>Como é essa sala?</strong>`,'ravel');
   type('Descreva o que você vê...',v=>{
     S.sala=analisaSala(v);
     f_porta_sentimento();
@@ -602,30 +612,31 @@ function f_obstaculo(){
 // GUARDIÃO — negociação
 function f_guardiao(eFigura){
   addDiv('Etapa 5 — O Guardião');
-  const msg = eFigura
-    ? `Observe essa figura com atenção.\n\n<strong>Como ela é? Descreva o que você vê.</strong>`
-    : `Observe esse ser com atenção.\n\n<strong>Como ele é? Descreva o que você vê.</strong>`;
-  addMsg(msg,'ravel');
+  const intro = eFigura
+    ? 'Observe essa figura com atenção.\n\n<strong>Como ela é? Descreva o que você vê.</strong>'
+    : 'Observe esse ser com atenção.\n\n<strong>Como ele é? Descreva o que você vê.</strong>';
+  addMsg(intro,'ravel');
   type('Descreva o guardião...',v=>{
-    S.guardiaoDesc = v;
+    S.guardiaoDesc=v;
     think(1400,()=>{
-      addMsg(`Esse guardião — <em>${v}</em> — é uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para ele e diga em voz alta ou mentalmente:</strong>`,'ravel');
+      addMsg(`Esse guardião — <em>${S.guardiaoDesc}</em> — é uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para ele e diga em voz alta ou mentalmente:</strong>`,'ravel');
       setTimeout(()=>{
-    // Mostra a frase de liberação como mensagem especial
-    const frase = document.createElement('div');
-    frase.className='msg ravel';
-    frase.style.animationDelay='.1s';
-    frase.innerHTML=`<div class="avatar av-r">R</div><div class="bubble ravel frase-liberacao"><em>"Você cumpriu sua função até aqui.<br>Eu assumo a partir de agora."</em></div>`;
-    chatEl.appendChild(frase);
-    scrollBot();
-    setTimeout(()=>{
-      addMsg(`Diga isso com calma. Mais de uma vez se precisar.\n\nQuando estiver pronto(a)...`,'ravel');
-      ask(['Disse. Estou pronto(a) para continuar'],v=>{
-        S.tentativa='negociou com o guardião';
-        f_guardiao_liberacao();
-      });
-    },1200);
-  },600);
+        const frase=document.createElement('div');
+        frase.className='msg ravel';
+        frase.style.animationDelay='.1s';
+        frase.innerHTML=`<div class="avatar av-r">R</div><div class="bubble ravel frase-liberacao"><em>"Você cumpriu sua função até aqui.<br>Eu assumo a partir de agora."</em></div>`;
+        chatEl.appendChild(frase);
+        scrollBot();
+        setTimeout(()=>{
+          addMsg('Diga isso com calma. Mais de uma vez se precisar.\n\nQuando estiver pronto(a)...','ravel');
+          ask(['Disse. Estou pronto(a) para continuar'],()=>{
+            S.tentativa='negociou com o guardião';
+            f_guardiao_liberacao();
+          });
+        },1200);
+      },600);
+    });
+  });
 }
 
 // GUARDIÃO — liberação
