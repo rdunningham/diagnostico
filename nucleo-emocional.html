@@ -1,338 +1,845 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Reorganização do Núcleo Emocional — Ravel Dunningham</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-
-body{
-background:#070607;
-color:#f2efe9;
-font-family:'DM Sans',sans-serif;
-margin:0;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07060a;--surface:#110e16;--surface2:#1a1522;
+  --gold:#c9a84c;--gold-light:#e8c96a;
+  --cream:#f0eae0;--muted:rgba(240,234,224,.45);
+  --violet:#8b6fc7;
 }
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
 
-header{
-padding:25px;
-text-align:center;
-border-bottom:1px solid rgba(201,168,76,.2);
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.particle{position:absolute;border-radius:50%;background:rgba(139,111,199,.07);animation:float linear infinite}
+@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:.45}90%{opacity:.12}100%{transform:translateY(-5vh) scale(1.2);opacity:0}}
+
+.app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
+
+.topbar{padding:1rem 1.5rem;border-bottom:1px solid rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;background:rgba(7,6,10,.93);backdrop-filter:blur(10px);position:sticky;top:0;z-index:100}
+.topbar p{font-size:.56rem;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.3)}
+
+/* INTRO */
+#screen-intro{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem 1.5rem;text-align:center;min-height:90vh;position:relative}
+.intro-orb{position:absolute;width:380px;height:380px;background:radial-gradient(circle,rgba(139,111,199,.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.1)}}
+.symbol{font-family:'Cormorant Garamond',serif;font-size:3.5rem;color:rgba(201,168,76,.2);margin-bottom:1.5rem;animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.2}50%{opacity:.5}}
+#screen-intro h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,7vw,3.5rem);font-weight:300;line-height:1.05;margin-bottom:.7rem}
+#screen-intro h1 em{font-style:italic;color:var(--gold-light)}
+.intro-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--muted);margin-bottom:1.8rem}
+.intro-desc{font-size:.87rem;line-height:1.82;color:var(--muted);max-width:400px;margin:0 auto 2rem}
+.warning{border:1px solid rgba(201,168,76,.16);background:rgba(201,168,76,.04);padding:1.2rem 1.4rem;max-width:400px;margin:0 auto 2.5rem;text-align:left}
+.warning p{font-size:.82rem;line-height:1.75;color:var(--muted)}
+.warning strong{color:var(--gold-light);font-weight:500}
+
+/* CHAT */
+.chat-screen{display:none;flex-direction:column;min-height:100vh;padding-bottom:160px}
+.chat-area{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:1.2rem;max-width:680px;width:100%;margin:0 auto}
+
+.msg{display:flex;gap:.8rem;align-items:flex-start;opacity:0;transform:translateY(12px);animation:msgIn .5s ease forwards}
+@keyframes msgIn{to{opacity:1;transform:translateY(0)}}
+.msg.ravel{flex-direction:row}
+.msg.user{flex-direction:row-reverse}
+.avatar{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.av-r{background:linear-gradient(135deg,rgba(201,168,76,.22),rgba(201,168,76,.07));border:1px solid rgba(201,168,76,.28);font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold)}
+.av-u{background:rgba(139,111,199,.15);border:1px solid rgba(139,111,199,.26);font-size:.72rem;color:rgba(139,111,199,.85)}
+.bubble{max-width:calc(100% - 50px);padding:1rem 1.2rem;line-height:1.82;font-size:.88rem}
+.bubble.ravel{background:var(--surface);border:1px solid rgba(201,168,76,.1);border-radius:0 12px 12px 12px;color:var(--cream)}
+.bubble.ravel em{font-style:italic;color:var(--gold-light)}
+.bubble.ravel strong{color:var(--gold);font-weight:500}
+.bubble.user{background:rgba(139,111,199,.1);border:1px solid rgba(139,111,199,.17);border-radius:12px 0 12px 12px;color:var(--cream);font-style:italic}
+
+.chat-div{max-width:680px;width:100%;margin:.5rem auto 0;padding:0 1.5rem}
+.chat-div-inner{display:flex;align-items:center;gap:1rem}
+.chat-div-line{flex:1;height:1px;background:rgba(201,168,76,.1)}
+.chat-div-lbl{font-size:.54rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,168,76,.32);white-space:nowrap}
+
+.typing-row{display:flex;gap:.8rem;align-items:flex-start}
+.typing{display:flex;gap:5px;padding:.85rem 1.1rem;align-items:center}
+.typing span{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.3);animation:blink 1.2s ease-in-out infinite}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+
+/* INPUT */
+.input-area{position:fixed;bottom:0;left:0;right:0;background:rgba(7,6,10,.97);backdrop-filter:blur(14px);border-top:1px solid rgba(201,168,76,.1);padding:1rem 1.5rem;z-index:50}
+.input-inner{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:.62rem}
+.opts{display:flex;flex-wrap:wrap;gap:.4rem}
+.opt{background:transparent;border:1px solid rgba(201,168,76,.2);color:rgba(240,234,224,.6);font-family:'DM Sans',sans-serif;font-size:.74rem;padding:.46rem .85rem;cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;border-radius:2px;line-height:1.4;text-align:left}
+.opt:hover,.opt:active{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.42);color:var(--cream)}
+.text-row{display:flex;gap:.6rem}
+.inp{flex:1;background:var(--surface2);border:1px solid rgba(201,168,76,.15);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;padding:.8rem 1rem;outline:none;border-radius:2px;transition:border-color .2s}
+.inp:focus{border-color:rgba(201,168,76,.36)}
+.inp::placeholder{color:rgba(240,234,224,.18)}
+.send-btn{background:var(--gold);color:var(--bg);border:none;cursor:pointer;padding:.8rem 1.2rem;font-size:1rem;border-radius:2px;flex-shrink:0;transition:opacity .2s}
+.send-btn:hover{opacity:.85}
+
+/* RESULT */
+#screen-result{display:none;padding:2rem 1.5rem 4rem;max-width:680px;margin:0 auto;width:100%}
+.result-hd{text-align:center;margin-bottom:2.5rem}
+.result-hd .lbl{font-size:.56rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:1rem}
+.result-hd h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,6vw,3rem);font-weight:300;line-height:1.1;margin-bottom:.5rem}
+.result-hd h2 em{font-style:italic;color:var(--gold-light)}
+.result-hd p{font-size:.83rem;color:var(--muted);line-height:1.7}
+.nivel-card{background:var(--surface);border:1px solid rgba(201,168,76,.18);padding:1.5rem;margin-bottom:1.5rem;text-align:center}
+.nivel-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:300;color:var(--gold-light);line-height:1}
+.nivel-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;color:var(--cream);margin:.3rem 0}
+.nivel-desc{font-size:.79rem;color:var(--muted);line-height:1.6}
+.nivel-bar{height:3px;background:rgba(201,168,76,.1);margin:1rem 0 0;overflow:hidden}
+.nivel-fill{height:100%;background:linear-gradient(to right,rgba(201,168,76,.35),var(--gold));transition:width 1.2s ease}
+.a-block{background:var(--surface);border:1px solid rgba(201,168,76,.09);padding:1.6rem 1.4rem;margin-bottom:1rem}
+.a-lbl{font-size:.53rem;letter-spacing:.27em;text-transform:uppercase;color:rgba(201,168,76,.4);margin-bottom:.7rem;padding-bottom:.5rem;border-bottom:1px solid rgba(201,168,76,.07);display:block}
+.a-block p{font-size:.88rem;line-height:1.88;color:rgba(240,234,224,.77)}
+.a-block p+p{margin-top:.75rem}
+.a-block em{font-style:italic;color:var(--gold-light)}
+.a-block strong{color:var(--gold);font-weight:500}
+.consolidation{border:1px solid rgba(139,111,199,.2);background:rgba(139,111,199,.04);padding:1.5rem;margin:1.5rem 0;text-align:center}
+.consolidation p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.04rem;line-height:1.78;color:rgba(240,234,224,.72)}
+.cta-block{background:var(--surface);border:1px solid rgba(201,168,76,.18);padding:2rem 1.5rem;text-align:center;margin-bottom:1.2rem}
+.cta-block h3{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300;margin-bottom:.5rem}
+.cta-block h3 em{font-style:italic;color:var(--gold-light)}
+.cta-block p{font-size:.82rem;color:var(--muted);line-height:1.72;margin-bottom:1.5rem}
+.btn-wpp{display:block;background:#25D366;color:#fff;font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:1rem;text-decoration:none;text-align:center;margin-bottom:.7rem;transition:opacity .2s}
+.btn-wpp:hover{opacity:.88}
+.btn-pdf{display:block;background:transparent;border:1px solid rgba(201,168,76,.27);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:.9rem;text-align:center;cursor:pointer;width:100%;margin-bottom:.7rem;transition:background .2s}
+.btn-pdf:hover{background:rgba(201,168,76,.07)}
+.btn-restart{display:block;background:transparent;border:1px solid rgba(240,234,224,.08);color:rgba(240,234,224,.3);font-family:'DM Sans',sans-serif;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.82rem;text-align:center;cursor:pointer;width:100%}
+#loading-result{text-align:center;padding:4rem 1.5rem}
+.spinner{width:36px;height:36px;border:1px solid rgba(201,168,76,.15);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1.5rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+#loading-result p{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:1rem}
+.btn-primary{display:block;background:var(--gold);color:var(--bg);font-family:'DM Sans',sans-serif;font-size:.74rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:1.1rem;text-decoration:none;text-align:center;border:none;cursor:pointer;width:100%;transition:box-shadow .3s;max-width:360px;margin:0 auto}
+.btn-primary:hover{box-shadow:0 0 26px rgba(201,168,76,.24)}
+.hidden{display:none!important}
+@media print{
+  #particles,.topbar,.input-area,.btn-pdf,.btn-wpp,.btn-restart,.btn-primary{display:none!important}
+  body{background:#fff;color:#111}
+  #screen-result{display:block!important;max-width:100%}
+  .nivel-card,.a-block,.consolidation,.cta-block{border-color:#ccc;background:#f9f9f9;break-inside:avoid}
+  .a-block p{color:#222}
 }
-
-header h1{
-font-family:'Cormorant Garamond',serif;
-font-weight:300;
-font-size:32px;
-letter-spacing:1px;
-}
-
-header span{
-color:#c9a84c;
-}
-
-.container{
-max-width:800px;
-margin:auto;
-padding:40px 20px;
-}
-
-.intro{
-text-align:center;
-margin-bottom:40px;
-}
-
-.intro p{
-opacity:.8;
-line-height:1.6;
-}
-
-button{
-background:#c9a84c;
-border:none;
-padding:14px 26px;
-color:#000;
-font-weight:bold;
-cursor:pointer;
-margin-top:20px;
-}
-
-.chat{
-margin-top:30px;
-}
-
-.msg{
-margin-bottom:18px;
-}
-
-.ravel{
-color:#e7c873;
-font-family:'Cormorant Garamond',serif;
-}
-
-.user{
-text-align:right;
-opacity:.9;
-}
-
-input{
-width:100%;
-padding:12px;
-margin-top:10px;
-background:#111;
-border:1px solid rgba(201,168,76,.3);
-color:#fff;
-}
-
-.result{
-display:none;
-margin-top:40px;
-padding:30px;
-border:1px solid rgba(201,168,76,.2);
-}
-
-.result h2{
-font-family:'Cormorant Garamond',serif;
-font-weight:300;
-}
-
-.save{
-margin-top:25px;
-}
-
 </style>
-
 </head>
-
 <body>
+<div id="particles"></div>
+<div class="app">
+<div class="topbar"><p>Reorganização do Núcleo Emocional · Ravel Dunningham</p></div>
 
-<header>
-
-<h1>Reorganização do <span>Núcleo Emocional</span></h1>
-<p style="opacity:.6;font-size:12px;">Dinâmica simbólica conduzida por Ravel Dunningham</p>
-
-</header>
-
-<div class="container">
-
-<div class="intro" id="intro">
-
-<p>
-
-Antes de começarmos, encontre um lugar tranquilo.
-
-Respire fundo algumas vezes.
-
-A dinâmica que você vai vivenciar agora utiliza símbolos do inconsciente para revelar padrões emocionais que podem estar influenciando os resultados da sua vida.
-
-Não existe resposta certa ou errada.
-
-Apenas observe aquilo que surgir espontaneamente na sua mente.
-
-</p>
-
-<button onclick="start()">Iniciar a dinâmica</button>
-
+<!-- INTRO -->
+<div id="screen-intro">
+  <div class="intro-orb"></div>
+  <div class="symbol">◈</div>
+  <h1>Reorganização do<br><em>Núcleo Emocional</em></h1>
+  <p class="intro-tagline">Dinâmica simbólica do inconsciente</p>
+  <p class="intro-desc">Uma jornada para localizar e reorganizar os vínculos emocionais que bloqueiam uma área da sua vida — através dos símbolos que o seu inconsciente já carrega.</p>
+  <div class="warning">
+    <p>🕯️ <strong>Antes de começar:</strong> encontre um lugar silencioso. Respire fundo. Esta dinâmica pede presença e honestidade com o que aparecer. Não existe resposta certa ou errada.</p>
+  </div>
+  <button class="btn-primary" onclick="startChat()">Iniciar a Dinâmica</button>
 </div>
 
-<div class="chat" id="chat"></div>
-
-<div id="inputArea" style="display:none">
-
-<input id="input" placeholder="Digite sua resposta">
-
-<button onclick="send()">Responder</button>
-
+<!-- CHAT -->
+<div id="screen-chat" class="chat-screen">
+  <div class="chat-area" id="chat-area"></div>
 </div>
 
-<div class="result" id="result">
-
-<h2>Sua análise simbólica</h2>
-
-<div id="analysis"></div>
-
-<button class="save" onclick="window.print()">Salvar como PDF</button>
-
+<!-- RESULT -->
+<div id="screen-result">
+  <div id="loading-result">
+    <div class="spinner"></div>
+    <p>Interpretando os símbolos da sua jornada...</p>
+  </div>
+  <div id="result-body" class="hidden">
+    <div class="result-hd">
+      <span class="lbl">Relatório Simbólico</span>
+      <h2>O que o inconsciente<br><em>revelou sobre você</em></h2>
+      <p id="result-subtitle"></p>
+    </div>
+    <div class="nivel-card">
+      <div class="nivel-num" id="nivel-num">—</div>
+      <div class="nivel-name" id="nivel-name">—</div>
+      <div class="nivel-desc" id="nivel-desc">—</div>
+      <div class="nivel-bar"><div class="nivel-fill" id="nivel-fill" style="width:0%"></div></div>
+    </div>
+    <div id="analysis-blocks"></div>
+    <div class="consolidation">
+      <p>"Quando uma relação encontra o lugar correto dentro de nós, a vida começa a se reorganizar na área que antes parecia travada."</p>
+    </div>
+    <div class="cta-block">
+      <h3>Quer aprofundar<br><em>essa reorganização?</em></h3>
+      <p>Agende um atendimento online com Ravel Dunningham para trabalhar esses símbolos com profundidade e precisão individual.</p>
+      <a class="btn-wpp" href="https://wa.me/5574999443621?text=Olá%20Ravel!%20Fiz%20a%20dinâmica%20de%20Reorganização%20do%20Núcleo%20Emocional%20e%20gostaria%20de%20agendar%20um%20atendimento." target="_blank">📲 Agendar pelo WhatsApp</a>
+      <button class="btn-pdf" onclick="downloadPDF()">⬇ Baixar Relatório em PDF</button>
+      <button class="btn-restart" onclick="restartDynamic()">Fazer novamente</button>
+    </div>
+  </div>
 </div>
 
+<!-- INPUT -->
+<div class="input-area" id="input-area" style="display:none">
+  <div class="input-inner">
+    <div class="opts" id="opts-el"></div>
+    <div class="text-row" id="text-row" style="display:none">
+      <input type="text" class="inp" id="inp" placeholder="Digite sua resposta..." autocomplete="off">
+      <button class="send-btn" onclick="sendMsg()">➤</button>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
+// PARTICLES
+(()=>{const c=document.getElementById('particles');for(let i=0;i<18;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*5+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*22+14}s;animation-delay:${Math.random()*20}s`;c.appendChild(p);}})();
 
-let step=0
+// ── STATE ──
+let S={
+  nome:'', area:'', alvoNome:'', alvoTipo:'',
+  // alvoTipo: 'familia' | 'parente' | 'amigo' | 'deus'
+  invasao: false,       // há invasão emocional instalada?
+  padrao: '',           // vítima / narcisista / vingador / nenhum / não identificado
+  sala: {},             // desc, janelas(bool), luz, sensacoes, moveis(bool), extras
+  mesa: {},             // desc, objeto_cima(str|null), posicoes
+  vinculo: {},          // tipo, qualidade('bom'|'ruim'), ancoras
+  dependencia: '',
+  objetoCarregado: '',  // '' = nenhum
+  objetoQualidade: '',  // 'bom'|'ruim'
+  objetoSentimento: '',
+  portaAntes: '',
+  estab: {
+    vinculoAcao:'', objetoAcao:'', movimento:'',
+    culpaPresente:false, culpaAcao:'', portaDepois:''
+  },
+  pontos: 0
+};
 
-let answers={}
+// ── DOM ──
+const chatEl=document.getElementById('chat-area');
+const optsEl=document.getElementById('opts-el');
+const textRow=document.getElementById('text-row');
+const inpEl=document.getElementById('inp');
+const inputArea=document.getElementById('input-area');
+let waitingCb=null;
 
-const perguntas=[
+function scrollBot(){setTimeout(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),120)}
 
-`Antes de começarmos essa jornada simbólica, me diga:  
-como posso te chamar?`,
-
-`Agora pense na sua vida neste momento.
-
-Existe alguma área onde os resultados parecem sempre demorar mais do que deveriam aparecer?
-
-Pode ser dinheiro, relacionamentos ou saúde.
-
-Qual dessas áreas parece mais travada neste momento?`,
-
-`Quando você pensa nessa área da sua vida, observe qual pessoa surge espontaneamente na sua mente.
-
-Não force a resposta.
-
-Apenas permita que o primeiro nome apareça.
-
-Quem é essa pessoa?`,
-
-`Agora imagine que você está diante de uma sala.
-
-Essa sala representa simbolicamente a relação emocional entre você e essa pessoa.
-
-Observe a porta dessa sala… e entre.
-
-Quando estiver dentro, olhe ao redor com calma.
-
-Como é essa sala?`,
-
-`Dentro dessa sala existe uma mesa.
-
-Essa mesa representa o nível de maturidade dessa relação.
-
-Observe onde você está em relação a essa mesa…  
-e onde essa pessoa está.
-
-Descreva essa cena.`,
-
-`Agora olhe com mais atenção para a mesa.
-
-Existe algo colocado sobre ela?
-
-Esse objeto representa um padrão emocional dentro dessa relação.
-
-O que você vê sobre a mesa?`,
-
-`Agora observe se existe algo conectando você e essa pessoa.
-
-Pode ser uma corrente, uma corda, um fio de energia ou qualquer outro tipo de ligação simbólica.
-
-Como é esse vínculo entre vocês?`,
-
-`Preste atenção agora na direção dessa ligação.
-
-Ela puxa mais você em direção a essa pessoa  
-ou puxa mais essa pessoa em direção a você?
-
-O que você percebe?`,
-
-`Agora imagine que você pode se afastar um pouco dessa pessoa dentro da sala.
-
-Observe o que acontece quando você faz isso.
-
-Existe algo no caminho que dificulta esse afastamento?`,
-
-`Agora olhe novamente para a porta da sala.
-
-Imagine que você pode se aproximar dela lentamente.
-
-Quando você olha através dessa porta…
-
-o que existe do outro lado?`
-
-]
-
-function addMsg(text,type){
-
-const div=document.createElement("div")
-
-div.className="msg "+type
-
-div.innerHTML=text
-
-document.getElementById("chat").appendChild(div)
-
-window.scrollTo(0,document.body.scrollHeight)
-
+function addMsg(html,who){
+  const div=document.createElement('div');div.className=`msg ${who}`;
+  const r=who==='ravel';
+  div.innerHTML=`<div class="avatar ${r?'av-r':'av-u'}">${r?'R':'✦'}</div><div class="bubble ${who}">${html.replace(/\n/g,'<br>')}</div>`;
+  chatEl.appendChild(div);scrollBot();
 }
 
-function start(){
-
-document.getElementById("intro").style.display="none"
-
-document.getElementById("inputArea").style.display="block"
-
-addMsg(perguntas[0],"ravel")
-
+function addDiv(label){
+  const d=document.createElement('div');d.className='chat-div';
+  d.innerHTML=`<div class="chat-div-inner"><div class="chat-div-line"></div><span class="chat-div-lbl">${label}</span><div class="chat-div-line"></div></div>`;
+  chatEl.appendChild(d);scrollBot();
 }
 
-function send(){
-
-let input=document.getElementById("input")
-
-let value=input.value
-
-if(!value)return
-
-addMsg(value,"user")
-
-answers["p"+step]=value
-
-step++
-
-input.value=""
-
-if(step<perguntas.length){
-
-setTimeout(()=>{
-
-addMsg(perguntas[step],"ravel")
-
-},600)
-
-}else{
-
-finish()
-
+function think(ms,cb){
+  const d=document.createElement('div');d.className='typing-row msg ravel';d.id='typ';
+  d.innerHTML=`<div class="avatar av-r">R</div><div class="bubble ravel"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  chatEl.appendChild(d);scrollBot();
+  setTimeout(()=>{d.remove();cb();},ms);
 }
 
+function clearIn(){optsEl.innerHTML='';textRow.style.display='none';inpEl.value='';}
+
+function ask(opts,cb){
+  clearIn();
+  opts.forEach(o=>{
+    const b=document.createElement('button');b.className='opt';b.innerHTML=o;
+    b.onclick=()=>{const v=o.replace(/<[^>]+>/g,'');clearIn();addMsg(v,'user');think(1200,()=>cb(v));};
+    optsEl.appendChild(b);
+  });
 }
 
-function finish(){
-
-document.getElementById("inputArea").style.display="none"
-
-document.getElementById("result").style.display="block"
-
-document.getElementById("analysis").innerHTML=
-
-`<p>
-
-A estrutura simbólica apresentada na sua dinâmica indica que existe um padrão emocional ativo na área que você identificou.
-
-Os símbolos que apareceram — especialmente a sala, a mesa e o vínculo — revelam como seu inconsciente organiza essa relação.
-
-Quando um vínculo emocional permanece ativo por muito tempo, ele pode influenciar decisões, percepções e até os resultados externos da vida.
-
-A reorganização do núcleo emocional consiste justamente em identificar esses símbolos e permitir que sua estrutura interna se reorganize de forma mais madura.
-
-Observe os elementos que surgiram na sua experiência.
-
-Eles indicam quais padrões emocionais ainda precisam ser ressignificados para que a energia dessa área da sua vida volte a fluir com mais liberdade.
-
-</p>
-
-<p style="margin-top:20px">
-
-— Ravel Dunningham
-
-</p>`
-
+function type(ph,cb){
+  clearIn();textRow.style.display='flex';inpEl.placeholder=ph||'Digite sua resposta...';
+  setTimeout(()=>inpEl.focus(),300);
+  waitingCb=v=>{clearIn();addMsg(v,'user');waitingCb=null;think(1300,()=>cb(v));};
 }
 
+function sendMsg(){const v=inpEl.value.trim();if(v&&waitingCb)waitingCb(v);}
+inpEl.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}});
+
+// ── HELPERS ──
+const isFamilia=()=>S.alvoTipo==='familia';
+const isParente=()=>S.alvoTipo==='parente';
+const needsDistance=()=>!isFamilia();
+
+function vinculoQualidade(desc){
+  if(/corrente|acorrent|pesad|amarra|presa|grilh/i.test(desc))return'ruim';
+  if(/corda|amarr|nó|puxando/i.test(desc))return'ruim';
+  if(/fio de luz|fio de ouro|fio de prata|energia|luz|flutu|suave|leve/i.test(desc))return'bom';
+  if(/fio\b/i.test(desc))return'bom'; // fio simples = bom por padrão
+  return'ruim'; // qualquer vínculo denso não identificado = ruim
+}
+
+function objetoQualidade(desc,sentimento){
+  if(/nada|nenhum|não carrego|vazio|não há/i.test(desc))return'nenhum';
+  if(/raiva|ressentimento|peso|culpa|ódio/i.test(sentimento))return'ruim';
+  if(/saudade|tristeza|nostalgia/i.test(sentimento))return isFamilia()?'bom':'ruim';
+  if(/gratidão|amor|carinho|paz/i.test(sentimento))return'bom';
+  return'neutro';
+}
+
+function pontuar(cat,val){
+  const t={
+    posicao:{lado:3,igual:3,junto:3,frente:2,oposto:2,distante:1,longe:1,atrás:1,cabeceira:1},
+    vinculo:{energia:4,luz:4,fio:3,leve:3,corda:2,amarra:2,corrente:1,pesada:1,nada:5},
+    culpa:{pedra:1,peso:1,muro:1,bloqueio:1,nada:4,livre:4,limpo:4,vazio:3}
+  };
+  const m=t[cat];if(!m)return 2;
+  const v=val.toLowerCase();
+  for(const k of Object.keys(m))if(v.includes(k))return m[k];
+  return 2;
+}
+
+// ── ANÁLISE DA SALA ──
+function analisaSala(desc){
+  const tem=(rgx)=>rgx.test(desc);
+  return{
+    janelas: tem(/janela|vidro|luz natural|abertura|claridade/i),
+    escura:  tem(/escur|sombr|penu|sem luz/i),
+    clara:   tem(/clar|iluminad|brilhante|bem iluminad/i),
+    moveis:  tem(/mesa|cadeira|sofá|cama|móvel|poltrona|estante|armário/i),
+    vazia:   tem(/vazi|nada|só as paredes|sem móveis/i),
+    fria:    tem(/fria|gelad|úmid|abandon/i),
+    acolhed: tem(/aconcheg|quentinha|quente|familiar|confortável/i),
+    desc
+  };
+}
+
+// ── ANÁLISE DA MESA ──
+function analisaMesa(desc){
+  const tem=(rgx)=>rgx.test(desc);
+  const objetoCima = tem(/cima|em cima|sobre|em cima dela|sobre ela/i) ||
+    (!tem(/vazia|nada|só a mesa|sem nada/i) && tem(/tem |há |existe |coloca/i));
+  // extrai possível objeto
+  let obj='';
+  const m=desc.match(/(?:em cima|sobre|cima)[^.]*?[,:]\s*([^.]+)/i);
+  if(m)obj=m[1].trim();
+  return{
+    desc,
+    objetoCima: objetoCima ? (obj||'algo') : null,
+    grande: tem(/grand|enorm|larg|longa/i),
+    pequena: tem(/pequen|compac|minúscul/i),
+    madeira: tem(/madeira|rústic/i),
+    vidro: tem(/vidro|transparen/i),
+    vazia_cima: tem(/vazi|nada (em cima|sobre)|sem nada/i)
+  };
+}
+
+// ══════════════
+// FLUXO
+// ══════════════
+function startChat(){
+  document.getElementById('screen-intro').style.display='none';
+  document.getElementById('screen-chat').style.display='flex';
+  inputArea.style.display='block';
+  setTimeout(()=>f_nome(),400);
+}
+
+// 1 — NOME
+function f_nome(){
+  addMsg('Antes de começarmos...\n\n<em>Como posso te chamar?</em>','ravel');
+  type('Seu nome',v=>{S.nome=v;f_area();});
+}
+
+// 2 — ÁREA
+function f_area(){
+  addMsg(`Bem-vindo(a), <em>${S.nome}</em>. 🌿\n\nQual área da sua vida parece <strong>travada</strong> neste momento?`,'ravel');
+  ask(['Dinheiro','Relacionamentos','Saúde'],v=>{S.area=v;f_alvo_nome();});
+}
+
+// 3 — ALVO NOME
+function f_alvo_nome(){
+  addMsg(`Quando você pensa em <em>${S.area.toLowerCase()}</em>...\n\nQual é a <strong>primeira pessoa</strong> que vem à sua mente?\n\nPode ser só o primeiro nome.`,'ravel');
+  type('Nome da pessoa',v=>{S.alvoNome=v;f_alvo_tipo();});
+}
+
+// 4 — TIPO DO ALVO
+function f_alvo_tipo(){
+  addMsg(`Como você descreveria <em>${S.alvoNome}</em> na sua vida?`,'ravel');
+  ask([
+    '💑 Cônjuge ou filho(a)',
+    '👪 Pai, mãe ou irmão(ã)',
+    '🌳 Avô, avó, tio, tia ou primo(a)',
+    '🤝 Amigo(a) ou conhecido(a)',
+    '🙏 Deus'
+  ],v=>{
+    if(v.includes('Cônjuge')||v.includes('filho'))S.alvoTipo='familia';
+    else if(v.includes('Pai')||v.includes('mãe')||v.includes('irmão'))S.alvoTipo='parente';
+    else if(v.includes('Avô')||v.includes('tio')||v.includes('primo'))S.alvoTipo='parente';
+    else if(v.includes('Amigo'))S.alvoTipo='amigo';
+    else S.alvoTipo='deus';
+    f_invasao();
+  });
+}
+
+// 5 — INVASÃO EMOCIONAL
+function f_invasao(){
+  addMsg(`<em>${S.alvoNome}</em> costuma <strong>interferir nas suas decisões</strong> — ou você sente que precisa da opinião ou aprovação dela para agir?`,'ravel');
+  ask(['Sim, com frequência','Às vezes','Não, tenho minha própria direção'],v=>{
+    S.invasao=/sim|frequência/i.test(v);
+    if(S.invasao){
+      f_padrao();
+    } else {
+      f_sala_desc();
+    }
+  });
+}
+
+// 6 — PADRÃO CONTROLADOR (só se houver invasão)
+function f_padrao(){
+  addMsg(`Você consegue identificar como essa interferência costuma aparecer?`,'ravel');
+  ask([
+    'Ela se coloca como vítima para me prender',
+    'Ela precisa ter razão e centralizar tudo',
+    'Ela pune ou ameaça quando não age como quer',
+    'Não consigo identificar claramente'
+  ],v=>{
+    if(v.includes('vítima'))S.padrao='vítima';
+    else if(v.includes('razão')||v.includes('centralizar'))S.padrao='narcisista';
+    else if(v.includes('pune')||v.includes('ameaça'))S.padrao='vingador';
+    else S.padrao='não identificado';
+    f_sala_desc();
+  });
+}
+
+// 7 — SALA DESCRIÇÃO
+function f_sala_desc(){
+  addDiv('A Sala');
+  addMsg(`Feche os olhos por um momento.\nRespire fundo.\n\n<em>Imagine uma sala.</em>\n\nNão filtre — apenas observe e descreva o que aparecer.`,'ravel');
+  type('Como é essa sala?',v=>{
+    S.sala=analisaSala(v);
+    f_sala_luz(); // sempre pergunta luz pois não é descritível só pelo texto
+  });
+}
+
+// 8 — LUZ (sempre, pois é qualitativa)
+function f_sala_luz(){
+  // só pergunta janelas se não mencionou
+  if(!S.sala.janelas && !S.sala.escura && !S.sala.clara){
+    addMsg(`<strong>Como está a iluminação da sala?</strong>`,'ravel');
+    ask(['Clara e aberta','Meia luz, penumbra','Bem escura','Uma luz estranha ou diferente'],v=>{
+      S.sala.luz=v;
+      if(!S.sala.janelas && !S.sala.vazia){
+        f_sala_sensacoes();
+      } else {
+        f_mesa();
+      }
+    });
+  } else {
+    S.sala.luz=S.sala.clara?'Clara':S.sala.escura?'Escura':'Meia luz';
+    f_sala_sensacoes();
+  }
+}
+
+// 9 — SENSAÇÕES (cheiro/som — se não mencionado)
+function f_sala_sensacoes(){
+  // verifica se já mencionou sensações
+  const jaDesc=/cheiro|som|barulho|silêncio|música|perfume|mofo|frio|calor/i.test(S.sala.desc);
+  if(!jaDesc){
+    addMsg(`<strong>Existe algum cheiro ou som</strong> nessa sala?`,'ravel');
+    type('Descreva o que percebe...',v=>{S.sala.sensacoes=v;f_mesa();});
+  } else {
+    f_mesa();
+  }
+}
+
+// 10 — MESA
+function f_mesa(){
+  addDiv('A Mesa da Maturidade');
+  addMsg(`Dentro dessa sala, <em>imagine uma mesa</em>.\n\nComo é essa mesa?`,'ravel');
+  type('Descreva a mesa...',v=>{
+    S.mesa=analisaMesa(v);
+    f_mesa_posicoes();
+  });
+}
+
+// 11 — POSIÇÕES
+function f_mesa_posicoes(){
+  addMsg(`<strong>Onde você está em relação à mesa?</strong>\n\nE onde está <em>${S.alvoNome}</em>?`,'ravel');
+  type('Descreva as posições...',v=>{
+    S.mesa.posicoes=v;
+    S.pontos+=pontuar('posicao',v);
+    // Se já mencionou objeto na descrição da mesa, pede detalhe; senão pergunta se há algo
+    if(S.mesa.objetoCima){
+      addMsg(`Você mencionou <em>${S.mesa.objetoCima}</em> sobre a mesa.\n\n<strong>Descreva melhor esse elemento.</strong>`,'ravel');
+      type('Mais detalhes...',vv=>{S.mesa.detalheObjeto=vv;f_vinculo();});
+    } else {
+      addMsg(`<strong>Existe algo em cima da mesa?</strong>`,'ravel');
+      type('O que você vê...',vv=>{S.mesa.detalheObjeto=vv;f_vinculo();});
+    }
+  });
+}
+
+// 12 — VÍNCULO
+function f_vinculo(){
+  addDiv('O Vínculo');
+  addMsg(`Agora observe <em>você e ${S.alvoNome}</em>...\n\n<strong>Existe algo ligando vocês dois?</strong>\n\nPode ser uma corrente, corda, fio, energia, luz, raiz... O que você vê?`,'ravel');
+  type('Descreva o vínculo...',v=>{
+    S.vinculo.tipo=v;
+    S.vinculo.qualidade=vinculoQualidade(v);
+    S.pontos+=pontuar('vinculo',v);
+    f_vinculo_ancoras();
+  });
+}
+
+// 13 — ÂNCORAS
+function f_vinculo_ancoras(){
+  addMsg(`<strong>Onde esse vínculo está preso no seu corpo?</strong>\nE onde está preso em <em>${S.alvoNome}</em>?`,'ravel');
+  type('Ex: no peito, no ventre, na garganta...',v=>{
+    S.vinculo.ancoras=v;
+    f_dependencia();
+  });
+}
+
+// 14 — DEPENDÊNCIA
+function f_dependencia(){
+  addMsg(`Esse vínculo <strong>puxa mais você em direção a ${S.alvoNome}</strong>, ou puxa mais <strong>${S.alvoNome} em direção a você</strong>?`,'ravel');
+  ask([
+    `Puxa mais eu em direção a ${S.alvoNome}`,
+    `Puxa mais ${S.alvoNome} em direção a mim`,
+    'É igual dos dois lados'
+  ],v=>{S.dependencia=v;f_estab_vinculo();});
+}
+
+// ══════════════════════
+// ESTABILIZAÇÃO DO VÍNCULO
+// ══════════════════════
+function f_estab_vinculo(){
+  addDiv('Estabilização');
+
+  if(S.vinculo.qualidade==='bom'){
+    // vínculo bom — só contexto
+    if(isFamilia()){
+      addMsg(`O vínculo que você vê — <em>${S.vinculo.tipo}</em> — é saudável.\n\nEle <strong>fortalece</strong> essa relação.\n\nPermita que ele permaneça.`,'ravel');
+      S.estab.vinculoAcao='mantido — vínculo saudável com família';
+      think(1000,f_objeto);
+    } else {
+      addMsg(`O vínculo que você vê — <em>${S.vinculo.tipo}</em> — é leve e saudável.\n\nPermita que ele exista <strong>com limites claros</strong>.`,'ravel');
+      S.estab.vinculoAcao='mantido com limites — vínculo saudável';
+      think(1000,f_objeto);
+    }
+  } else {
+    // vínculo ruim — precisa destruir
+    addMsg(`Esse vínculo — <em>${S.vinculo.tipo}</em> — representa uma <strong>dependência emocional</strong>.\n\nEle não te sustenta. Ele te prende.\n\n<strong>O que você quer fazer com ele?</strong>`,'ravel');
+    ask([
+      'Destruí-lo — ele não me pertence',
+      'Deixar que ele se dissolva lentamente',
+      'Cortá-lo agora'
+    ],v=>{
+      S.estab.vinculoAcao=v;
+      f_objeto();
+    });
+  }
+}
+
+// ══════════════════════
+// OBJETO
+// ══════════════════════
+function f_objeto(){
+  addMsg(`Agora observe seu próprio corpo.\n\n<strong>Você carrega algum objeto que pertence a ${S.alvoNome}?</strong>\n\nPode ser simbólico — algo que você sente em você.`,'ravel');
+  type('Descreva o objeto, ou diga que não há nada...',v=>{
+    S.objetoCarregado=v;
+    if(/nada|nenhum|não carrego|não há|vazio/i.test(v)){
+      S.objetoQualidade='nenhum';
+      S.estab.objetoAcao='nenhum objeto a devolver';
+      f_porta_antes();
+    } else {
+      f_objeto_sentimento();
+    }
+  });
+}
+
+function f_objeto_sentimento(){
+  addMsg(`<strong>O que você sente ao olhar para esse objeto?</strong>`,'ravel');
+  ask(['Raiva ou ressentimento','Saudade ou tristeza','Culpa','Gratidão','Indiferença'],v=>{
+    S.objetoSentimento=v;
+    S.objetoQualidade=objetoQualidade(S.objetoCarregado,v)==='nenhum'?'nenhum':
+      (/raiva|ressentimento|culpa/i.test(v)?'ruim':
+       (/gratidão|carinho/i.test(v)?'bom':
+        (isFamilia()&&/saudade/i.test(v)?'bom':'ruim')));
+    f_objeto_acao();
+  });
+}
+
+function f_objeto_acao(){
+  if(S.objetoQualidade==='bom'){
+    addMsg(`Esse objeto carrega algo de <em>${S.alvoNome}</em> que pertence à sua história.\n\n<strong>Guarde-o dentro de você — no lugar certo.</strong>`,'ravel');
+    S.estab.objetoAcao='guardado — objeto com valor positivo';
+    think(1000,f_porta_antes);
+  } else {
+    addMsg(`Esse objeto — <em>${S.objetoCarregado}</em> — é um padrão herdado que você não precisa mais carregar.\n\n<strong>O que você quer fazer com ele?</strong>`,'ravel');
+    ask([
+      `Devolver para ${S.alvoNome}`,
+      'Destruí-lo — não me pertence',
+      'Deixá-lo sobre a mesa e seguir em frente'
+    ],v=>{S.estab.objetoAcao=v;f_porta_antes();});
+  }
+}
+
+// ══════════════════════
+// PORTA ANTES
+// ══════════════════════
+function f_porta_antes(){
+  addDiv('A Porta');
+  addMsg(`Olhe para a <em>porta da sala</em>.\n\nRespire fundo.\n\n<strong>O que existe do outro lado dessa porta agora?</strong>`,'ravel');
+  type('O que você vê do outro lado?',v=>{S.portaAntes=v;f_movimento();});
+}
+
+// ══════════════════════
+// MOVIMENTO FINAL
+// ══════════════════════
+function f_movimento(){
+  addDiv('Movimento Final');
+  if(isFamilia()){
+    addMsg(`Com <em>${S.alvoNome}</em>, o movimento é de <strong>aproximação com liberdade</strong>.\n\nPermita que ${S.alvoNome} se aproxime — sem dependência, sem fusão.\n\n<strong>Como você recebe essa aproximação?</strong>`,'ravel');
+    ask([
+      'Com abertura e limites claros',
+      'Com leveza — cada um no seu espaço',
+      'Com gratidão por esse vínculo'
+    ],v=>{
+      S.estab.movimento=v;
+      f_culpa();
+    });
+  } else {
+    // parente com invasão ou amigo/deus
+    const msg = (isParente()&&S.invasao)
+      ? `Há uma invasão emocional nessa relação.\n\n<strong>Permita que ${S.alvoNome} se afaste</strong> — ou observe ${S.alvoNome} diminuir até desaparecer.\n\nO que acontece?`
+      : `<strong>Permita que ${S.alvoNome} se afaste</strong> — ou observe ${S.alvoNome} diminuir até desaparecer.\n\nO que acontece?`;
+    addMsg(msg,'ravel');
+    ask([
+      `Me afasto de ${S.alvoNome} com clareza`,
+      `Observo ${S.alvoNome} diminuir e desaparecer`,
+      'Sinto que consigo criar essa distância'
+    ],v=>{
+      S.estab.movimento=v;
+      f_culpa();
+    });
+  }
+}
+
+// ══════════════════════
+// CULPA
+// ══════════════════════
+function f_culpa(){
+  addMsg(`Enquanto isso acontece...\n\n<strong>Existe algo no caminho?</strong>\n\nObserve o que aparece entre você e essa nova posição.`,'ravel');
+  type('O que aparece?',v=>{
+    S.estab.culpaPresente=/pedra|peso|muro|bloqueio|obstáculo|culpa|difícil|não consigo/i.test(v);
+    S.pontos+=pontuar('culpa',v);
+    if(S.estab.culpaPresente){
+      addMsg(`Essa pedra — <em>${v}</em> — é uma <strong>lealdade inconsciente</strong>: uma parte de você acredita que avançar seria uma traição.\n\n<strong>O que você quer fazer com ela?</strong>`,'ravel');
+      ask(['Mover a pedra do caminho','Atravessar por cima dela','Reconhecê-la e seguir assim mesmo'],vv=>{
+        S.estab.culpaAcao=vv;
+        f_porta_depois();
+      });
+    } else {
+      f_porta_depois();
+    }
+  });
+}
+
+// ══════════════════════
+// PORTA DEPOIS
+// ══════════════════════
+function f_porta_depois(){
+  addDiv('A Porta — Após a Reorganização');
+  addMsg(`Olhe novamente para a <em>porta da sala</em>.\n\nApós tudo que foi reorganizado...\n\n<strong>O que existe do outro lado agora?</strong>`,'ravel');
+  type('O que você vê?',v=>{S.estab.portaDepois=v;f_saida();});
+}
+
+// ══════════════════════
+// SAÍDA
+// ══════════════════════
+function f_saida(){
+  addDiv('Encerramento');
+  addMsg(`${S.nome}...\n\nRespire fundo.\n\n<em>Você atravessou essa sala.</em>\n\nOs símbolos foram reorganizados. O que o inconsciente moveu aqui é real — ele não distingue símbolo de experiência.\n\nAgora vou interpretar tudo que emergiu e preparar o seu relatório.`,'ravel');
+  setTimeout(()=>{
+    ask(['Ver meu relatório'],()=>{inputArea.style.display='none';showResult();});
+  },800);
+}
+
+// ══════════════════════
+// RESULTADO
+// ══════════════════════
+function calcNivel(){
+  const p=S.pontos;
+  const ns=[
+    {min:0, max:7, n:1,nome:'Afeto',         desc:'A relação é guiada pela necessidade de amor e pertencimento. Dependência emocional forte.',pct:20},
+    {min:8, max:12,n:2,nome:'Reconhecimento',desc:'A relação é movida pela busca de validação. Dependência moderada presente.',pct:40},
+    {min:13,max:16,n:3,nome:'Resultado',      desc:'A relação começa a ser vista de forma funcional. Transição em andamento.',pct:60},
+    {min:17,max:19,n:4,nome:'Sentido',        desc:'Há compreensão do papel da relação na história. Maior clareza emocional.',pct:80},
+    {min:20,max:99,n:5,nome:'Propósito',      desc:'A relação está integrada como parte da evolução. Liberdade emocional presente.',pct:100},
+  ];
+  return ns.find(n=>p>=n.min&&p<=n.max)||ns[0];
+}
+
+async function showResult(){
+  document.getElementById('screen-chat').style.display='none';
+  document.getElementById('screen-result').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  const nv=calcNivel();S.nivel=nv;
+
+  const tipoLabel={familia:'família nuclear (cônjuge/filho)',parente:'parente',amigo:'amigo ou conhecido',deus:'Deus'}[S.alvoTipo];
+  const invasaoStr=S.invasao?`Invasão emocional identificada. Padrão: ${S.padrao}.`:'Sem invasão emocional identificada.';
+  const familiaStr=isFamilia()?'FAMÍLIA — vínculo protegido, movimento de aproximação':'NÃO FAMÍLIA — limites e distanciamento indicados';
+
+  const prompt=`Você é Ravel Dunningham, especialista em reorganização do núcleo emocional e mapeamento simbólico do inconsciente.
+
+SESSÃO DE: ${S.nome}
+ÁREA TRAVADA: ${S.area}
+ALVO: ${S.alvoNome} (${tipoLabel})
+TIPO DE RELAÇÃO: ${familiaStr}
+${invasaoStr}
+NÍVEL DA ESCADA DA MATURIDADE: ${nv.n} — ${nv.nome}
+
+SÍMBOLOS COLETADOS:
+Sala: ${S.sala.desc} | Luz: ${S.sala.luz||'não especificada'} | Sensações: ${S.sala.sensacoes||'não mencionadas'}
+Mesa: ${S.mesa.desc} | Objeto sobre a mesa: ${S.mesa.detalheObjeto||'nenhum'} | Posições: ${S.mesa.posicoes}
+Vínculo: ${S.vinculo.tipo} (qualidade: ${S.vinculo.qualidade}) | Âncoras: ${S.vinculo.ancoras}
+Dependência: ${S.dependencia}
+Objeto carregado: ${S.objetoCarregado||'nenhum'} | Sentimento: ${S.objetoSentimento||'n/a'}
+Porta ANTES: ${S.portaAntes}
+
+ESTABILIZAÇÃO:
+Vínculo: ${S.estab.vinculoAcao}
+Objeto: ${S.estab.objetoAcao}
+Movimento: ${S.estab.movimento}
+Culpa: ${S.estab.culpaPresente?'Sim — '+S.estab.culpaAcao:'Não houve'}
+Porta DEPOIS: ${S.estab.portaDepois}
+
+PREMISSAS DO MÉTODO:
+1. Todo problema tem utilidade inconsciente de atrair ou afastar alguém
+2. Todo acontecimento gera registros emocionais com função relacional
+3. Melhorar de vida pode gerar conflito de lealdade inconsciente (Teoria da Permissão)
+4. Toda demora nos resultados esconde uma espera nas relações
+5. O inconsciente organiza experiências através de símbolos
+
+Escreva 4 parágrafos para ${S.nome}. Sem títulos, sem markdown, sem asteriscos.
+1º: Leitura da sala, mesa e vínculo — o que revelam sobre o estado emocional atual
+2º: A natureza da dependência, o objeto e o sentimento — inclua o contraste porta antes/depois
+3º: O que a estabilização moveu — com sensibilidade ao tipo de relação (familiar ou não)
+4º: O caminho que se abre em ${S.area.toLowerCase()} após essa reorganização
+Linguagem simbólica, poética, profunda e humana. 3 a 5 linhas por parágrafo.`;
+
+  try{
+    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
+        system:"Você é Ravel Dunningham. Português brasileiro. Linguagem simbólica, empática, profunda. Sem markdown. Parágrafos separados por linha em branco.",
+        messages:[{role:"user",content:prompt}]})});
+    const d=await r.json();
+    renderResult(d.content.map(i=>i.text||'').join('\n'),nv);
+  }catch(e){
+    renderResult(fallback(nv),nv);
+  }
+}
+
+function renderResult(text,nv){
+  document.getElementById('loading-result').style.display='none';
+  const body=document.getElementById('result-body');
+  body.classList.remove('hidden');
+  document.getElementById('nivel-num').textContent=nv.n;
+  document.getElementById('nivel-name').textContent=nv.nome;
+  document.getElementById('nivel-desc').textContent=nv.desc;
+  document.getElementById('result-subtitle').textContent=`${S.nome} · ${S.area} · relação com ${S.alvoNome}`;
+  setTimeout(()=>document.getElementById('nivel-fill').style.width=nv.pct+'%',500);
+  const labels=['Leitura dos Símbolos','A Natureza do Vínculo','O que a Estabilização Move','O Caminho que se Abre'];
+  const paras=text.split('\n\n').filter(p=>p.trim()).slice(0,4);
+  const bl=document.getElementById('analysis-blocks');bl.innerHTML='';
+  paras.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='a-block';
+    d.innerHTML=`<span class="a-lbl">${labels[i]||'Análise'}</span><p>${p.trim()}</p>`;
+    bl.appendChild(d);
+  });
+}
+
+function fallback(nv){
+  const fam=isFamilia();
+  return `${S.nome}, a sala que emergiu — ${S.sala.luz?.toLowerCase()||'com sua iluminação particular'} — não é um cenário neutro. Ela espelha o estado emocional atual da relação com ${S.alvoNome}. O vínculo que apareceu — ${S.vinculo.tipo} — ancorado em ${S.vinculo.ancoras} — revela onde essa relação vive no corpo. O inconsciente não mente. Ele organiza em imagens o que a mente racional prefere não ver.
+
+O objeto que você carregava — ${S.objetoCarregado||'mesmo que invisível'} — gerou em você ${S.objetoSentimento?.toLowerCase()||'uma sensação significativa'}. Antes da reorganização, do outro lado da porta havia: ${S.portaAntes}. Depois: ${S.estab.portaDepois}. Essa diferença é a medida do que foi movido internamente. O inconsciente já processou a distância entre esses dois mundos.
+
+${fam?`Com ${S.alvoNome}, a dinâmica não pede afastamento — pede posicionamento. Vínculos familiares são raízes: não se cortam, se organizam. Ao escolher ${S.estab.movimento?.toLowerCase()}, você encontrou um lugar mais maduro dentro dessa relação — sem fusão, sem dependência, com presença real.`:`Ao ${S.estab.vinculoAcao?.toLowerCase()} e ${S.estab.objetoAcao?.toLowerCase()}, você sinalizou ao inconsciente que não precisa mais dessa âncora para se sentir inteiro(a).`}${S.estab.culpaPresente?` A pedra que apareceu era uma lealdade inconsciente — a crença de que crescer seria trair. Ao ${S.estab.culpaAcao?.toLowerCase()}, você começou a dissolver esse contrato invisível.`:''}
+
+${S.area} estava esperando por exatamente essa reorganização. Toda demora nos resultados esconde uma espera nas relações — e agora você sabe qual era a sua. O que foi movido aqui já iniciou um rearranjo real. O inconsciente trabalha enquanto você descansa.`;
+}
+
+// PDF
+function downloadPDF(){
+  const nv=S.nivel||calcNivel();
+  const blocks=document.getElementById('analysis-blocks').innerHTML;
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">
+<title>Relatório — ${S.nome}</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;font-weight:300;color:#1a140f;background:#fff;padding:2cm;max-width:740px;margin:0 auto;font-size:13.5px}
+.header{margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:2px solid #c9a84c}
+.header-lbl{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:#c9a84c;display:block;margin-bottom:.6rem}
+h1{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;line-height:1.1}
+h1 em{font-style:italic;color:#8a6a2a}
+.meta{font-size:.72rem;color:#999;margin-top:.4rem}
+.nivel{border:1px solid #c9a84c;padding:1.2rem 1.5rem;margin:1.5rem 0;display:flex;align-items:center;gap:1.5rem;background:#fffdf7;break-inside:avoid}
+.nivel-num{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:#c9a84c;line-height:1;flex-shrink:0}
+.nivel-info strong{font-family:'Cormorant Garamond',serif;font-size:1.05rem;display:block;margin-bottom:.2rem}
+.nivel-info p{font-size:.76rem;color:#666;line-height:1.6}
+.a-block{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid #eee;break-inside:avoid}
+.a-block:last-of-type{border-bottom:none}
+.a-lbl{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:#c9a84c;margin-bottom:.6rem;display:block}
+.a-block p{font-size:.87rem;line-height:1.9;color:#2a1e14}
+.consolidation{border-left:3px solid #c9a84c;padding:.9rem 1.2rem;margin:2rem 0;background:#fffdf7;break-inside:avoid}
+.consolidation p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.93rem;color:#4a3820;line-height:1.78}
+.cta{border:1px solid #c9a84c;padding:1.8rem;margin-top:2rem;text-align:center;break-inside:avoid}
+.cta h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;margin-bottom:.4rem}
+.cta h3 em{font-style:italic;color:#8a6a2a}
+.cta p{font-size:.78rem;color:#666;line-height:1.65;margin-bottom:1.1rem}
+.cta-wpp{display:inline-block;background:#25D366;color:#fff;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.65rem 1.6rem;text-decoration:none;margin-bottom:.4rem}
+.footer{margin-top:1.8rem;padding-top:.8rem;border-top:1px solid #eee;font-size:.65rem;color:#bbb;text-align:center}
+@media print{body{padding:1cm}}
+</style></head><body>
+<div class="header">
+  <span class="header-lbl">Relatório Simbólico · Reorganização do Núcleo Emocional</span>
+  <h1>O que o inconsciente<br><em>revelou sobre você</em></h1>
+  <p class="meta">${S.nome} · ${S.area} · Relação com ${S.alvoNome} · ${new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'})}</p>
+</div>
+<div class="nivel">
+  <div class="nivel-num">${nv.n}</div>
+  <div class="nivel-info"><strong>Nível ${nv.n} — ${nv.nome}</strong><p>${nv.desc}</p></div>
+</div>
+${blocks.replace(/class="a-block"/g,'class="a-block"').replace(/class="a-lbl"/g,'class="a-lbl"')}
+<div class="consolidation"><p>"Quando uma relação encontra o lugar correto dentro de nós, a vida começa a se reorganizar na área que antes parecia travada."</p></div>
+<div class="cta">
+  <h3>Quer aprofundar<br><em>essa reorganização?</em></h3>
+  <p>Agende um atendimento online com Ravel Dunningham para trabalhar esses símbolos com profundidade e precisão individual.</p>
+  <a class="cta-wpp" href="https://wa.me/5574999443621">📲 Agendar pelo WhatsApp</a>
+  <p style="font-size:.68rem;color:#aaa;margin-top:.4rem">+55 74 9994-3621</p>
+</div>
+<div class="footer">Ravel Dunningham · Mapeamento Simbólico · @raveldunningham</div>
+</body></html>`);
+  win.document.close();setTimeout(()=>win.print(),800);
+}
+
+function restartDynamic(){
+  S={nome:'',area:'',alvoNome:'',alvoTipo:'',invasao:false,padrao:'',sala:{},mesa:{},vinculo:{},dependencia:'',objetoCarregado:'',objetoQualidade:'',objetoSentimento:'',portaAntes:'',estab:{},pontos:0};
+  chatEl.innerHTML='';
+  document.getElementById('screen-result').style.display='none';
+  document.getElementById('screen-chat').style.display='flex';
+  inputArea.style.display='block';
+  window.scrollTo({top:0});
+  setTimeout(()=>f_nome(),400);
+}
 </script>
-
 </body>
 </html>
