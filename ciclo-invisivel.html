@@ -603,10 +603,14 @@ function f_obstaculo(){
 function f_guardiao(eFigura){
   addDiv('Etapa 5 — O Guardião');
   const msg = eFigura
-    ? `Essa figura é um <em>guardião</em> — uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para esse guardião e diga em voz alta ou mentalmente:</strong>`
-    : `Esse ser é um <em>guardião simbólico</em> — um instinto profundo que o inconsciente colocou ali para te proteger.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para esse guardião e diga em voz alta ou mentalmente:</strong>`;
+    ? `Observe essa figura com atenção.\n\n<strong>Como ela é? Descreva o que você vê.</strong>`
+    : `Observe esse ser com atenção.\n\n<strong>Como ele é? Descreva o que você vê.</strong>`;
   addMsg(msg,'ravel');
-  setTimeout(()=>{
+  type('Descreva o guardião...',v=>{
+    S.guardiaoDesc = v;
+    think(1400,()=>{
+      addMsg(`Esse guardião — <em>${v}</em> — é uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para ele e diga em voz alta ou mentalmente:</strong>`,'ravel');
+      setTimeout(()=>{
     // Mostra a frase de liberação como mensagem especial
     const frase = document.createElement('div');
     frase.className='msg ravel';
@@ -696,6 +700,7 @@ Sentimento ao ver a Porta da Prosperidade: ${S.portaSentimento}
 O Caminho até a porta: ${S.caminho}
 
 O Obstáculo no caminho: ${S.obstaculo}
+Descrição do guardião: ${S.guardiaoDesc||'não aplicável'}
 Como foi resolvido: ${S.tentativa}
 
 O que acontece ao tentar avançar: ${S.tentativa}
@@ -883,7 +888,7 @@ h1 em{font-style:italic;color:#2a7a6c}
 }
 
 function restartDynamic(){
-  S={nome:'',sala:{},portaSentimento:'',caminho:'',obstaculo:'',tentativa:'',sentimentoPorta:''};
+  S={nome:'',sala:{},portaSentimento:'',caminho:'',obstaculo:'',guardiaoDesc:'',tentativa:'',sentimentoPorta:''};
   chatEl.innerHTML='';
   document.getElementById('screen-result').style.display='none';
   document.getElementById('screen-landing').style.display='block';
