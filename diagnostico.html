@@ -3,85 +3,103 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Diagnóstico de Estrutura Decisional</title>
+<title>Diagnóstico do Código Interno</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
 <style>
 
 body{
-background:#120f0a;
-color:#f5f0e8;
-font-family:'DM Sans',sans-serif;
+font-family:Arial,Helvetica,sans-serif;
+background:#0f0f0f;
+color:#fff;
 margin:0;
-padding:0;
 }
 
 .container{
-max-width:700px;
+max-width:750px;
 margin:auto;
-padding:40px 20px;
+padding:20px;
 }
 
 h1{
-font-family:'Cormorant Garamond',serif;
-font-weight:300;
-font-size:38px;
 text-align:center;
+margin-bottom:20px;
 }
 
-p{
-line-height:1.6;
-color:#d8d2c6;
+.chat{
+background:#1a1a1a;
+padding:20px;
+border-radius:12px;
+height:70vh;
+overflow-y:auto;
 }
 
-.video{
-margin-top:30px;
+.msg{
+margin:14px 0;
 }
 
-.video iframe{
-width:100%;
-height:400px;
+.bot{
+color:#8fd3ff;
+}
+
+.user{
+text-align:right;
+}
+
+.inputArea{
+display:flex;
+gap:10px;
+margin-top:10px;
+}
+
+input{
+flex:1;
+padding:12px;
+border-radius:8px;
 border:none;
-}
-
-form{
-margin-top:40px;
-}
-
-label{
-display:block;
-margin-top:20px;
-margin-bottom:6px;
-font-size:14px;
-color:#e8c96a;
-}
-
-textarea,input{
-width:100%;
-padding:10px;
-background:#1c1710;
-border:1px solid #c9a84c40;
-color:#fff;
+font-size:16px;
 }
 
 button{
-margin-top:30px;
-width:100%;
-padding:16px;
-background:#c9a84c;
+padding:12px 18px;
 border:none;
-font-weight:600;
-letter-spacing:1px;
+border-radius:8px;
+background:#4ea3ff;
+color:white;
 cursor:pointer;
+font-size:16px;
 }
 
-button:hover{
-background:#e8c96a;
+.result{
+display:none;
+background:#151515;
+padding:25px;
+border-radius:12px;
+margin-top:20px;
+}
+
+.cta{
+margin-top:20px;
+}
+
+.cta a{
+display:block;
+text-align:center;
+padding:14px;
+background:#4ea3ff;
+color:white;
+border-radius:10px;
+text-decoration:none;
+margin-top:10px;
+}
+
+.analysis{
+display:none;
+text-align:center;
+margin-top:20px;
 }
 
 </style>
@@ -92,153 +110,288 @@ background:#e8c96a;
 
 <div class="container">
 
-<h1>Diagnóstico de Estrutura Decisional</h1>
+<h1>Diagnóstico Simbólico</h1>
 
-<p>
-Assista ao vídeo abaixo e permita-se entrar na experiência.  
-Depois responda às perguntas com calma.  
-Seu diagnóstico simbólico será gerado automaticamente.
-</p>
+<div id="chat" class="chat"></div>
 
-<div class="video">
+<div class="inputArea">
 
-<iframe src="https://drive.google.com/file/d/15qg7dC66RjyA_poa_gJOTzegHbrGed3V/preview"></iframe>
+<input id="input" placeholder="Digite sua resposta..." />
+
+<button onclick="send()">Enviar</button>
 
 </div>
 
-<form id="form">
+<div id="analysisBox" class="analysis">
 
-<label>Seu nome</label>
-<input type="text" id="nome" required>
+<h3>Processando seu diagnóstico...</h3>
+<p id="analysisStep">Iniciando análise simbólica...</p>
 
-<label>Como era o ambiente que você visualizou?</label>
-<textarea id="ambiente"></textarea>
+</div>
 
-<label>Como era a mesa?</label>
-<textarea id="mesa"></textarea>
-
-<label>Onde você estava posicionado?</label>
-<textarea id="posicao"></textarea>
-
-<label>Onde estava a outra pessoa?</label>
-<textarea id="alvo"></textarea>
-
-<label>Existia algo ligando vocês?</label>
-<textarea id="vinculo"></textarea>
-
-<label>Você carregava algo dessa pessoa?</label>
-<textarea id="objeto"></textarea>
-
-<label>O que aconteceu quando houve afastamento?</label>
-<textarea id="distancia"></textarea>
-
-<label>Existia alguma pedra ou bloqueio?</label>
-<textarea id="pedra"></textarea>
-
-<button type="button" onclick="gerarPDF()">
-Gerar meu diagnóstico
-</button>
-
-</form>
+<div id="result" class="result"></div>
 
 </div>
 
 <script>
 
-function gerarPDF(){
+const chat=document.getElementById("chat")
+const input=document.getElementById("input")
 
-var nome=document.getElementById("nome").value
+let step=0
 
-var ambiente=document.getElementById("ambiente").value
-var mesa=document.getElementById("mesa").value
-var posicao=document.getElementById("posicao").value
-var alvo=document.getElementById("alvo").value
-var vinculo=document.getElementById("vinculo").value
-var objeto=document.getElementById("objeto").value
-var distancia=document.getElementById("distancia").value
-var pedra=document.getElementById("pedra").value
+let respostas={}
 
-var conteudo=`
+const perguntas=[
 
-<h1>Diagnóstico Simbólico</h1>
+{key:"nome",text:"Antes de começarmos, me confirma seu nome e sobrenome?"},
 
-<p><strong>${nome}</strong>, a sua imersão revelou alguns elementos importantes da sua estrutura emocional.</p>
+{key:"sala",text:"Agora imagine novamente a cena inicial. Como era a sala que você viu? Descreva cores, iluminação, móveis, janelas, sons ou cheiros."},
 
-<h2>Ambiente emocional</h2>
-<p>${ambiente}</p>
+{key:"cubo",text:"No centro da sala existe um cubo. Como ele é? Grande ou pequeno? De que material parece ser feito?"},
 
-<h2>Estrutura da relação</h2>
-<p>Mesa: ${mesa}</p>
+{key:"escada",text:"Existe uma escada nesse ambiente. Como ela é? Para onde parece levar?"},
 
-<h2>Posicionamento</h2>
-<p>Você: ${posicao}</p>
-<p>Outra pessoa: ${alvo}</p>
+{key:"cavalo",text:"Agora aparece um cavalo. O que ele está fazendo? Está livre, parado, correndo?"},
 
-<h2>Vínculo</h2>
-<p>${vinculo}</p>
+{key:"vaca",text:"Também existe uma vaca nesse cenário. O que ela está fazendo?"},
 
-<h2>Padrão aprendido</h2>
-<p>${objeto}</p>
+{key:"cachorro",text:"Há um cachorro nesse ambiente. Ele parece amigável ou distante?"},
 
-<h2>Movimento de afastamento</h2>
-<p>${distancia}</p>
+{key:"carro",text:"Em algum momento surge um carro. Como ele é? Novo, antigo, luxuoso?"},
 
-<h2>Possível culpa ou bloqueio</h2>
-<p>${pedra}</p>
+{key:"trofeu",text:"Você encontra um troféu. Como ele é?"},
 
-<hr>
+{key:"macaco",text:"Agora aparece um macaco. O que ele está fazendo?"},
 
-<h2>Direção simbólica</h2>
+{key:"fantasma",text:"Existe algum fantasma ou presença estranha no ambiente? Como você percebe isso?"},
 
-<p>
-Quando uma relação permanece ativa no núcleo emocional, ela pode influenciar decisões e resultados de forma inconsciente.
-</p>
+{key:"goteira",text:"Existe alguma goteira no lugar? O que você percebe sobre ela?"},
 
-<p>
-A clareza sobre esses símbolos permite reorganizar internamente aquilo que estava operando de forma invisível.
-</p>
+{key:"reflexo",text:"Por fim você vê um reflexo seu. Onde está esse reflexo e como você se vê?"},
 
-<hr>
+{key:"email",text:"Para gerar seu relatório completo em PDF, me informe seu melhor email."},
 
-<h2>Sessão de Percepção</h2>
+{key:"whatsapp",text:"E qual seu WhatsApp com DDD?"}
 
-<p>
-Se você deseja aprofundar essa leitura diretamente comigo, você pode agendar uma <strong>Sessão de Percepção</strong>.
-</p>
+]
 
-<p>
-Durante a sessão, analisamos a estrutura simbólica da sua experiência e reorganizamos o núcleo emocional responsável pelos bloqueios atuais.
-</p>
+function bot(text){
 
-<p>
-<strong>Valor atual: R$300</strong>
-</p>
+let div=document.createElement("div")
+div.className="msg bot"
+div.innerText=text
 
-<p>
-Agendamento pelo WhatsApp da minha assessora:
-</p>
+chat.appendChild(div)
 
-<p>
-Clique no link abaixo:
-</p>
+chat.scrollTop=chat.scrollHeight
 
-<p>
-https://wa.me/5574999943621
-</p>
+}
 
-<p>
-— Ravel Dunningham
-</p>
+function user(text){
+
+let div=document.createElement("div")
+div.className="msg user"
+div.innerText=text
+
+chat.appendChild(div)
+
+chat.scrollTop=chat.scrollHeight
+
+}
+
+function send(){
+
+let val=input.value.trim()
+
+if(!val) return
+
+user(val)
+
+let key=perguntas[step].key
+
+respostas[key]=val
+
+input.value=""
+
+step++
+
+if(step<perguntas.length){
+
+setTimeout(()=>bot(perguntas[step].text),600)
+
+}else{
+
+iniciarAnalise()
+
+}
+
+}
+
+function iniciarAnalise(){
+
+input.style.display="none"
+
+document.getElementById("analysisBox").style.display="block"
+
+const steps=[
+
+"Organizando seus símbolos...",
+"Interpretando padrões inconscientes...",
+"Calculando frequência emocional...",
+"Comparando com arquétipos universais...",
+"Identificando arquétipo dominante...",
+"Identificando arquétipo secundário...",
+"Finalizando diagnóstico..."
+
+]
+
+let i=0
+
+const interval=setInterval(()=>{
+
+document.getElementById("analysisStep").innerText=steps[i]
+
+i++
+
+if(i>=steps.length){
+
+clearInterval(interval)
+
+mostrarResultado()
+
+}
+
+},1500)
+
+}
+
+function detectarArquetipo(texto){
+
+texto=texto.toLowerCase()
+
+if(texto.match(/luz|energia|espiritual|transformação/)) return "Mago"
+if(texto.match(/viagem|caminho|descoberta/)) return "Explorador"
+if(texto.match(/liderança|poder|controle/)) return "Governante"
+if(texto.match(/criar|arte|imaginação/)) return "Criador"
+if(texto.match(/cuidar|ajudar/)) return "Cuidador"
+if(texto.match(/conhecimento|sabedoria/)) return "Sábio"
+
+return "Herói"
+
+}
+
+function detectarFrequencia(texto){
+
+if(texto.match(/medo|escuro|vazio/)) return 150
+if(texto.match(/calmo|tranquilo|neutro/)) return 250
+if(texto.match(/feliz|confiante/)) return 350
+if(texto.match(/amor|luz|harmonia/)) return 500
+
+return 300
+
+}
+
+function gerarPDF(arquetipo1,arquetipo2,frequencia){
+
+const {jsPDF}=window.jspdf
+
+let doc=new jsPDF()
+
+let texto=`
+
+Diagnóstico Simbólico
+
+Nome: ${respostas.nome}
+
+Arquétipo dominante: ${arquetipo1}
+Arquétipo secundário: ${arquetipo2}
+
+Frequência emocional estimada: ${frequencia}
+
+Este diagnóstico é baseado nos símbolos
+apresentados durante sua experiência.
+
+Para entender mais profundamente
+o significado desse resultado,
+é possível realizar uma sessão
+de análise personalizada.
 
 `
 
-var elemento=document.createElement("div")
+doc.text(texto,10,20)
 
-elemento.innerHTML=conteudo
-
-html2pdf().from(elemento).save("diagnostico-ravel.pdf")
+doc.save("diagnostico-codigo-interno.pdf")
 
 }
+
+function mostrarResultado(){
+
+document.getElementById("analysisBox").style.display="none"
+
+let textoCompleto=Object.values(respostas).join(" ")
+
+let arquetipo1=detectarArquetipo(textoCompleto)
+
+let arquetipo2="Explorador"
+
+let frequencia=detectarFrequencia(textoCompleto)
+
+gerarPDF(arquetipo1,arquetipo2,frequencia)
+
+let result=document.getElementById("result")
+
+result.style.display="block"
+
+result.innerHTML=`
+
+<h2>Seu diagnóstico está pronto</h2>
+
+<p><b>Arquétipo dominante:</b> ${arquetipo1}</p>
+
+<p><b>Arquétipo secundário:</b> ${arquetipo2}</p>
+
+<p><b>Frequência emocional estimada:</b> ${frequencia}</p>
+
+<div class="cta">
+
+<h3>Quer entender o que seu resultado realmente significa?</h3>
+
+<p>Eu faço uma análise pessoal do seu diagnóstico e explico os símbolos que apareceram na sua experiência.</p>
+
+<p><b>Sessão individual online</b></p>
+
+<p>Duração média: 50–60 minutos</p>
+
+<p><b>Valor: R$347</b></p>
+
+<a href="https://wa.me/5574999943621" target="_blank">
+
+Agendar análise do meu diagnóstico
+
+</a>
+
+</div>
+
+<div class="cta">
+
+<h3>Quer uma explicação em áudio sobre seu resultado?</h3>
+
+<p>Envie um depoimento sobre a experiência no meu Instagram e eu envio um áudio comentando seu diagnóstico.</p>
+
+<a href="https://instagram.com/raveldunningham" target="_blank">
+
+Enviar depoimento no Instagram
+
+</a>
+
+</div>
+
+`
+
+}
+
+bot(perguntas[0].text)
 
 </script>
 
