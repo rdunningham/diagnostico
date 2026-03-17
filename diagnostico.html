@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Diagnóstico do Código Interno</title>
+<title>Diagnóstico Simbólico</title>
 
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 
@@ -14,12 +15,12 @@
 body{
 font-family:Arial,Helvetica,sans-serif;
 background:#0f0f0f;
-color:#fff;
+color:white;
 margin:0;
 }
 
 .container{
-max-width:750px;
+max-width:800px;
 margin:auto;
 padding:20px;
 }
@@ -39,15 +40,11 @@ overflow-y:auto;
 
 .msg{
 margin:14px 0;
+line-height:1.5em;
 }
 
-.bot{
-color:#8fd3ff;
-}
-
-.user{
-text-align:right;
-}
+.bot{color:#8fd3ff;}
+.user{text-align:right;}
 
 .inputArea{
 display:flex;
@@ -70,7 +67,12 @@ border-radius:8px;
 background:#4ea3ff;
 color:white;
 cursor:pointer;
-font-size:16px;
+}
+
+.analysis{
+display:none;
+text-align:center;
+margin-top:30px;
 }
 
 .result{
@@ -90,16 +92,10 @@ display:block;
 text-align:center;
 padding:14px;
 background:#4ea3ff;
-color:white;
 border-radius:10px;
+color:white;
 text-decoration:none;
 margin-top:10px;
-}
-
-.analysis{
-display:none;
-text-align:center;
-margin-top:20px;
 }
 
 </style>
@@ -115,18 +111,13 @@ margin-top:20px;
 <div id="chat" class="chat"></div>
 
 <div class="inputArea">
-
-<input id="input" placeholder="Digite sua resposta..." />
-
+<input id="input" placeholder="Digite sua resposta...">
 <button onclick="send()">Enviar</button>
-
 </div>
 
 <div id="analysisBox" class="analysis">
-
-<h3>Processando seu diagnóstico...</h3>
-<p id="analysisStep">Iniciando análise simbólica...</p>
-
+<h3>Analisando seu diagnóstico...</h3>
+<p id="analysisStep">Organizando símbolos...</p>
 </div>
 
 <div id="result" class="result"></div>
@@ -139,91 +130,91 @@ const chat=document.getElementById("chat")
 const input=document.getElementById("input")
 
 let step=0
-
 let respostas={}
 
 const perguntas=[
 
 {key:"nome",text:"Antes de começarmos, me confirma seu nome e sobrenome?"},
 
-{key:"sala",text:"Agora imagine novamente a cena inicial. Como era a sala que você viu? Descreva cores, iluminação, móveis, janelas, sons ou cheiros."},
+{key:"sala",text:"Agora imagine novamente a cena inicial. Como era a sala que você viu? Descreva cores, iluminação, móveis ou sons."},
 
 {key:"cubo",text:"No centro da sala existe um cubo. Como ele é? Grande ou pequeno? De que material parece ser feito?"},
 
+{key:"cubo_sentimento",text:"Quando você tocou nesse cubo, que sensação ou emoção surgiu em você?"},
+
 {key:"escada",text:"Existe uma escada nesse ambiente. Como ela é? Para onde parece levar?"},
 
-{key:"cavalo",text:"Agora aparece um cavalo. O que ele está fazendo? Está livre, parado, correndo?"},
+{key:"escada_sentimento",text:"E como você se sentiu ao subir ou olhar para essa escada?"},
 
-{key:"vaca",text:"Também existe uma vaca nesse cenário. O que ela está fazendo?"},
+{key:"cavalo",text:"Agora aparece um cavalo nesse cenário. O que ele está fazendo?"},
 
-{key:"cachorro",text:"Há um cachorro nesse ambiente. Ele parece amigável ou distante?"},
+{key:"cavalo_sentimento",text:"Ao observar esse cavalo, qual sensação surgiu em você?"},
 
-{key:"carro",text:"Em algum momento surge um carro. Como ele é? Novo, antigo, luxuoso?"},
+{key:"vaca",text:"Também existe uma vaca nesse ambiente. O que ela estava fazendo?"},
 
-{key:"trofeu",text:"Você encontra um troféu. Como ele é?"},
+{key:"vaca_sentimento",text:"E qual foi seu sentimento ao ver essa vaca?"},
 
-{key:"macaco",text:"Agora aparece um macaco. O que ele está fazendo?"},
+{key:"cachorro",text:"Agora há um cachorro no ambiente. Como ele se comporta?"},
 
-{key:"fantasma",text:"Existe algum fantasma ou presença estranha no ambiente? Como você percebe isso?"},
+{key:"cachorro_sentimento",text:"Que emoção surgiu ao olhar para esse cachorro?"},
 
-{key:"goteira",text:"Existe alguma goteira no lugar? O que você percebe sobre ela?"},
+{key:"carro",text:"Em algum momento você encontra um carro. Como ele é?"},
+
+{key:"carro_sentimento",text:"Como você se sentiu ao entrar ou olhar para esse carro?"},
+
+{key:"trofeu",text:"Você encontra um troféu. Como ele parece?"},
+
+{key:"trofeu_sentimento",text:"Que sensação surgiu ao segurar ou olhar para esse troféu?"},
+
+{key:"macaco",text:"Agora aparece um macaco nesse ambiente. O que ele faz?"},
+
+{key:"macaco_sentimento",text:"Qual foi sua reação emocional ao ver esse macaco?"},
+
+{key:"fantasma",text:"Existe algum fantasma ou presença estranha no ambiente?"},
+
+{key:"fantasma_sentimento",text:"Como você se sentiu ao perceber esse fantasma?"},
 
 {key:"reflexo",text:"Por fim você vê um reflexo seu. Onde está esse reflexo e como você se vê?"},
 
-{key:"email",text:"Para gerar seu relatório completo em PDF, me informe seu melhor email."},
+{key:"email",text:"Para gerar seu relatório em PDF, me informe seu melhor email."},
 
 {key:"whatsapp",text:"E qual seu WhatsApp com DDD?"}
 
 ]
 
 function bot(text){
-
 let div=document.createElement("div")
 div.className="msg bot"
 div.innerText=text
-
 chat.appendChild(div)
-
 chat.scrollTop=chat.scrollHeight
-
 }
 
 function user(text){
-
 let div=document.createElement("div")
 div.className="msg user"
 div.innerText=text
-
 chat.appendChild(div)
-
 chat.scrollTop=chat.scrollHeight
-
 }
 
 function send(){
 
 let val=input.value.trim()
-
 if(!val) return
 
 user(val)
 
 let key=perguntas[step].key
-
 respostas[key]=val
 
 input.value=""
-
 step++
 
 if(step<perguntas.length){
-
 setTimeout(()=>bot(perguntas[step].text),600)
-
 }else{
-
 iniciarAnalise()
-
 }
 
 }
@@ -231,19 +222,16 @@ iniciarAnalise()
 function iniciarAnalise(){
 
 input.style.display="none"
-
 document.getElementById("analysisBox").style.display="block"
 
 const steps=[
-
-"Organizando seus símbolos...",
+"Organizando símbolos...",
 "Interpretando padrões inconscientes...",
 "Calculando frequência emocional...",
-"Comparando com arquétipos universais...",
-"Identificando arquétipo dominante...",
-"Identificando arquétipo secundário...",
+"Comparando com arquétipos...",
+"Detectando arquétipo dominante...",
+"Detectando arquétipo secundário...",
 "Finalizando diagnóstico..."
-
 ]
 
 let i=0
@@ -255,73 +243,102 @@ document.getElementById("analysisStep").innerText=steps[i]
 i++
 
 if(i>=steps.length){
-
 clearInterval(interval)
-
 mostrarResultado()
+}
+
+},1400)
 
 }
 
-},1500)
-
+const arquetipos={
+Mago:["energia","transformação","místico","espiritual"],
+Explorador:["caminho","viagem","descoberta"],
+Governante:["controle","poder","ordem"],
+Criador:["arte","criar","imaginar"],
+Cuidador:["cuidar","ajudar"],
+Sabio:["sabedoria","conhecimento"]
 }
 
-function detectarArquetipo(texto){
+function detectarArquetipos(texto){
 
 texto=texto.toLowerCase()
 
-if(texto.match(/luz|energia|espiritual|transformação/)) return "Mago"
-if(texto.match(/viagem|caminho|descoberta/)) return "Explorador"
-if(texto.match(/liderança|poder|controle/)) return "Governante"
-if(texto.match(/criar|arte|imaginação/)) return "Criador"
-if(texto.match(/cuidar|ajudar/)) return "Cuidador"
-if(texto.match(/conhecimento|sabedoria/)) return "Sábio"
+let scores={}
 
-return "Herói"
+for(let a in arquetipos){
 
-}
+scores[a]=0
 
-function detectarFrequencia(texto){
-
-if(texto.match(/medo|escuro|vazio/)) return 150
-if(texto.match(/calmo|tranquilo|neutro/)) return 250
-if(texto.match(/feliz|confiante/)) return 350
-if(texto.match(/amor|luz|harmonia/)) return 500
-
-return 300
+arquetipos[a].forEach(palavra=>{
+if(texto.includes(palavra)) scores[a]++
+})
 
 }
 
-function gerarPDF(arquetipo1,arquetipo2,frequencia){
+let ordenado=Object.entries(scores).sort((a,b)=>b[1]-a[1])
+
+let principal=ordenado[0][0] || "Herói"
+let secundario=ordenado[1][0] || "Explorador"
+
+return {principal,secundario}
+
+}
+
+function detectarHawkins(texto){
+
+texto=texto.toLowerCase()
+
+if(texto.match(/medo|pavor|escuro/)) return "150 — Medo"
+if(texto.match(/calmo|neutro/)) return "250 — Neutralidade"
+if(texto.match(/confiante|determinado/)) return "350 — Aceitação"
+if(texto.match(/amor|luz|harmonia/)) return "500 — Amor"
+
+return "310 — Disposição"
+
+}
+
+function interpretar(){
+
+return `
+
+A sala representa seu estado mental atual.
+
+O cubo simboliza sua identidade central e estabilidade.
+
+A escada revela como você percebe crescimento e evolução.
+
+Os animais representam instintos e relações emocionais.
+
+O carro e o troféu indicam sua relação com conquistas.
+
+O reflexo mostra sua autoimagem interna.
+
+`
+
+}
+
+function gerarPDF(arq1,arq2,hawkins){
 
 const {jsPDF}=window.jspdf
 
 let doc=new jsPDF()
 
-let texto=`
+doc.setFontSize(18)
+doc.text("Diagnóstico Simbólico",20,20)
 
-Diagnóstico Simbólico
+doc.setFontSize(12)
 
-Nome: ${respostas.nome}
+doc.text(`Nome: ${respostas.nome}`,20,40)
+doc.text(`Arquétipo dominante: ${arq1}`,20,50)
+doc.text(`Arquétipo secundário: ${arq2}`,20,60)
+doc.text(`Frequência emocional: ${hawkins}`,20,70)
 
-Arquétipo dominante: ${arquetipo1}
-Arquétipo secundário: ${arquetipo2}
+let texto=interpretar()
 
-Frequência emocional estimada: ${frequencia}
+doc.text(doc.splitTextToSize(texto,170),20,90)
 
-Este diagnóstico é baseado nos símbolos
-apresentados durante sua experiência.
-
-Para entender mais profundamente
-o significado desse resultado,
-é possível realizar uma sessão
-de análise personalizada.
-
-`
-
-doc.text(texto,10,20)
-
-doc.save("diagnostico-codigo-interno.pdf")
+doc.save("diagnostico-simbolico.pdf")
 
 }
 
@@ -331,13 +348,10 @@ document.getElementById("analysisBox").style.display="none"
 
 let textoCompleto=Object.values(respostas).join(" ")
 
-let arquetipo1=detectarArquetipo(textoCompleto)
+let arq=detectarArquetipos(textoCompleto)
+let hawkins=detectarHawkins(textoCompleto)
 
-let arquetipo2="Explorador"
-
-let frequencia=detectarFrequencia(textoCompleto)
-
-gerarPDF(arquetipo1,arquetipo2,frequencia)
+gerarPDF(arq.principal,arq.secundario,hawkins)
 
 let result=document.getElementById("result")
 
@@ -347,15 +361,17 @@ result.innerHTML=`
 
 <h2>Seu diagnóstico está pronto</h2>
 
-<p><b>Arquétipo dominante:</b> ${arquetipo1}</p>
+<p><b>Arquétipo dominante:</b> ${arq.principal}</p>
 
-<p><b>Arquétipo secundário:</b> ${arquetipo2}</p>
+<p><b>Arquétipo secundário:</b> ${arq.secundario}</p>
 
-<p><b>Frequência emocional estimada:</b> ${frequencia}</p>
+<p><b>Frequência emocional estimada:</b> ${hawkins}</p>
+
+<p>${interpretar()}</p>
 
 <div class="cta">
 
-<h3>Quer entender o que seu resultado realmente significa?</h3>
+<h3>Quer entender melhor o que seu resultado significa?</h3>
 
 <p>Eu faço uma análise pessoal do seu diagnóstico e explico os símbolos que apareceram na sua experiência.</p>
 
@@ -375,7 +391,7 @@ Agendar análise do meu diagnóstico
 
 <div class="cta">
 
-<h3>Quer uma explicação em áudio sobre seu resultado?</h3>
+<h3>Quer uma explicação em áudio do seu resultado?</h3>
 
 <p>Envie um depoimento sobre a experiência no meu Instagram e eu envio um áudio comentando seu diagnóstico.</p>
 
