@@ -75,7 +75,9 @@ textarea:focus{border-color:rgba(201,168,76,.45)}
 .field-divider{height:1px;background:rgba(201,168,76,.08);margin:0 0 1.8rem}
 .send-wrap{text-align:center;margin-top:2rem}
 .btn-send{display:inline-flex;align-items:center;gap:.75rem;background:var(--gold);color:var(--deep);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:1.1rem 2.4rem;border:none;cursor:pointer;transition:box-shadow .3s,transform .2s;-webkit-tap-highlight-color:transparent}
-.btn-send:hover{box-shadow:0 0 40px rgba(201,168,76,.4)}
+.btn-send:hover{box-shadow:0 0 50px rgba(201,168,76,.5)}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 18px rgba(201,168,76,.25)}50%{box-shadow:0 0 36px rgba(201,168,76,.45)}}
+.btn-send{animation:btnGlow 2.8s ease-in-out infinite}
 .btn-send:active{transform:scale(.98)}
 .btn-send svg{width:18px;height:18px;flex-shrink:0}
 .send-note{margin-top:1rem;font-size:.74rem;color:rgba(245,240,232,.2);font-style:italic}
@@ -108,13 +110,13 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
 <section class="hero">
   <span class="badge">✦ &nbsp; Gratuito</span>
   <h1>O que o seu<br>inconsciente<br><em>já sabe.</em></h1>
-  <p class="hero-sub">Uma jornada guiada pelos 4 símbolos que revelam o que opera em você — antes de qualquer pensamento.</p>
+  <p class="hero-sub">Uma experiência guiada que revela o que o seu inconsciente carrega — e que a sua mente consciente ainda não consegue ver.</p>
   <div class="hero-meta">
     <span>Menos de 10 minutos</span>
     <span>Sem cadastro</span>
     <span>100% gratuito</span>
   </div>
-  <p class="scroll-hint">Comece pelo áudio</p>
+  <p class="scroll-hint">A experiência começa agora</p>
 </section>
 
 
@@ -141,10 +143,12 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
 </section>
 
 
+<div class="divider" style="margin:2.5rem auto"><div class="div-line"></div><span class="div-text">Agora, a experiência</span><div class="div-line"></div></div>
+
 <section class="audio-section">
   <span class="section-label">Passo 1 — Ouça</span>
   <h2>A <em>abertura do campo</em></h2>
-  <p class="intro-p">Use fone de ouvido. Sente-se num lugar tranquilo. Feche os olhos depois de apertar play e deixe a experiência acontecer — sem analisar, sem forçar.</p>
+  <p class="intro-p">Use fone de ouvido. Sente-se em um lugar tranquilo e feche os olhos assim que apertar play. Não analise — deixe surgir o que surgir. O inconsciente não erra.</p>
   <div class="player-card">
     <span class="player-eyebrow">Áudio guiado · Ravel Dunningham</span>
     <p class="player-title">Abertura do Campo — Dinâmica dos 4 Símbolos</p>
@@ -152,7 +156,7 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
       <source src="./abertura-do-campo.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio HTML5.
     </audio>
-    <p class="player-tip">🎧 Ouça até o final antes de descrever o que apareceu.</p>
+    <p class="player-tip">🎧 Ouça até o fim, de olhos fechados. Só então descreva.</p>
   </div>
 </section>
 
@@ -162,7 +166,7 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
   <div class="form-header">
     <span class="section-label">Passo 2 — Relate sua visão</span>
     <h2>O que apareceu<br>para <em>você?</em></h2>
-    <p class="form-intro">Descreva com detalhes o que você viu, sentiu ou imaginou em cada momento. Não existe resposta certa — o que importa é o que surgiu espontaneamente.</p>
+    <p class="form-intro">Escreva como se estivesse descrevendo um sonho para alguém que sabe interpretá-lo. Cada detalhe importa — cor, tamanho, peso, sensação. O inconsciente não escolhe por acaso.</p>
   </div>
 
   <div class="form-inner">
@@ -239,9 +243,9 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
     <div class="send-wrap">
       <button class="btn-send" onclick="enviarWhatsApp()">
         <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Enviar minha visão para o Ravel
+        Quero minha leitura
       </button>
-      <p class="send-note">Abre o WhatsApp com tudo já preenchido</p>
+      <p class="send-note">Abre direto no WhatsApp · Ravel recebe e responde pessoalmente</p>
       <p class="val-msg" id="val-msg">⚠ Descreva pelo menos um símbolo antes de enviar.</p>
     </div>
   </div>
@@ -262,14 +266,14 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
         <div class="next-num">2</div>
         <div>
           <h4>O campo é interpretado</h4>
-          <p>Cada detalhe que você descreveu revela algo do seu inconsciente. Ravel lê a combinação e prepara sua interpretação pessoal.</p>
+          <p>Cada detalhe que você descreveu carrega informação sobre o campo que opera em você. Ravel lê a combinação e identifica o que está ativo.</p>
         </div>
       </div>
       <div class="next-step">
         <div class="next-num">3</div>
         <div>
           <h4>Você recebe a leitura</h4>
-          <p>A resposta chega no seu WhatsApp. Direta, pessoal — sem plataforma, sem formulário.</p>
+          <p>A resposta chega no seu WhatsApp. Direta, pessoal — sem plataforma, sem formulário. O que ela diz sobre você normalmente leva anos para aparecer de outra forma.</p>
         </div>
       </div>
     </div>
@@ -277,14 +281,19 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
 </section>
 
 <section class="proof-section">
+  <div class="proof-card" style="margin-bottom:1.2rem">
+    <p class="proof-text">"Eu não esperava que algo tão simples revelasse tanto. A leitura foi cirúrgica — ele nomeou exatamente o padrão que eu carregava há anos sem conseguir ver."</p>
+    <p class="proof-author">— Participante da Dinâmica</p>
+  </div>
   <div class="proof-card">
-    <p class="proof-text">"Eu não esperava que uma experiência tão simples pudesse revelar tanto. A leitura foi cirúrgica — ela nomeou exatamente o padrão que eu não conseguia ver."</p>
+    <p class="proof-text">"Fiz com ceticismo. Quando recebi a leitura, fiquei em silêncio por um tempo. Não era sobre os símbolos — era sobre mim. Com uma precisão que nenhuma terapia tinha chegado perto."</p>
     <p class="proof-author">— Participante da Dinâmica</p>
   </div>
 </section>
 
+<div style="text-align:center;padding:2rem 1.5rem 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88rem;color:rgba(245,240,232,.2)">O inconsciente já mostrou. Agora é a sua vez de olhar.</div>
 <footer>
-  <p>© 2025 Ravel Dunningham · O Código Interno &nbsp;·&nbsp;
+  <p>© 2026 Ravel Dunningham · O Código Interno &nbsp;·&nbsp;
   <a href="https://www.instagram.com/raveldunningham/" target="_blank">@raveldunningham</a></p>
 </footer>
 
