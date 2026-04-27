@@ -93,6 +93,17 @@ textarea:focus{border-color:rgba(201,168,76,.45)}
 .proof-section{padding:3rem 1.5rem;text-align:center}
 .proof-card{max-width:480px;margin:0 auto;padding:2rem 1.8rem;border:1px solid rgba(201,168,76,.12);background:rgba(255,255,255,.01)}
 .proof-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(245,240,232,.58);line-height:1.85;margin-bottom:1rem}
+
+/* ── UPSELL BLOCK ── */
+.upsell-section{padding:3rem 1.5rem;text-align:center;border-top:1px solid rgba(201,168,76,.08)}
+.upsell-inner{max-width:520px;margin:0 auto}
+.upsell-eyebrow{font-size:.55rem;letter-spacing:.32em;text-transform:uppercase;color:rgba(245,240,232,.2);display:block;margin-bottom:1.2rem}
+.upsell-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:rgba(245,240,232,.4);line-height:1.8;margin-bottom:1.6rem}
+.upsell-text strong{color:rgba(245,240,232,.6);font-style:normal}
+.btn-upsell{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(201,168,76,.3);color:rgba(201,168,76,.7);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;padding:.85rem 2rem;text-decoration:none;transition:border-color .3s,color .3s,box-shadow .3s;background:transparent}
+.btn-upsell:hover{border-color:rgba(201,168,76,.7);color:var(--gold);box-shadow:0 0 28px rgba(201,168,76,.15)}
+.btn-upsell svg{width:14px;height:14px;opacity:.6}
+
 .proof-author{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.45)}
 footer{background:#060504;padding:1.5rem;text-align:center;font-size:.66rem;color:rgba(245,240,232,.18);letter-spacing:.04em;border-top:1px solid rgba(201,168,76,.07)}
 footer a{color:rgba(201,168,76,.38);text-decoration:none}
@@ -105,6 +116,13 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
     <div class="dot"></div>
     <p>Dinâmica dos 4 Símbolos · Ravel Dunningham</p>
   </div>
+</div>
+
+<div style="text-align:center;padding:.9rem 1.5rem;background:rgba(201,168,76,.06);border-bottom:1px solid rgba(201,168,76,.12)">
+  <span style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.9rem;color:rgba(245,240,232,.45)">
+    Já fez essa leitura antes? &nbsp;
+    <a href="./diagnostico.html" style="color:var(--gold);text-decoration:none;font-style:normal;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid rgba(201,168,76,.3)">Experimente o diagnóstico completo →</a>
+  </span>
 </div>
 
 <section class="hero">
@@ -288,6 +306,17 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
   <div class="proof-card">
     <p class="proof-text">"Fiz com ceticismo. Quando recebi a leitura, fiquei em silêncio por um tempo. Não era sobre os símbolos — era sobre mim. Com uma precisão que nenhuma terapia tinha chegado perto."</p>
     <p class="proof-author">— Participante da Dinâmica</p>
+  </div>
+</section>
+
+<section class="upsell-section">
+  <div class="upsell-inner">
+    <span class="upsell-eyebrow">Já passou por aqui antes?</span>
+    <p class="upsell-text">Se você já fez essa leitura comigo, existe uma experiência <strong>muito mais completa e profunda</strong> esperando por você — onde o seu inconsciente revela camadas que a dinâmica dos 4 símbolos apenas toca.</p>
+    <a class="btn-upsell" href="./diagnostico.html">
+      Quero ir mais fundo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
   </div>
 </section>
 
