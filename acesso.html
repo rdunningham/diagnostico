@@ -3,219 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sua Imersão — Diagnóstico de Estrutura Decisional</title>
+<title>Leitura do Campo — Ravel Dunningham</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --cream:#f5f0e8;--warm:#ede5d4;--gold:#c9a84c;--gold-light:#e8c96a;
-  --muted:#7a7065;--deep:#120f0a;--deep2:#1c1710;--ink:#0d0d0d;
-}
+:root{--cream:#f5f0e8;--warm:#ede5d4;--gold:#c9a84c;--gold-light:#e8c96a;--muted:#7a7065;--deep:#120f0a;--deep2:#1c1710;--ink:#0d0d0d}
 html{scroll-behavior:smooth}
-body{background:var(--deep);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;min-height:100vh}
-
-/* ── TOPO ── */
-.top-bar{
-  padding:1.2rem 1.5rem;
-  border-bottom:1px solid rgba(201,168,76,.15);
-  display:flex;align-items:center;justify-content:center;
-  background:var(--deep);
-  position:sticky;top:0;z-index:100;
-}
-.top-bar-inner{
-  display:flex;align-items:center;gap:0.8rem;
-}
-.top-bar .dot{
-  width:6px;height:6px;background:var(--gold);border-radius:50%;
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.top-bar p{
-  font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(245,240,232,.4);
-}
-
-/* ── HERO INTRO ── */
-.intro{
-  padding:3.5rem 1.5rem 2.5rem;
-  text-align:center;
-  position:relative;
-  overflow:hidden;
-}
-.intro::before{
-  content:'';position:absolute;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  pointer-events:none;
-}
-.intro-label{
-  display:inline-block;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;
-  color:var(--gold);border:1px solid rgba(201,168,76,.3);
-  padding:.38rem 1rem;margin-bottom:1.5rem;
-  opacity:0;animation:fadeUp .7s ease forwards .1s;
-}
-.intro h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.2rem,8vw,4rem);
-  font-weight:300;line-height:1.05;
-  color:var(--cream);letter-spacing:-.02em;
-  margin-bottom:.8rem;
-  opacity:0;animation:fadeUp .7s ease forwards .3s;
-}
-.intro h1 em{font-style:italic;color:var(--gold-light)}
-.intro p{
-  font-size:.92rem;color:rgba(245,240,232,.5);
-  line-height:1.78;max-width:480px;margin:0 auto;
-  opacity:0;animation:fadeUp .7s ease forwards .5s;
-}
+body{background:var(--deep);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes btnGlow{0%,100%{box-shadow:0 0 18px rgba(201,168,76,.25)}50%{box-shadow:0 0 36px rgba(201,168,76,.45)}}
 
-/* ── STEPS BAR ── */
-.steps-bar{
-  display:flex;align-items:center;justify-content:center;
-  gap:0;padding:2rem 1.5rem;
-  opacity:0;animation:fadeUp .7s ease forwards .6s;
-}
-.step-item{
-  display:flex;flex-direction:column;align-items:center;gap:.4rem;
-  flex:1;max-width:140px;
-}
-.step-circle{
-  width:36px;height:36px;border-radius:50%;
-  border:1px solid rgba(201,168,76,.3);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);
-  background:var(--deep2);
-  transition:all .3s;
-}
-.step-circle.active{
-  background:var(--gold);color:var(--deep);
-  border-color:var(--gold);
-}
+/* TOP BAR */
+.top-bar{padding:1.2rem 1.5rem;border-bottom:1px solid rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;background:var(--deep);position:sticky;top:0;z-index:100}
+.top-bar-inner{display:flex;align-items:center;gap:.8rem}
+.dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+.top-bar p{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,240,232,.35)}
+
+/* INTRO */
+.intro{padding:3.5rem 1.5rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+.intro::before{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(201,168,76,.1) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.intro-label{display:inline-block;font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:.38rem 1rem;margin-bottom:1.5rem;opacity:0;animation:fadeUp .7s ease forwards .1s}
+.intro h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,8vw,4rem);font-weight:300;line-height:1.05;color:var(--cream);letter-spacing:-.02em;margin-bottom:.8rem;opacity:0;animation:fadeUp .7s ease forwards .3s}
+.intro h1 em{font-style:italic;color:var(--gold-light)}
+.intro p{font-size:.92rem;color:rgba(245,240,232,.5);line-height:1.78;max-width:480px;margin:0 auto;opacity:0;animation:fadeUp .7s ease forwards .5s}
+
+/* STEPS BAR */
+.steps-bar{display:flex;align-items:center;justify-content:center;gap:0;padding:2rem 1.5rem;opacity:0;animation:fadeUp .7s ease forwards .6s}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;flex:1;max-width:140px}
+.step-circle{width:36px;height:36px;border-radius:50%;border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--gold);background:var(--deep2);transition:all .3s}
+.step-circle.active{background:var(--gold);color:var(--deep);border-color:var(--gold)}
 .step-label{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.3);text-align:center;line-height:1.4}
 .step-label.active{color:var(--gold)}
 .step-line{flex:1;height:1px;background:rgba(201,168,76,.2);max-width:40px}
 
-/* ── INSTRUÇÃO ── */
-.instruction{
-  background:rgba(201,168,76,.06);
-  border:1px solid rgba(201,168,76,.18);
-  border-left:3px solid var(--gold);
-  padding:1.2rem 1.5rem;
-  margin:0 1.5rem 2rem;
-  border-radius:0;
-  opacity:0;animation:fadeUp .7s ease forwards .7s;
-}
+/* INSTRUÇÃO */
+.instruction{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.18);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;margin:0 1.5rem 2rem;opacity:0;animation:fadeUp .7s ease forwards .7s}
 .instruction p{font-size:.88rem;line-height:1.75;color:rgba(245,240,232,.7)}
 .instruction strong{color:var(--gold-light);font-weight:500}
 
-/* ── VÍDEO ── */
-.video-section{
-  padding:0 1.5rem 2.5rem;
-  opacity:0;animation:fadeUp .7s ease forwards .8s;
-}
-.video-wrap{
-  position:relative;width:100%;padding-bottom:56.25%;
-  background:var(--deep2);
-  border:1px solid rgba(201,168,76,.2);
-  overflow:hidden;
-}
-.video-wrap iframe{
-  position:absolute;inset:0;width:100%;height:100%;border:none;
-}
+/* VÍDEO */
+.video-section{padding:0 1.5rem 2.5rem;opacity:0;animation:fadeUp .7s ease forwards .8s}
+.video-wrap{position:relative;width:100%;padding-bottom:56.25%;background:var(--deep2);border:1px solid rgba(201,168,76,.2);overflow:hidden}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 
-/* ── DIVISOR ── */
-.divider{
-  display:flex;align-items:center;gap:1rem;
-  padding:2.5rem 1.5rem;
-  opacity:0;animation:fadeUp .7s ease forwards .9s;
-}
+/* DIVISOR */
+.divider{display:flex;align-items:center;gap:1rem;padding:2.5rem 1.5rem;opacity:0;animation:fadeUp .7s ease forwards .9s}
 .divider-line{flex:1;height:1px;background:rgba(201,168,76,.15)}
-.divider-icon{
-  font-family:'Cormorant Garamond',serif;font-style:italic;
-  font-size:1rem;color:rgba(201,168,76,.5);white-space:nowrap;
-}
+.divider-icon{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(201,168,76,.45);white-space:nowrap}
 
-/* ── FORM SECTION ── */
-.form-section{
-  padding:0 1.5rem 1.5rem;
-  opacity:0;animation:fadeUp .7s ease forwards 1s;
-}
-.form-header{text-align:center;margin-bottom:2rem}
-.form-header h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.7rem,6vw,2.8rem);font-weight:300;
-  line-height:1.15;margin-bottom:.6rem;
-}
+/* FORM */
+.form-section{padding:0 1.5rem 3rem;opacity:0;animation:fadeUp .7s ease forwards 1s}
+.form-header{text-align:center;margin-bottom:2.5rem}
+.form-header h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,6vw,2.8rem);font-weight:300;line-height:1.15;margin-bottom:.6rem}
 .form-header h2 em{font-style:italic;color:var(--gold-light)}
-.form-header p{font-size:.88rem;color:rgba(245,240,232,.45);line-height:1.7;max-width:420px;margin:0 auto}
+.form-header p{font-size:.88rem;color:rgba(245,240,232,.45);line-height:1.7;max-width:440px;margin:0 auto}
 
-/* ── BTN FORM ── */
-.btn-form{
-  display:block;
-  background:var(--gold);color:var(--deep);
-  font-family:'DM Sans',sans-serif;
-  font-size:.8rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
-  padding:1.15rem 2rem;text-decoration:none;
-  text-align:center;
-  transition:box-shadow .3s,transform .2s;
-  -webkit-tap-highlight-color:transparent;
-  max-width:480px;margin:0 auto;
-}
-.btn-form:active{transform:scale(.98)}
-.btn-form:hover{box-shadow:0 0 40px rgba(201,168,76,.35)}
+.form-inner{max-width:620px;margin:0 auto}
 
-.btn-note{
-  text-align:center;margin-top:1rem;
-  font-size:.75rem;color:rgba(245,240,232,.25);
-  font-style:italic;
-}
+/* Personal fields */
+.personal-fields{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-bottom:2rem;max-width:300px}
+@media(max-width:520px){.personal-fields{grid-template-columns:1fr}}
+.field-group{display:flex;flex-direction:column;gap:.5rem}
+.field-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+input[type=text]{width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.18);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;padding:.9rem 1rem;outline:none;transition:border-color .25s}
+input[type=text]::placeholder{color:rgba(245,240,232,.2)}
+input[type=text]:focus{border-color:rgba(201,168,76,.45)}
 
-/* ── AVISO ENTREGA ── */
-.delivery-note{
-  margin:2.5rem 1.5rem;
-  padding:1.5rem;
-  border:1px solid rgba(201,168,76,.12);
-  background:rgba(255,255,255,.02);
-  text-align:center;
-}
-.delivery-note .icon{font-size:1.8rem;margin-bottom:.8rem}
-.delivery-note h3{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;font-weight:300;margin-bottom:.5rem;
-}
-.delivery-note p{font-size:.85rem;color:rgba(245,240,232,.45);line-height:1.7}
-.delivery-note strong{color:var(--gold-light)}
+/* Symbol fields */
+.symbols-divider{display:flex;align-items:center;gap:1rem;margin:1.5rem 0 2rem}
+.sym-div-line{flex:1;height:1px;background:rgba(201,168,76,.1)}
+.sym-div-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:rgba(201,168,76,.35);white-space:nowrap}
 
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid rgba(201,168,76,.1);
-  padding:1.5rem;text-align:center;
-  font-size:.68rem;color:rgba(245,240,232,.2);
-  letter-spacing:.04em;margin-top:1rem;
-}
-footer a{color:rgba(201,168,76,.4);text-decoration:none}
+.sym-field{margin-bottom:1.8rem}
+.sym-field-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem}
+.sym-icon{width:32px;height:32px;flex-shrink:0;border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.75rem;color:rgba(201,168,76,.6)}
+.sym-label{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:400;color:var(--cream)}
+.sym-hint{font-size:.75rem;color:rgba(245,240,232,.25);font-style:italic;margin-left:40px;margin-bottom:.5rem;line-height:1.5}
+textarea{width:100%;min-height:80px;resize:vertical;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.18);color:var(--cream);font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:300;line-height:1.65;padding:.9rem 1rem;outline:none;transition:border-color .25s}
+textarea::placeholder{color:rgba(245,240,232,.18)}
+textarea:focus{border-color:rgba(201,168,76,.45)}
+.field-divider{height:1px;background:rgba(201,168,76,.07);margin:0 0 1.8rem}
+
+/* SEND */
+.send-wrap{text-align:center;margin-top:2.5rem}
+.btn-send{display:inline-flex;align-items:center;gap:.75rem;background:var(--gold);color:var(--deep);font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:1.15rem 2.4rem;border:none;cursor:pointer;transition:transform .2s;animation:btnGlow 2.8s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
+.btn-send:hover{box-shadow:0 0 50px rgba(201,168,76,.5)}
+.btn-send:active{transform:scale(.98)}
+.btn-send svg{width:18px;height:18px;flex-shrink:0}
+.send-note{margin-top:1rem;font-size:.74rem;color:rgba(245,240,232,.2);font-style:italic}
+.val-msg{display:none;margin-top:.8rem;font-size:.8rem;color:rgba(232,180,80,.7)}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(201,168,76,.08);padding:1.5rem;text-align:center;font-size:.66rem;color:rgba(245,240,232,.18);letter-spacing:.04em;margin-top:1rem}
+footer a{color:rgba(201,168,76,.38);text-decoration:none}
 </style>
 </head>
 <body>
 
-<!-- TOPO -->
 <div class="top-bar">
   <div class="top-bar-inner">
     <div class="dot"></div>
-    <p>Área de acesso · Diagnóstico de Estrutura Decisional</p>
+    <p>Leitura do Campo · Ravel Dunningham</p>
   </div>
 </div>
 
-<!-- INTRO -->
 <div class="intro">
   <span class="intro-label">Sua jornada começa agora</span>
   <h1>Bem-vindo à sua<br><em>imersão.</em></h1>
-  <p>Siga os passos abaixo com calma e atenção. Este processo foi desenhado para revelar algo que já existe dentro de você.</p>
+  <p>Siga os passos com calma e atenção. Este processo foi desenhado para revelar algo que já existe dentro de você.</p>
 </div>
 
-<!-- BARRA DE PASSOS -->
 <div class="steps-bar">
   <div class="step-item">
     <div class="step-circle active">1</div>
@@ -224,7 +122,7 @@ footer a{color:rgba(201,168,76,.4);text-decoration:none}
   <div class="step-line"></div>
   <div class="step-item">
     <div class="step-circle">2</div>
-    <span class="step-label">Preencha<br>o formulário</span>
+    <span class="step-label">Descreva<br>sua visão</span>
   </div>
   <div class="step-line"></div>
   <div class="step-item">
@@ -233,63 +131,240 @@ footer a{color:rgba(201,168,76,.4);text-decoration:none}
   </div>
 </div>
 
-<!-- INSTRUÇÃO -->
 <div class="instruction">
-  <p>🎧 <strong>Use fone de ouvido</strong> se possível. Encontre um lugar silencioso, sente-se confortavelmente e assista ao vídeo até o final antes de preencher o formulário.</p>
+  <p>🎧 <strong>Use fone de ouvido</strong> se possível. Encontre um lugar silencioso, sente-se confortavelmente e assista ao vídeo até o final — só então descreva o que apareceu. <strong>O inconsciente não erra.</strong></p>
 </div>
 
-<!-- VÍDEO -->
 <div class="video-section">
   <div class="video-wrap">
     <iframe
       src="https://drive.google.com/file/d/15qg7dC66RjyA_poa_gJOTzegHbrGed3V/preview"
-      title="Imersão Guiada — Diagnóstico de Estrutura Decisional"
+      title="Imersão Guiada — Leitura do Campo"
       allow="autoplay"
       allowfullscreen>
     </iframe>
   </div>
 </div>
 
-<!-- DIVISOR -->
 <div class="divider">
   <div class="divider-line"></div>
-  <span class="divider-icon">Assistiu ao vídeo? Agora o próximo passo.</span>
+  <span class="divider-icon">Assistiu? Agora descreva o que você viu.</span>
   <div class="divider-line"></div>
 </div>
 
-<\!-- FORMULÁRIO -->
 <div class="form-section">
   <div class="form-header">
-    <h2>Compartilhe<br>sua <em>visão</em></h2>
-    <p>Descreva o que apareceu durante a imersão. Com base nas suas respostas, Ravel vai preparar seu diagnóstico personalizado.</p>
+    <h2>O que apareceu<br>para <em>você?</em></h2>
+    <p>Escreva como se estivesse descrevendo um sonho — com detalhes, sem censura. Cada imagem que surgiu carrega uma informação sobre o seu campo.</p>
   </div>
 
-  <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.15);overflow:hidden;margin-bottom:1rem">
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLScdfG8otHV8coUEi6VzI7tFpIvU-h4ByL0_EcvB2wmjF08vQg/viewform?embedded=true"
-      width="100%"
-      height="760"
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
-      style="display:block">
-      Carregando formulário…
-    </iframe>
+  <div class="form-inner">
+
+    <!-- Dados pessoais -->
+    <div class="personal-fields">
+      <div class="field-group">
+        <label class="field-label" for="f-nome">Nome completo</label>
+        <input type="text" id="f-nome" placeholder="Seu nome completo">
+      </div>
+
+    </div>
+
+    <div class="symbols-divider">
+      <div class="sym-div-line"></div>
+      <span class="sym-div-text">Os 12 símbolos</span>
+      <div class="sym-div-line"></div>
+    </div>
+
+    <!-- 1. A Sala -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">1</div>
+        <span class="sym-label">A Sala</span>
+      </div>
+      <p class="sym-hint">Como ela era? Grande, pequena, clara, escura? Como você se sentiu dentro dela?</p>
+      <textarea id="f-sala" placeholder="Descreva a sala que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 2. O Cubo -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">2</div>
+        <span class="sym-label">O Cubo</span>
+      </div>
+      <p class="sym-hint">Material, tamanho, onde estava? O que sentiu ao vê-lo?</p>
+      <textarea id="f-cubo" placeholder="Descreva o cubo que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 3. A Escada -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">3</div>
+        <span class="sym-label">A Escada</span>
+      </div>
+      <p class="sym-hint">Para onde ia? Era longa, curta? O que sentiu ao subir ou descer?</p>
+      <textarea id="f-escada" placeholder="Descreva a escada que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 4. O Cavalo -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">4</div>
+        <span class="sym-label">O Cavalo</span>
+      </div>
+      <p class="sym-hint">Como ele era? Cor, porte, comportamento? O que aconteceu entre vocês?</p>
+      <textarea id="f-cavalo" placeholder="Descreva o cavalo que apareceu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 5. A Vaca -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">5</div>
+        <span class="sym-label">A Vaca</span>
+      </div>
+      <p class="sym-hint">Como ela estava? Próxima ou distante? O que transmitiu?</p>
+      <textarea id="f-vaca" placeholder="Descreva a vaca que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 6. O Cachorro -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">6</div>
+        <span class="sym-label">O Cachorro</span>
+      </div>
+      <p class="sym-hint">Como ele se comportou? Como você se sentiu ao vê-lo?</p>
+      <textarea id="f-cachorro" placeholder="Descreva o cachorro que apareceu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 7. O Carro -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">7</div>
+        <span class="sym-label">O Carro</span>
+      </div>
+      <p class="sym-hint">Como era? Cor, estado, tamanho? O que transmitiu?</p>
+      <textarea id="f-carro" placeholder="Descreva o carro que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 8. O Troféu -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">8</div>
+        <span class="sym-label">O Troféu</span>
+      </div>
+      <p class="sym-hint">Como era? Material, tamanho? O que sentiu ao vê-lo?</p>
+      <textarea id="f-trofeu" placeholder="Descreva o troféu que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 9. O Macaco -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">9</div>
+        <span class="sym-label">O Macaco</span>
+      </div>
+      <p class="sym-hint">Como ele era? O que aconteceu entre vocês?</p>
+      <textarea id="f-macaco" placeholder="Descreva o macaco que apareceu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 10. O Fantasma -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">10</div>
+        <span class="sym-label">O Fantasma</span>
+      </div>
+      <p class="sym-hint">Como ele apareceu? O que sentiu — medo, tristeza, indiferença?</p>
+      <textarea id="f-fantasma" placeholder="Descreva o fantasma que apareceu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 11. A Goteira -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">11</div>
+        <span class="sym-label">A Goteira</span>
+      </div>
+      <p class="sym-hint">Onde estava? Como era? O que sentiu ao vê-la?</p>
+      <textarea id="f-goteira" placeholder="Descreva a goteira que você viu..."></textarea>
+    </div>
+    <div class="field-divider"></div>
+
+    <!-- 12. O Reflexo -->
+    <div class="sym-field">
+      <div class="sym-field-header">
+        <div class="sym-icon">12</div>
+        <span class="sym-label">O Reflexo</span>
+      </div>
+      <p class="sym-hint">O que você viu? Como se sentiu diante da sua própria imagem?</p>
+      <textarea id="f-reflexo" placeholder="Descreva o reflexo que você viu..."></textarea>
+    </div>
+
+    <div class="send-wrap">
+      <button class="btn-send" onclick="enviarWhatsApp()">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Enviar minha visão para o Ravel
+      </button>
+      <p class="send-note">Abre o WhatsApp com tudo já preenchido · Ravel recebe e responde pessoalmente</p>
+      <p class="val-msg" id="val-msg">⚠ Preencha pelo menos um símbolo antes de enviar.</p>
+    </div>
+
   </div>
-
-  <p class="btn-note">Prefere abrir em outra janela? <a href="https://docs.google.com/forms/d/e/1FAIpQLScdfG8otHV8coUEi6VzI7tFpIvU-h4ByL0_EcvB2wmjF08vQg/viewform" target="_blank" style="color:var(--gold);text-decoration:none">Clique aqui</a></p>
-</div>
-
-<!-- AVISO DE ENTREGA -->
-<div class="delivery-note">
-  <div class="icon">📲</div>
-  <h3>O que acontece agora?</h3>
-  <p>Após preencher o formulário, Ravel vai analisar sua visão pessoalmente e entregar o seu <strong>diagnóstico em PDF + áudio explicativo</strong> diretamente no seu WhatsApp em até <strong>48 horas úteis.</strong></p>
 </div>
 
 <footer>
-  <p>© 2025 Ravel Dunningham · Diagnóstico de Estrutura Decisional &nbsp;·&nbsp; <a href="https://www.instagram.com/raveldunningham/" target="_blank">@raveldunningham</a></p>
+  <p>© 2026 Ravel Dunningham · O Código Interno &nbsp;·&nbsp;
+  <a href="https://www.instagram.com/raveldunningham/" target="_blank">@raveldunningham</a></p>
 </footer>
 
+<script>
+function enviarWhatsApp() {
+  var nome     = document.getElementById('f-nome').value.trim();
+  var sala     = document.getElementById('f-sala').value.trim();
+  var cubo     = document.getElementById('f-cubo').value.trim();
+  var escada   = document.getElementById('f-escada').value.trim();
+  var cavalo   = document.getElementById('f-cavalo').value.trim();
+  var vaca     = document.getElementById('f-vaca').value.trim();
+  var cachorro = document.getElementById('f-cachorro').value.trim();
+  var carro    = document.getElementById('f-carro').value.trim();
+  var trofeu   = document.getElementById('f-trofeu').value.trim();
+  var macaco   = document.getElementById('f-macaco').value.trim();
+  var fantasma = document.getElementById('f-fantasma').value.trim();
+  var goteira  = document.getElementById('f-goteira').value.trim();
+  var reflexo  = document.getElementById('f-reflexo').value.trim();
+
+  var temConteudo = sala||cubo||escada||cavalo||vaca||cachorro||carro||trofeu||macaco||fantasma||goteira||reflexo;
+  if (!temConteudo) {
+    document.getElementById('val-msg').style.display = 'block';
+    return;
+  }
+  document.getElementById('val-msg').style.display = 'none';
+
+  var msg = 'Olá, Ravel! Fiz a imersão da Leitura do Campo. Aqui está o que vi:\n\n';
+  if (nome)     msg += '*Nome:* ' + nome + '\n';
+  msg += '\n';
+  if (sala)     msg += '*A Sala:*\n' + sala + '\n\n';
+  if (cubo)     msg += '*O Cubo:*\n' + cubo + '\n\n';
+  if (escada)   msg += '*A Escada:*\n' + escada + '\n\n';
+  if (cavalo)   msg += '*O Cavalo:*\n' + cavalo + '\n\n';
+  if (vaca)     msg += '*A Vaca:*\n' + vaca + '\n\n';
+  if (cachorro) msg += '*O Cachorro:*\n' + cachorro + '\n\n';
+  if (carro)    msg += '*O Carro:*\n' + carro + '\n\n';
+  if (trofeu)   msg += '*O Troféu:*\n' + trofeu + '\n\n';
+  if (macaco)   msg += '*O Macaco:*\n' + macaco + '\n\n';
+  if (fantasma) msg += '*O Fantasma:*\n' + fantasma + '\n\n';
+  if (goteira)  msg += '*A Goteira:*\n' + goteira + '\n\n';
+  if (reflexo)  msg += '*O Reflexo:*\n' + reflexo + '\n\n';
+  msg += 'Aguardo minha leitura!';
+
+  window.open('https://wa.me/5574999943621?text=' + encodeURIComponent(msg), '_blank');
+}
+</script>
 </body>
 </html>
