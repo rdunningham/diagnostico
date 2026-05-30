@@ -425,8 +425,22 @@ Não é necessário nenhum conhecimento prévio. Apenas sua presença e honestid
         <p style="font-size:.88rem;line-height:1.85;color:rgba(242,232,208,.82);margin-bottom:.9rem">O Ciclo Invisível revelou <em>o padrão</em>. Mas um padrão tem raiz — e a raiz está na estrutura simbólica do seu inconsciente: as imagens, os arquétipos e os núcleos emocionais que organizam cada decisão que você toma.</p>
         <p style="font-size:.88rem;line-height:1.85;color:rgba(242,232,208,.82)">O <strong style="color:var(--gold-light)">Diagnóstico Inicial do Código Interno</strong> mapeia essa estrutura completa — símbolo por símbolo — e entrega um relatório que a maioria das pessoas nunca teve acesso sobre si mesma.</p>
       </div>
-      <p style="font-size:.82rem;color:rgba(242,232,208,.5);font-style:italic;line-height:1.7;margin-bottom:1.6rem;text-align:center">O ciclo que você acabou de ver opera através de símbolos. O próximo passo é identificar os seus — os quatro que governam o seu campo agora.</p>
-      <a class="btn-primary" href="https://ocodigointerno.com.br/dinamica.html" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-bottom:.7rem">Quero descobrir meus 4 símbolos →</a>
+      <div style="height:1px;background:rgba(107,143,94,.12);margin:1.6rem 0"></div>
+      <p style="font-size:.78rem;color:rgba(242,232,208,.35);letter-spacing:.06em;text-align:center;margin-bottom:1.4rem;font-family:'Cinzel',serif;text-transform:uppercase">O que faz sentido para você agora?</p>
+
+      <a class="btn-primary" href="https://ocodigointerno.com.br/dinamica.html" target="_blank"
+        style="display:block;text-align:center;text-decoration:none;margin-bottom:.75rem">
+        Quero aprofundar a leitura →
+      </a>
+
+      <button onclick="abrirSessao()"
+        style="width:100%;padding:.9rem 1.2rem;background:transparent;border:1px solid rgba(201,168,76,.35);color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:.85rem;letter-spacing:.04em;cursor:pointer;transition:all .2s"
+        onmouseover="this.style.background='rgba(201,168,76,.08)'"
+        onmouseout="this.style.background='transparent'">
+        Quero saber mais sobre a Sessão
+      </button>
+
+      <div style="height:1.4rem"></div>
       <button class="btn-pdf" onclick="downloadPDF()">⬇ Baixar Relatório em PDF</button>
       <button class="btn-restart" onclick="restartDynamic()">Fazer novamente</button>
     </div>
@@ -831,6 +845,19 @@ function fallback(){
 }
 
 // PDF
+function abrirSessao(){
+  const nome = S.nome || 'você';
+  const ciclo = (window._resultData && window._resultData.ciclo_nome) || 'meu ciclo';
+  const desc  = (window._resultData && window._resultData.ciclo_desc) || '';
+  const msg = encodeURIComponent(
+    'Olá Ravel, me chamo ' + nome + '. ' +
+    'Acabei de fazer o mapa do Ciclo Invisível e o padrão identificado foi: ' + ciclo + '. ' +
+    (desc ? desc + ' ' : '') +
+    'Quero saber mais sobre a Sessão.'
+  );
+  window.open('https://wa.me/5574999943621?text=' + msg, '_blank');
+}
+
 function downloadPDF(){
   const data=window._resultData||fallback();
   const win=window.open('','_blank');
