@@ -425,12 +425,8 @@ Não é necessário nenhum conhecimento prévio. Apenas sua presença e honestid
         <p style="font-size:.88rem;line-height:1.85;color:rgba(242,232,208,.82);margin-bottom:.9rem">O Ciclo Invisível revelou <em>o padrão</em>. Mas um padrão tem raiz — e a raiz está na estrutura simbólica do seu inconsciente: as imagens, os arquétipos e os núcleos emocionais que organizam cada decisão que você toma.</p>
         <p style="font-size:.88rem;line-height:1.85;color:rgba(242,232,208,.82)">O <strong style="color:var(--gold-light)">Diagnóstico Inicial do Código Interno</strong> mapeia essa estrutura completa — símbolo por símbolo — e entrega um relatório que a maioria das pessoas nunca teve acesso sobre si mesma.</p>
       </div>
-      <div style="display:flex;align-items:baseline;justify-content:center;gap:.7rem;margin-bottom:.4rem">
-        <span style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:700;color:var(--gold-light)">R$ 47</span>
-        <span style="font-size:.78rem;color:rgba(242,232,208,.35);text-decoration:line-through">depois R$ 97</span>
-      </div>
-      <p style="font-size:.74rem;color:rgba(242,232,208,.32);font-style:italic;line-height:1.65;margin-bottom:1.4rem;text-align:center">Enquanto o padrão ainda está ativo — e a memória, fresca.</p>
-      <a class="btn-primary" href="https://rdunningham.github.io/diagnostico/" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-bottom:.7rem">Quero fazer o Diagnóstico Inicial →</a>
+      <p style="font-size:.82rem;color:rgba(242,232,208,.5);font-style:italic;line-height:1.7;margin-bottom:1.6rem;text-align:center">O ciclo que você acabou de ver opera através de símbolos. O próximo passo é identificar os seus — os quatro que governam o seu campo agora.</p>
+      <a class="btn-primary" href="https://ocodigointerno.com.br/dinamica.html" target="_blank" style="display:block;text-align:center;text-decoration:none;margin-bottom:.7rem">Quero descobrir meus 4 símbolos →</a>
       <button class="btn-pdf" onclick="downloadPDF()">⬇ Baixar Relatório em PDF</button>
       <button class="btn-restart" onclick="restartDynamic()">Fazer novamente</button>
     </div>
@@ -450,6 +446,8 @@ Não é necessário nenhum conhecimento prévio. Apenas sua presença e honestid
 
 </div><!-- .app -->
 <script>
+
+
 // PARTICLES
 (()=>{const c=document.getElementById('particles');for(let i=0;i<20;i++){const p=document.createElement('div');p.className='particle';const s=Math.random()*5+2;p.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*24+14}s;animation-delay:${Math.random()*20}s`;c.appendChild(p);}})();
 
@@ -562,9 +560,25 @@ function f_respiracao(){
 // ETAPA 1 — SALA
 function f_sala(){
   addDiv('Etapa 1 — A Sala');
-  addMsg(`Essa sala representa o momento atual da sua vida financeira.\n\nObserve o tamanho, a iluminação, a sensação do ambiente.\n\n<strong>Como é essa sala?</strong>`,'ravel');
-  type('Descreva o que você vê...',v=>{
-    S.sala=analisaSala(v);
+  addMsg(`Essa sala representa o momento atual da sua vida financeira.\n\nObserve com calma — o tamanho, a luz, a sensação do ambiente.\n\n<strong>Como é essa sala?</strong>`,'ravel');
+  ask([
+    'Escura e silenciosa — parece abandonada',
+    'Pequena e apertada — me sinto contida',
+    'Grande mas vazia — muito espaço, pouco pertencimento',
+    'Iluminada mas fria — tudo visível, nada aconchegante',
+    'Aconchegante mas pequena — confortável, porém limitada',
+    'Ampla e iluminada — mas algo parece fora do lugar'
+  ],v=>{
+    const salaMap={
+      'Escura e silenciosa — parece abandonada':              {tamanho:'pequena',luz:'escura',    sensacao:'fria e distante'},
+      'Pequena e apertada — me sinto contida':                {tamanho:'pequena',luz:'meia luz',  sensacao:'neutra'},
+      'Grande mas vazia — muito espaço, pouco pertencimento': {tamanho:'grande', luz:'meia luz',  sensacao:'fria e distante'},
+      'Iluminada mas fria — tudo visível, nada aconchegante': {tamanho:'média',  luz:'iluminada', sensacao:'fria e distante'},
+      'Aconchegante mas pequena — confortável, porém limitada':{tamanho:'pequena',luz:'meia luz', sensacao:'acolhedora'},
+      'Ampla e iluminada — mas algo parece fora do lugar':    {tamanho:'grande', luz:'iluminada', sensacao:'neutra'}
+    };
+    const base=salaMap[v]||{tamanho:'média',luz:'meia luz',sensacao:'neutra'};
+    S.sala={...base,desc:v};
     f_porta_sentimento();
   });
 }
@@ -621,11 +635,25 @@ function f_obstaculo(){
 // GUARDIÃO — negociação
 function f_guardiao(eFigura){
   addDiv('Etapa 5 — O Guardião');
-  const intro = eFigura
-    ? 'Observe essa figura com atenção.\n\n<strong>Como ela é? Descreva o que você vê.</strong>'
-    : 'Observe esse ser com atenção.\n\n<strong>Como ele é? Descreva o que você vê.</strong>';
-  addMsg(intro,'ravel');
-  type('Descreva o guardião...',v=>{
+  const opsFigura=[
+    'Feminina e familiar — parece alguém da minha família',
+    'Masculina e familiar — parece alguém da minha família',
+    'Uma figura de autoridade — imponente, julgadora',
+    'Uma criança — pequena, vulnerável',
+    'Uma sombra — não consigo ver o rosto',
+    'Uma versão de mim mesmo(a)'
+  ];
+  const opsAnimal=[
+    'Grande e ameaçador — bloqueia o caminho',
+    'Pequeno mas agressivo — na defensiva',
+    'Ferido ou fraco — parece precisar de ajuda',
+    'Selvagem e livre — não quer ser dominado',
+    'Silencioso — apenas me observa'
+  ];
+  addMsg(eFigura
+    ? 'Observe essa figura com atenção.\n\n<strong>Como ela se apresenta?</strong>'
+    : 'Observe esse ser com atenção.\n\n<strong>Como ele se apresenta?</strong>','ravel');
+  ask(eFigura ? opsFigura : opsAnimal, v=>{
     S.guardiaoDesc=v;
     think(1400,()=>{
       addMsg(`Esse guardião — <em>${S.guardiaoDesc}</em> — é uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para ele e diga em voz alta ou mentalmente:</strong>`,'ravel');
@@ -698,65 +726,11 @@ function f_encerramento(){
 // ══════════════════════
 // RESULTADO
 // ══════════════════════
-async function showResult(){
+function showResult(){
   document.getElementById('screen-chat').style.display='none';
   document.getElementById('screen-result').style.display='block';
   window.scrollTo({top:0,behavior:'smooth'});
-
-  const prompt=`Você é Ravel Dunningham, especialista em mapeamento simbólico do inconsciente e reorganização financeira.
-
-DIAGNÓSTICO DE: ${S.nome}
-
-SÍMBOLOS COLETADOS:
-
-A Sala (estado financeiro atual):
-- Descrição: ${S.sala.desc}
-- Tamanho percebido: ${S.sala.tamanho}
-- Iluminação: ${S.sala.luz}
-- Sensação: ${S.sala.sensacao}
-
-Sentimento ao ver a Porta da Prosperidade: ${S.portaSentimento}
-
-O Caminho até a porta: ${S.caminho}
-
-O Obstáculo no caminho: ${S.obstaculo}
-Descrição do guardião: ${S.guardiaoDesc||'não aplicável'}
-Como foi resolvido: ${S.tentativa}
-
-O que acontece ao tentar avançar: ${S.tentativa}
-
-Sentimento ao tentar atravessar a porta: ${S.sentimentoPorta}
-
-PREMISSAS DO MÉTODO:
-1. Todo problema financeiro tem uma utilidade inconsciente
-2. Crescer financeiramente pode ativar medos profundos registrados como perigosos
-3. O inconsciente organiza experiências através de símbolos
-4. Toda demora nos resultados esconde uma espera ou um medo nas relações
-
-Retorne EXATAMENTE neste formato JSON (sem markdown, sem texto fora do JSON):
-{
-  "ciclo_nome": "Nome do Ciclo (ex: Ciclo de Autossabotagem Financeira)",
-  "ciclo_desc": "Uma frase curta descrevendo o padrão em 1-2 linhas",
-  "leitura_sala": "Parágrafo sobre o que a sala revela do estado emocional financeiro atual (3-4 linhas)",
-  "leitura_obstaculo": "Parágrafo sobre o obstáculo e o que ele simboliza — inclua a tentativa de avançar (3-4 linhas)",
-  "leitura_ciclo": "Parágrafo profundo sobre o ciclo identificado e como ele opera inconscientemente (4-5 linhas)",
-  "caminho": "Parágrafo sobre o que normalmente acontece nesse ciclo e o próximo passo (3-4 linhas)"
-}`;
-
-  try{
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,
-        system:"Você é Ravel Dunningham. Responda APENAS com JSON válido, sem markdown, sem texto antes ou depois. Português brasileiro. Linguagem simbólica, profunda, direta.",
-        messages:[{role:"user",content:prompt}]})});
-    const d=await r.json();
-    const raw=d.content.map(i=>i.text||'').join('');
-    const clean=raw.replace(/```json|```/g,'').trim();
-    const parsed=JSON.parse(clean);
-    renderResult(parsed);
-  }catch(e){
-    renderResult(fallback());
-  }
+  setTimeout(()=>renderResult(fallback()), 1800);
 }
 
 function renderResult(data){
@@ -781,21 +755,79 @@ function renderResult(data){
 }
 
 function fallback(){
-  const obs=S.obstaculo.toLowerCase();
-  const ciclos=[
-    {k:/person|figur|alguém|homem|mulher|mãe|pai/i, nome:'Ciclo de Lealdade Invisível',desc:'Uma figura relacional opera como freio inconsciente do avanço financeiro.'},
-    {k:/muro|parede|porta|bloqueio/i,               nome:'Ciclo de Autolimitação',     desc:'Uma barreira interna impede o acesso ao próximo nível financeiro.'},
-    {k:/animal|bicho|fera|monstro/i,                nome:'Ciclo de Medo da Expansão',  desc:'Instintos de sobrevivência sabotam o crescimento quando ele se aproxima.'},
-    {k:/pedra|peso|object|objeto|caixa/i,           nome:'Ciclo de Sobrecarga',         desc:'A sensação de responsabilidade excessiva trava o avanço financeiro.'},
-  ];
-  const ciclo=ciclos.find(c=>c.k.test(obs))||{nome:'Ciclo de Autossabotagem Financeira',desc:'Um padrão inconsciente opera nos bastidores impedindo a consolidação financeira.'};
-  return{
-    ciclo_nome:ciclo.nome,ciclo_desc:ciclo.desc,
-    leitura_sala:`A sala que você imaginou — ${S.sala.tamanho}, ${S.sala.luz} — revela o estado emocional atual da sua relação com dinheiro. Uma sala ${S.sala.luz} não é um cenário neutro: ela espelha a clareza ou a insegurança com que você enxerga suas possibilidades financeiras neste momento.`,
-    leitura_obstaculo:`No caminho até a porta, você encontrou: ${S.obstaculo}. Esse elemento não é aleatório — o inconsciente escolheu exatamente esse símbolo para revelar o que opera nos bastidores. Ao tentar avançar, ${S.tentativa.toLowerCase()}. Esse é o padrão em ação: não é falta de esforço, é um mecanismo de proteção que o inconsciente instalou.`,
-    leitura_ciclo:`O ${ciclo.nome} opera de forma silenciosa: cada vez que uma oportunidade real se aproxima, algo interno ativa um freio. Pode parecer azar, falta de tempo ou circunstâncias externas — mas o padrão se repete porque tem uma função inconsciente. Algo dentro de você entende o crescimento financeiro como perigoso, e faz o possível para manter o nível atual.`,
-    caminho:`Pessoas nesse padrão costumam trabalhar muito sem avançar proporcionalmente, ver oportunidades desaparecerem no último momento e sentir que algo sempre acontece quando tentam crescer. Identificar o ciclo é o primeiro passo. A reorganização acontece quando o padrão é acessado diretamente — no inconsciente, onde ele vive.`
+  const obs=(S.obstaculo||'').toLowerCase();
+  const porta=(S.portaSentimento||'').toLowerCase();
+  const cam=(S.caminho||'').toLowerCase();
+  const sent=(S.sentimentoPorta||'').toLowerCase();
+
+  // ── Ciclo baseado no obstáculo ──
+  let ciclo_nome, ciclo_desc;
+  if(/figura.*conhec/i.test(obs)||/mãe|pai|irmã|irmão|marido|esposa|chefe/i.test(S.guardiaoDesc||'')){
+    ciclo_nome='Ciclo de Lealdade Invisível';
+    ciclo_desc='Uma figura relacional opera como freio inconsciente — crescer financeiramente ativa um conflito de lealdade com alguém do passado.';
+  } else if(/figura.*não reconh/i.test(obs)){
+    ciclo_nome='Ciclo de Autoridade Desconhecida';
+    ciclo_desc='Uma parte não integrada do inconsciente assume o controle das decisões financeiras nos momentos de maior oportunidade.';
+  } else if(/animal/i.test(obs)){
+    ciclo_nome='Ciclo de Medo da Expansão';
+    ciclo_desc='Instintos primitivos de sobrevivência sabotam o crescimento no exato momento em que ele se torna real e possível.';
+  } else if(/parede|muro/i.test(obs)){
+    ciclo_nome='Ciclo de Autolimitação Estrutural';
+    ciclo_desc='Uma barreira interna — construída para proteger — impede o acesso ao próximo nível financeiro mesmo quando a oportunidade está presente.';
+  } else if(/objeto|peso|caixa|pedra/i.test(obs)){
+    ciclo_nome='Ciclo de Sobrecarga Silenciosa';
+    ciclo_desc='A sensação de responsabilidade acumulada trava o avanço: o inconsciente entende que crescer significa carregar ainda mais peso.';
+  } else if(/escuridão|névoa|escuro/i.test(obs)){
+    ciclo_nome='Ciclo de Invisibilidade Financeira';
+    ciclo_desc='A incerteza sobre o futuro financeiro foi registrada como ameaça — o inconsciente prefere o vazio conhecido ao crescimento desconhecido.';
+  } else {
+    ciclo_nome='Ciclo de Autossabotagem Financeira';
+    ciclo_desc='Um padrão inconsciente opera nos bastidores impedindo a consolidação do que é conquistado — sempre no momento em que a estabilidade parece alcançável.';
+  }
+
+  // ── Leitura da Sala ──
+  const luzMap={
+    'escura':'A escuridão que você percebeu não é ausência de possibilidade — é ausência de clareza sobre onde você está. O inconsciente registrou a situação financeira atual como um espaço sem visibilidade suficiente para agir com confiança.',
+    'iluminada':'A iluminação da sala revela algo significativo: você tem consciência do seu estado financeiro. O problema não é não enxergar — é o que você vê e ainda assim não consegue mover.',
+    'meia luz':'A meia luz é o símbolo mais honesto: você sabe que algo precisa mudar, mas ainda não tem clareza total sobre o que está operando nos bastidores.'
   };
+  const tamMap={
+    'grande':'O tamanho amplo pode indicar uma relação com o dinheiro que parece espaçosa externamente mas emocionalmente vazia — muito espaço para preencher, pouca sensação de pertencimento.',
+    'pequena':'Uma sala pequena revela contenção: o inconsciente está mantendo você num espaço controlado, seguro — onde o dinheiro é suficiente para não faltar, mas não o bastante para gerar exposição.',
+    'média':'Uma sala de tamanho médio indica equilíbrio aparente — nem a urgência da escassez extrema, nem o desconforto da abundância. O padrão opera exatamente nessa zona de conforto.'
+  };
+  const leitura_sala = `${luzMap[S.sala.luz]||'A sala que emergiu revela o estado emocional da sua relação com dinheiro neste momento.'} ${tamMap[S.sala.tamanho]||''} A sensação de ambiente ${S.sala.sensacao} completa o quadro: não é coincidência — é o inconsciente descrevendo com precisão como se sente habitando sua realidade financeira atual.`;
+
+  // ── Leitura do Obstáculo ──
+  const portaMap={
+    'esperança':'Você vê a porta com esperança — o que indica que o desejo de mudança é genuíno. Mas esperança sem movimento é outro nome para adiamento. O obstáculo existe exatamente nessa lacuna.',
+    'ansiedade':'A ansiedade diante da porta revela que parte de você já sabe o que está por trás dela — e teme não estar preparado. O obstáculo não é a porta. É a crença de que você precisa ser diferente para atravessá-la.',
+    'distância':'A sensação de distância é um mecanismo de proteção: o inconsciente coloca o objetivo longe o suficiente para que a tentativa nunca seja total — e o fracasso, nunca definitivo.',
+    'bloqueio':'O bloqueio ao olhar para a porta é o sinal mais direto: algo no inconsciente entende essa travessia como perigosa. Não é falta de desejo. É um freio instalado antes de você ter escolha.',
+    'curiosidade':'A curiosidade é uma força. Mas sem um caminho claro, ela se transforma em procrastinação disfarçada de pesquisa — sempre se preparando, nunca atravessando.'
+  };
+  const leitura_obstaculo = `${portaMap[S.portaSentimento]||'O sentimento diante da porta revela como você se relaciona com a possibilidade de crescimento.'} No caminho, emergiu: ${S.obstaculo}. Esse símbolo não é aleatório — é exatamente o que o inconsciente escolheu para representar o padrão que opera entre você e o próximo nível. ${S.guardiaoDesc ? 'O guardião que você descreveu — '+S.guardiaoDesc+' — é uma parte de você que assumiu a função de proteger. Ele cumpriu um papel. Mas esse papel chegou ao fim.' : ''}`;
+
+  // ── Leitura do Ciclo ──
+  const camMap={
+    'curto':'O caminho curto que você percebeu é revelador: parte de você sabe que a distância não é o problema real. O obstáculo não é a jornada — é o que existe entre você e o primeiro passo.',
+    'médio':'Um caminho de esforço médio indica que você aceita que vai precisar trabalhar — mas o inconsciente ainda não tem certeza se o destino vale o custo.',
+    'longo':'A percepção de distância longa é um padrão clássico de autossabotagem: o inconsciente amplifica o esforço necessário para justificar não começar — ou para tornar o abandono compreensível.',
+    'confuso':'Um caminho confuso é o inconsciente em modo de proteção máxima: se você não consegue ver por onde ir, não pode dar o passo errado. A confusão não é falta de inteligência — é um mecanismo de segurança.'
+  };
+  const leitura_ciclo = `O ${ciclo_nome} opera de forma silenciosa e eficiente. ${camMap[S.caminho]||''} O padrão se repete porque tem uma função: cada vez que o crescimento financeiro se torna real, algo interno ativa um freio — e o resultado parece circunstancial. Parece azar. Parece timing ruim. Mas o padrão é preciso demais para ser acidente.`;
+
+  // ── Caminho ──
+  const sentMap={
+    'leveza':'A leveza que você sentiu ao atravessar não é ilusão — é o inconsciente reconhecendo que a travessia era possível. Esse registro ficou.',
+    'emoção':'A emoção ao atravessar indica que algo foi reorganizado internamente. O que emocionou não foi a chegada — foi o reconhecimento de que você consegue.',
+    'clareza':'A clareza que chegou ao atravessar é o que o método busca: não um plano, mas uma percepção. Quando o padrão é visto, ele perde força.',
+    'paz':'A paz indica alinhamento: o que você vivenciou na experiência não foi imaginação — foi o inconsciente encontrando uma nova referência para o que é possível.',
+    'surpresa':'A surpresa ao conseguir atravessar é o dado mais importante: você não esperava conseguir. Isso revela o quanto o padrão havia convencido você de que a porta não era para você.'
+  };
+  const caminho = `${sentMap[S.sentimentoPorta]||'O que aconteceu ao atravessar a porta deixou uma marca no campo.'} Pessoas no ${ciclo_nome} costumam trabalhar mais do que o resultado justifica, ver oportunidades desaparecerem no último momento e ter a sensação persistente de que algo sempre acontece quando o crescimento está próximo. Identificar o ciclo pelo nome é o primeiro movimento. A reorganização acontece quando o padrão é acessado diretamente — no campo onde ele opera.`;
+
+  return{ciclo_nome, ciclo_desc, leitura_sala, leitura_obstaculo, leitura_ciclo, caminho};
 }
 
 // PDF
