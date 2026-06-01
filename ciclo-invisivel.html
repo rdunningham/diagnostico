@@ -198,8 +198,8 @@ body::before{
 .btn-block{display:block;width:100%;max-width:360px;margin:0 auto;padding:1.1rem}
 
 /* ══ CHAT ══ */
-#screen-chat{display:none;flex-direction:column;min-height:100vh;padding-bottom:160px}
-.chat-area{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:1.2rem;max-width:680px;width:100%;margin:0 auto}
+#screen-chat{display:none;flex-direction:column;min-height:100vh;padding-bottom:260px}
+.chat-area{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:1.6rem;max-width:680px;width:100%;margin:0 auto}
 .msg{display:flex;gap:.8rem;align-items:flex-start;opacity:0;transform:translateY(12px);animation:msgIn .5s ease forwards}
 @keyframes msgIn{to{opacity:1;transform:translateY(0)}}
 .msg.ravel{flex-direction:row}
@@ -486,7 +486,7 @@ const inpEl=document.getElementById('inp');
 const inputArea=document.getElementById('input-area');
 let waitingCb=null;
 
-function scrollBot(){setTimeout(()=>window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),120)}
+function scrollBot(){setTimeout(()=>window.scrollTo({top:document.body.scrollHeight+300,behavior:'smooth'}),200)}
 
 function addMsg(html,who){
   const div=document.createElement('div');div.className=`msg ${who}`;
@@ -522,7 +522,7 @@ function ask(opts,cb){
 function type(ph,cb){
   clearIn();textRow.style.display='flex';inpEl.placeholder=ph;
   setTimeout(()=>inpEl.focus(),300);
-  waitingCb=v=>{clearIn();addMsg(v,'user');waitingCb=null;think(1300,()=>cb(v));};
+  waitingCb=v=>{clearIn();addMsg(v,'user');waitingCb=null;think(2000,()=>cb(v));};
 }
 
 function sendMsg(){const v=inpEl.value.trim();if(v&&waitingCb)waitingCb(v);}
@@ -558,16 +558,16 @@ function f_nome(){
 // INTRO
 function f_intro(){
   addMsg(`${S.nome}, vou te guiar por uma pequena experiência simbólica.\n\nNão existe resposta certa ou errada. <strong>O que aparecer no seu inconsciente é exatamente o que precisa aparecer.</strong>\n\nAntes de começar, vamos preparar o campo.`,'ravel');
-  think(1200,f_respiracao);
+  think(1800,f_respiracao);
 }
 
 // RESPIRAÇÃO
 function f_respiracao(){
   addDiv('Preparação');
-  addMsg(`Vamos fazer uma respiração simples — três vezes.\n\n<em>Inspire pelo nariz contando até 4.\nSegure contando até 2.\nSolte pela boca contando até 6.</em>\n\nFaça agora, com calma.`,'ravel');
-  think(3000,()=>{
-    addMsg(`Agora feche os olhos.\n\n<em>Imagine que você está dentro de uma sala.</em>\n\nDeixe a imagem aparecer naturalmente — sem forçar.`,'ravel');
-    think(2500,f_sala);
+  addMsg(`Vamos fazer uma respiração simples — três vezes.\n\n<em>Inspire pelo nariz contando até 4.\nSegure contando até 2.\nSolte pela boca contando até 6.</em>\n\nFaça agora, com calma. Eu espero.`,'ravel');
+  think(18000,()=>{
+    addMsg(`Agora feche os olhos por alguns segundos.\n\n<em>Imagine que você está dentro de uma sala.</em>\n\nDeixe a imagem aparecer naturalmente — sem forçar. Não precisa ser perfeita.`,'ravel');
+    think(10000,f_sala);
   });
 }
 
@@ -669,7 +669,7 @@ function f_guardiao(eFigura){
     : 'Observe esse ser com atenção.\n\n<strong>Como ele se apresenta?</strong>','ravel');
   ask(eFigura ? opsFigura : opsAnimal, v=>{
     S.guardiaoDesc=v;
-    think(1400,()=>{
+    think(2200,()=>{
       addMsg(`Esse guardião — <em>${S.guardiaoDesc}</em> — é uma parte do seu inconsciente que assumiu a função de te proteger de algo que considerou perigoso.\n\nEle não é seu inimigo. Ele cumpriu uma função.\n\nAgora chegou o momento de reconhecer isso.\n\n<strong>Olhe para ele e diga em voz alta ou mentalmente:</strong>`,'ravel');
       setTimeout(()=>{
         const frase=document.createElement('div');
