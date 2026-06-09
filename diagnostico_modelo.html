@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Psicossocial NR-1 — Modelo Demonstrativo</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root {
+  --ink:    #0F1318;
+  --copper: #B87333;
+  --cu2:    #D4956A;
+  --ivory:  #F8F4EE;
+  --stone:  #E8E2D9;
+  --slate:  #6B7280;
+  --white:  #FFFFFF;
+  --rule:   #D4C4B0;
+  --green:  #2A6E4A;
+  --yellow: #92740A;
+  --red:    #8B2020;
+  --gbg:    #F2EDE6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Helvetica,Arial,sans-serif;background:var(--gbg);color:var(--ink)}
+
+/* HEADER */
+.header{background:var(--ink);border-bottom:4px solid var(--copper)}
+.header-inner{max-width:1100px;margin:0 auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.header-left .label{font-size:.65rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:4px}
+.header-left .empresa{font-size:1.3rem;font-weight:700;color:var(--white)}
+.header-left .sub{font-size:.78rem;color:#9A9080;margin-top:2px}
+.header-right{display:flex;gap:10px;flex-wrap:wrap}
+.badge{border:1px solid;border-radius:6px;padding:7px 14px;text-align:center}
+.badge .bv{font-size:1.1rem;font-weight:700}
+.badge .bl{font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;margin-top:2px;display:block}
+.badge.copper{border-color:var(--copper);background:rgba(184,115,51,.12)}
+.badge.copper .bv{color:var(--copper)}
+.badge.copper .bl{color:var(--cu2)}
+.badge.slate{border-color:#374151;background:rgba(55,65,81,.2)}
+.badge.slate .bv{color:var(--white)}
+.badge.slate .bl{color:#9A9080}
+
+/* DEMO BANNER */
+.demo-banner{background:#1A2430;border-bottom:2px dashed var(--copper);padding:10px 28px;text-align:center;font-size:.78rem;color:var(--cu2)}
+.demo-banner b{color:var(--copper)}
+
+/* TABS */
+.tabs-wrap{background:var(--ink);border-bottom:1px solid #2E3040;position:sticky;top:0;z-index:100}
+.tabs{max-width:1100px;margin:0 auto;display:flex;padding:0 28px;overflow-x:auto;gap:2px}
+.tab{padding:13px 20px;font-size:.82rem;font-weight:600;color:#9A9080;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.tab:hover{color:var(--white)}
+.tab.active{color:var(--copper);border-bottom-color:var(--copper)}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:28px}
+.section{display:none}
+.section.active{display:block}
+
+/* DOWNLOAD BTN */
+.download-bar{display:flex;justify-content:flex-end;margin-bottom:20px;gap:10px;flex-wrap:wrap}
+.btn{border:none;border-radius:6px;padding:10px 20px;font-size:.83rem;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:7px;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn-copper{background:var(--copper);color:var(--white)}
+.btn-dark{background:var(--ink);color:var(--white);border:1px solid #374151}
+
+/* CARDS ROW */
+.cards-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:28px}
+.card{background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:18px 20px}
+.card .cv{font-size:1.8rem;font-weight:700;line-height:1}
+.card .cl{font-size:.75rem;color:var(--slate);margin-top:6px;line-height:1.4}
+.card.risk-alto{border-top:3px solid var(--red)}
+.card.risk-medio{border-top:3px solid #D97706}
+.card.risk-baixo{border-top:3px solid var(--green)}
+.card.risk-alto .cv{color:var(--red)}
+.card.risk-medio .cv{color:#D97706}
+.card.risk-baixo .cv{color:var(--green)}
+
+/* RISCO BADGE */
+.rb{display:inline-block;padding:3px 10px;border-radius:4px;font-size:.7rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.rb.alto{background:#F5C6C6;color:var(--red)}
+.rb.medio{background:#FEF3C7;color:#92400E}
+.rb.baixo{background:#D1FAE5;color:#065F46}
+
+/* CHARTS */
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px}
+.chart-card{background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:20px}
+.chart-card h3{font-size:.82rem;font-weight:700;color:var(--slate);letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.chart-wrap{position:relative;height:260px}
+@media(max-width:700px){.charts-grid{grid-template-columns:1fr}}
+
+/* DIMENSOES TABLE */
+.dim-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:8px;overflow:hidden;border:1px solid var(--rule);margin-bottom:28px}
+.dim-table th{background:var(--ink);color:var(--copper);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:11px 14px;text-align:left;font-weight:700}
+.dim-table td{padding:10px 14px;font-size:.875rem;border-bottom:1px solid #F0EBE3;vertical-align:middle}
+.dim-table tr:last-child td{border-bottom:none}
+.dim-table tr:nth-child(even) td{background:var(--ivory)}
+.score-bar-wrap{width:120px;height:8px;background:var(--stone);border-radius:4px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:8px}
+.score-bar-fill{height:100%;border-radius:4px}
+
+/* SETORES */
+.setores-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:28px}
+.setor-card{background:var(--white);border:1px solid var(--rule);border-radius:8px;overflow:hidden}
+.setor-header{padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+.setor-header h3{font-size:.95rem;font-weight:700}
+.setor-body{padding:14px 18px}
+.setor-dim{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EBE3;font-size:.83rem}
+.setor-dim:last-child{border-bottom:none}
+.setor-dim .dn{color:var(--slate)}
+.setor-dim .ds{font-weight:700;font-size:.82rem}
+
+/* COLABORADORES */
+.colab-filters{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.colab-filters select,.colab-filters input{border:1px solid var(--rule);border-radius:6px;padding:8px 12px;font-size:.83rem;color:var(--ink);background:var(--ivory);font-family:inherit}
+.colab-table-wrap{overflow-x:auto}
+.colab-table{width:100%;border-collapse:collapse;background:var(--white);border-radius:8px;overflow:hidden;border:1px solid var(--rule);font-size:.82rem}
+.colab-table th{background:var(--ink);color:var(--copper);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:10px 12px;text-align:left;white-space:nowrap}
+.colab-table td{padding:9px 12px;border-bottom:1px solid #F0EBE3;vertical-align:middle;white-space:nowrap}
+.colab-table tr:last-child td{border-bottom:none}
+.colab-table tr:nth-child(even) td{background:var(--ivory)}
+.mini-bar{width:60px;height:6px;background:var(--stone);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:5px}
+.mini-fill{height:100%;border-radius:3px}
+
+/* FOOTER */
+.page-footer{background:var(--ink);border-top:3px solid var(--copper);padding:16px 28px;text-align:center;margin-top:40px}
+.page-footer p{font-size:.7rem;color:#6A5E4E}
+.page-footer span{color:var(--copper)}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="label">Diagnóstico Psicossocial NR-1</div>
+      <div class="empresa">Empresa Modelo S.A. <span style="font-size:.75rem;font-weight:400;color:#9A9080">— Demonstrativo</span></div>
+      <div class="sub">Relatório gerado em 09/06/2026  ·  30 colaboradores  ·  4 setores</div>
+    </div>
+    <div class="header-right">
+      <div class="badge copper"><span class="bv">3,1</span><span class="bl">Score Geral</span></div>
+      <div class="badge slate"><span class="bv" style="color:#D97706">Médio</span><span class="bl">Nível de Risco</span></div>
+      <div class="badge slate"><span class="bv">30</span><span class="bl">Respondentes</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="demo-banner">
+  ⚠️ <b>MODELO DEMONSTRATIVO</b> — Dados fictícios para apresentação. O relatório real será gerado com as respostas da sua equipe.
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('visao')">Visão Geral</button>
+    <button class="tab" onclick="showTab('setores')">Por Setor</button>
+    <button class="tab" onclick="showTab('colaboradores')">Colaboradores</button>
+    <button class="tab" onclick="showTab('pgr')">Relatório PGR</button>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ═══════════════════ VISÃO GERAL ═══════════════════ -->
+<div class="section active" id="sec-visao">
+  <div class="download-bar">
+    <button class="btn btn-dark" onclick="downloadXLS()">⬇ Baixar XLS completo</button>
+    <button class="btn btn-copper" onclick="showTab('pgr')">📄 Ver Relatório PGR</button>
+  </div>
+
+  <div class="cards-row">
+    <div class="card risk-medio">
+      <div class="cv">3,1</div>
+      <div class="cl">Score geral da empresa<br><span style="color:#D97706;font-weight:700">Risco Médio</span></div>
+    </div>
+    <div class="card risk-alto">
+      <div class="cv">2,3</div>
+      <div class="cl">Dimensão crítica<br><span style="color:var(--red);font-weight:700">Pressão e Urgência</span></div>
+    </div>
+    <div class="card risk-baixo">
+      <div class="cv">4,1</div>
+      <div class="cl">Melhor dimensão<br><span style="color:var(--green);font-weight:700">Segurança e Futuro</span></div>
+    </div>
+    <div class="card risk-alto">
+      <div class="cv">9</div>
+      <div class="cl">Colaboradores em<br><span style="color:var(--red);font-weight:700">risco alto</span> (30%)</div>
+    </div>
+    <div class="card risk-medio">
+      <div class="cv">14</div>
+      <div class="cl">Colaboradores em<br><span style="color:#D97706;font-weight:700">risco médio</span> (47%)</div>
+    </div>
+    <div class="card risk-baixo">
+      <div class="cv">7</div>
+      <div class="cl">Colaboradores em<br><span style="color:var(--green);font-weight:700">risco baixo</span> (23%)</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <div class="chart-card">
+      <h3>Score por Dimensão</h3>
+      <div class="chart-wrap"><canvas id="chartRadar"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h3>Distribuição de Risco</h3>
+      <div class="chart-wrap"><canvas id="chartDist"></canvas></div>
+    </div>
+  </div>
+
+  <table class="dim-table">
+    <thead>
+      <tr>
+        <th>Dimensão</th>
+        <th>NR-1</th>
+        <th>Score médio</th>
+        <th>Nível</th>
+        <th>Ação recomendada</th>
+      </tr>
+    </thead>
+    <tbody id="dimTableBody"></tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════ SETORES ═══════════════════ -->
+<div class="section" id="sec-setores">
+  <div class="download-bar">
+    <button class="btn btn-dark" onclick="downloadXLS()">⬇ Baixar XLS completo</button>
+  </div>
+  <div class="setores-grid" id="setoresGrid"></div>
+</div>
+
+<!-- ═══════════════════ COLABORADORES ═══════════════════ -->
+<div class="section" id="sec-colaboradores">
+  <div class="download-bar">
+    <button class="btn btn-dark" onclick="downloadXLS()">⬇ Baixar XLS completo</button>
+  </div>
+  <div class="colab-filters">
+    <select id="filterSetor" onchange="renderColabs()">
+      <option value="">Todos os setores</option>
+      <option>Vendas</option>
+      <option>Administrativo</option>
+      <option>Estoque</option>
+      <option>Atendimento</option>
+    </select>
+    <select id="filterRisco" onchange="renderColabs()">
+      <option value="">Todos os níveis</option>
+      <option value="Alto">Alto</option>
+      <option value="Médio">Médio</option>
+      <option value="Baixo">Baixo</option>
+    </select>
+    <input type="text" id="filterNome" placeholder="Buscar colaborador..." oninput="renderColabs()" style="min-width:200px">
+  </div>
+  <div class="colab-table-wrap">
+    <table class="colab-table">
+      <thead>
+        <tr>
+          <th>Colaborador</th>
+          <th>Setor</th>
+          <th>Cargo</th>
+          <th>Risco</th>
+          <th>Score</th>
+          <th>Pertenc.</th>
+          <th>Demandas</th>
+          <th>Sobrecarga</th>
+          <th>Pressão</th>
+          <th>Liderança</th>
+          <th>Clima</th>
+          <th>Crescim.</th>
+          <th>Propósito</th>
+          <th>Autonomia</th>
+          <th>Futuro</th>
+          <th>Equilíbrio</th>
+        </tr>
+      </thead>
+      <tbody id="colabBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════ RELATÓRIO PGR ═══════════════════ -->
+<div class="section" id="sec-pgr">
+  <div class="download-bar">
+    <button class="btn btn-copper" onclick="downloadXLS()">⬇ Baixar XLS para PGR</button>
+  </div>
+  <div style="background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:32px;max-width:800px">
+    <div style="text-align:center;margin-bottom:28px;padding-bottom:20px;border-bottom:2px solid var(--rule)">
+      <div style="font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--copper);font-weight:700;margin-bottom:6px">Código Interno Corporativo · NR-1</div>
+      <div style="font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:4px">Relatório de Diagnóstico Psicossocial</div>
+      <div style="font-size:.85rem;color:var(--slate)">Empresa Modelo S.A.  ·  Junho / 2026  ·  30 colaboradores</div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:8px">1. Identificação</div>
+      <table style="width:100%;font-size:.85rem;border-collapse:collapse">
+        <tr><td style="padding:5px 0;color:var(--slate);width:40%">Empresa</td><td style="font-weight:600">Empresa Modelo S.A.</td></tr>
+        <tr><td style="padding:5px 0;color:var(--slate)">Data do diagnóstico</td><td style="font-weight:600">01 a 07/06/2026</td></tr>
+        <tr><td style="padding:5px 0;color:var(--slate)">Responsável técnico</td><td style="font-weight:600">Ravel Dunningham — Análise do Inconsciente</td></tr>
+        <tr><td style="padding:5px 0;color:var(--slate)">Metodologia</td><td style="font-weight:600">Código Interno Corporativo — Protocolo Proprietário</td></tr>
+        <tr><td style="padding:5px 0;color:var(--slate)">Norma aplicável</td><td style="font-weight:600">NR-1 / Portaria MTE nº 1.419/2024</td></tr>
+        <tr><td style="padding:5px 0;color:var(--slate)">Total de respondentes</td><td style="font-weight:600">30 de 30 colaboradores (100%)</td></tr>
+      </table>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:8px">2. Resultado Geral</div>
+      <div style="background:var(--ivory);border-left:3px solid #D97706;padding:12px 16px;border-radius:0 6px 6px 0;margin-bottom:12px">
+        <div style="font-size:.85rem;font-weight:700;color:#92400E">Nível de Risco Geral: MÉDIO (Score 3,1 / 5,0)</div>
+        <div style="font-size:.8rem;color:var(--slate);margin-top:4px">A empresa apresenta riscos psicossociais em nível médio, com dimensões críticas que requerem ação prioritária.</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:8px">3. Dimensões Críticas — Prioridade Alta</div>
+      <div id="pgrCriticos"></div>
+    </div>
+
+    <div style="margin-bottom:22px">
+      <div style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:8px">4. Plano de Ação Recomendado</div>
+      <table style="width:100%;font-size:.82rem;border-collapse:collapse;border:1px solid var(--rule);border-radius:6px;overflow:hidden">
+        <thead>
+          <tr style="background:var(--ink)">
+            <th style="padding:9px 12px;text-align:left;color:var(--copper);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase">Dimensão</th>
+            <th style="padding:9px 12px;text-align:left;color:var(--copper);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase">Ação</th>
+            <th style="padding:9px 12px;text-align:left;color:var(--copper);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase">Prazo</th>
+            <th style="padding:9px 12px;text-align:left;color:var(--copper);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase">Responsável</th>
+          </tr>
+        </thead>
+        <tbody id="pgrAcoes"></tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:28px;padding-top:16px;border-top:1px solid var(--rule);font-size:.75rem;color:var(--slate);text-align:center">
+      Diagnóstico realizado por Ravel Dunningham — Código Interno Corporativo · ocodigointerno.com.br<br>
+      Documento gerado automaticamente com base nas respostas coletadas. Metodologia proprietária.
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div class="page-footer">
+  <p>Código Interno Corporativo  ·  <span>Ravel Dunningham</span>  ·  ocodigointerno.com.br  ·  Diagnóstico Psicossocial NR-1</p>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════
+// DADOS FICTÍCIOS REALISTAS
+// ═══════════════════════════════════════════════
+const DIMENSOES = [
+  {id:'portal',   nome:'Pertencimento',  nr1:'Segurança Psicológica',  score:3.6, acao:'Revisar processo de integração e acolhimento'},
+  {id:'caminho',  nome:'Demandas',       nr1:'Demandas do Trabalho',   score:2.8, acao:'Mapear sobrecarga por função e redistribuir tarefas'},
+  {id:'mochila',  nome:'Sobrecarga',     nr1:'Demandas do Trabalho',   score:2.6, acao:'Implementar programa de gestão de carga de trabalho'},
+  {id:'relogio',  nome:'Pressão',        nr1:'Demandas do Trabalho',   score:2.3, acao:'Revisar metas e prazos — reunião urgente com liderança'},
+  {id:'farol',    nome:'Liderança',      nr1:'Apoio Organizacional',   score:3.2, acao:'Capacitação de gestores em liderança humanizada'},
+  {id:'jardim',   nome:'Clima',          nr1:'Relações e Conduta',     score:3.4, acao:'Implementar canal de escuta e mediação de conflitos'},
+  {id:'torre',    nome:'Crescimento',    nr1:'Reconhecimento',         score:2.9, acao:'Criar plano de carreira e política de reconhecimento'},
+  {id:'bussola',  nome:'Propósito',      nr1:'Controle e Autonomia',   score:3.5, acao:'Fortalecer comunicação dos objetivos organizacionais'},
+  {id:'painel',   nome:'Autonomia',      nr1:'Controle e Autonomia',   score:3.1, acao:'Revisar processos de supervisão e delegação'},
+  {id:'janela',   nome:'Futuro',         nr1:'Segurança no Emprego',   score:4.1, acao:'Manter transparência sobre planos da empresa'},
+  {id:'banco',    nome:'Equilíbrio',     nr1:'Conflito Trabalho-Vida', score:2.7, acao:'Implementar política de desconexão digital'},
+];
+
+const SETORES_DATA = [
+  {nome:'Vendas',        n:10, score:2.7, cor:'#8B2020', risco:'Alto',
+   dims:{portal:3.2,caminho:2.4,mochila:2.1,relogio:1.9,farol:2.8,jardim:3.1,torre:2.5,bussola:3.0,painel:2.7,janela:3.8,banco:2.2}},
+  {nome:'Atendimento',   n:8,  score:3.0, cor:'#D97706', risco:'Médio',
+   dims:{portal:3.4,caminho:2.9,mochila:2.8,relogio:2.5,farol:3.1,jardim:3.3,torre:2.9,bussola:3.2,painel:3.0,janela:4.0,banco:2.8}},
+  {nome:'Administrativo',n:7,  score:3.4, cor:'#D97706', risco:'Médio',
+   dims:{portal:3.8,caminho:3.1,mochila:3.0,relogio:2.8,farol:3.5,jardim:3.6,torre:3.1,bussola:3.7,painel:3.4,janela:4.2,banco:3.0}},
+  {nome:'Estoque',       n:5,  score:3.8, cor:'#2A6E4A', risco:'Baixo',
+   dims:{portal:4.0,caminho:3.5,mochila:3.4,relogio:3.2,farol:3.8,jardim:3.9,torre:3.3,bussola:3.8,painel:3.6,janela:4.5,banco:3.5}},
+];
+
+// Gera 30 colaboradores fictícios
+const NOMES = ['Ana Lima','Carlos Souza','Fernanda Reis','João Silva','Mariana Costa','Pedro Alves','Lucia Mendes','Roberto Santos','Camila Nunes','Thiago Pereira','Paula Oliveira','Bruno Carvalho','Juliana Martins','Felipe Rocha','Aline Castro','Rodrigo Gomes','Tatiana Pinto','Marcos Ferreira','Débora Ribeiro','Gustavo Araújo','Sandra Lopes','Diego Moura','Renata Barbosa','André Correia','Patricia Vieira','Leandro Freitas','Cristina Coelho','Eduardo Melo','Vanessa Ramos','Henrique Lima'];
+const CARGOS = {Vendas:['Vendedor','Consultor de Vendas','Supervisor de Vendas'],Atendimento:['Atendente','Recepcionista','Coordenador de Atendimento'],Administrativo:['Assistente Adm.','Analista','Gerente Adm.'],Estoque:['Auxiliar de Estoque','Operador de Estoque','Encarregado']};
+
+function rndNorm(mean, std) {
+  let u=0,v=0;
+  while(u===0)u=Math.random();
+  while(v===0)v=Math.random();
+  return Math.min(5,Math.max(1,mean+std*Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v)));
+}
+
+const COLABORADORES = [];
+let ni=0;
+SETORES_DATA.forEach(s=>{
+  const cargos = CARGOS[s.nome];
+  for(let i=0;i<s.n;i++){
+    const scores={};
+    DIMENSOES.forEach(d=>{
+      scores[d.id]=parseFloat(rndNorm(s.dims[d.id],0.6).toFixed(1));
+    });
+    const total=parseFloat((Object.values(scores).reduce((a,b)=>a+b,0)/DIMENSOES.length).toFixed(1));
+    const risco=total<2.5?'Alto':total<3.5?'Médio':'Baixo';
+    COLABORADORES.push({
+      nome:NOMES[ni++]||`Colaborador ${ni}`,
+      setor:s.nome,
+      cargo:cargos[i%cargos.length],
+      scores,total,risco
+    });
+  }
+});
+
+// ═══════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ═══════════════════════════════════════════════
+// DIMENSÕES TABLE
+// ═══════════════════════════════════════════════
+function scoreColor(s){return s<2.5?'var(--red)':s<3.5?'#D97706':'var(--green)'}
+function scoreRisco(s){return s<2.5?'alto':s<3.5?'medio':'baixo'}
+function scoreLabel(s){return s<2.5?'Alto':s<3.5?'Médio':'Baixo'}
+
+const tbody=document.getElementById('dimTableBody');
+DIMENSOES.forEach(d=>{
+  const pct=((d.score-1)/4)*100;
+  const cor=scoreColor(d.score);
+  tbody.innerHTML+=`<tr>
+    <td><b>${d.nome}</b></td>
+    <td style="color:var(--slate);font-size:.8rem">${d.nr1}</td>
+    <td>
+      <div class="score-bar-wrap"><div class="score-bar-fill" style="width:${pct}%;background:${cor}"></div></div>
+      <b style="color:${cor}">${d.score.toFixed(1)}</b>
+    </td>
+    <td><span class="rb ${scoreRisco(d.score)}">${scoreLabel(d.score)}</span></td>
+    <td style="font-size:.8rem;color:var(--slate)">${d.acao}</td>
+  </tr>`;
+});
+
+// ═══════════════════════════════════════════════
+// CHARTS
+// ═══════════════════════════════════════════════
+const radarCtx=document.getElementById('chartRadar').getContext('2d');
+new Chart(radarCtx,{
+  type:'radar',
+  data:{
+    labels:DIMENSOES.map(d=>d.nome),
+    datasets:[{
+      label:'Score',
+      data:DIMENSOES.map(d=>d.score),
+      backgroundColor:'rgba(184,115,51,0.15)',
+      borderColor:'#B87333',
+      borderWidth:2,
+      pointBackgroundColor:'#B87333',
+      pointRadius:4,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    scales:{r:{min:1,max:5,ticks:{stepSize:1,font:{size:9},color:'#9A9080'},grid:{color:'#E8E2D9'},pointLabels:{font:{size:9},color:'#0F1318'}}},
+    plugins:{legend:{display:false}}
+  }
+});
+
+const distCtx=document.getElementById('chartDist').getContext('2d');
+const alto=COLABORADORES.filter(c=>c.risco==='Alto').length;
+const medio=COLABORADORES.filter(c=>c.risco==='Médio').length;
+const baixo=COLABORADORES.filter(c=>c.risco==='Baixo').length;
+new Chart(distCtx,{
+  type:'doughnut',
+  data:{
+    labels:['Risco Alto','Risco Médio','Risco Baixo'],
+    datasets:[{
+      data:[alto,medio,baixo],
+      backgroundColor:['#8B2020','#D97706','#2A6E4A'],
+      borderWidth:2,borderColor:'#FFFFFF'
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'bottom',labels:{font:{size:11},padding:16,color:'#0F1318'}},
+      tooltip:{callbacks:{label:ctx=>`${ctx.label}: ${ctx.raw} colaboradores`}}
+    }
+  }
+});
+
+// ═══════════════════════════════════════════════
+// SETORES
+// ═══════════════════════════════════════════════
+const setoresGrid=document.getElementById('setoresGrid');
+SETORES_DATA.forEach(s=>{
+  const dimsSorted=[...DIMENSOES].map(d=>({...d,sv:s.dims[d.id]})).sort((a,b)=>a.sv-b.sv);
+  setoresGrid.innerHTML+=`
+  <div class="setor-card">
+    <div class="setor-header" style="background:${s.risco==='Alto'?'#F5C6C6':s.risco==='Médio'?'#FEF3C7':'#D1FAE5'};border-bottom:1px solid var(--rule)">
+      <h3>${s.nome} <span style="font-size:.78rem;font-weight:400;color:var(--slate)">(${s.n} pessoas)</span></h3>
+      <span class="rb ${s.risco==='Alto'?'alto':s.risco==='Médio'?'medio':'baixo'}">${s.risco}</span>
+    </div>
+    <div style="padding:12px 18px 4px;border-bottom:1px solid var(--rule)">
+      <span style="font-size:.72rem;color:var(--slate)">Score geral: </span>
+      <b style="color:${scoreColor(s.score)}">${s.score.toFixed(1)}</b>
+    </div>
+    <div class="setor-body">
+      ${dimsSorted.slice(0,5).map(d=>`
+        <div class="setor-dim">
+          <span class="dn">${d.nome}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div class="mini-bar"><div class="mini-fill" style="width:${((d.sv-1)/4)*100}%;background:${scoreColor(d.sv)}"></div></div>
+            <span class="ds" style="color:${scoreColor(d.sv)}">${d.sv.toFixed(1)}</span>
+          </div>
+        </div>`).join('')}
+      <div style="font-size:.72rem;color:var(--slate);padding-top:8px;text-align:right">Mostrando 5 de ${DIMENSOES.length} dimensões</div>
+    </div>
+  </div>`;
+});
+
+// ═══════════════════════════════════════════════
+// COLABORADORES
+// ═══════════════════════════════════════════════
+function renderColabs(){
+  const setor=document.getElementById('filterSetor').value;
+  const risco=document.getElementById('filterRisco').value;
+  const nome=document.getElementById('filterNome').value.toLowerCase();
+  const filtered=COLABORADORES.filter(c=>
+    (!setor||c.setor===setor)&&
+    (!risco||c.risco===risco)&&
+    (!nome||c.nome.toLowerCase().includes(nome))
+  );
+  const tbody=document.getElementById('colabBody');
+  tbody.innerHTML=filtered.map(c=>`
+    <tr>
+      <td><b>${c.nome}</b></td>
+      <td>${c.setor}</td>
+      <td style="color:var(--slate)">${c.cargo}</td>
+      <td><span class="rb ${c.risco==='Alto'?'alto':c.risco==='Médio'?'medio':'baixo'}">${c.risco}</span></td>
+      <td><b style="color:${scoreColor(c.total)}">${c.total.toFixed(1)}</b></td>
+      ${DIMENSOES.map(d=>`
+        <td>
+          <div class="mini-bar"><div class="mini-fill" style="width:${((c.scores[d.id]-1)/4)*100}%;background:${scoreColor(c.scores[d.id])}"></div></div>
+          <span style="font-size:.78rem;color:${scoreColor(c.scores[d.id])};font-weight:600">${c.scores[d.id].toFixed(1)}</span>
+        </td>`).join('')}
+    </tr>`).join('');
+}
+renderColabs();
+
+// ═══════════════════════════════════════════════
+// PGR
+// ═══════════════════════════════════════════════
+const criticos=DIMENSOES.filter(d=>d.score<2.5);
+document.getElementById('pgrCriticos').innerHTML=criticos.length?
+  criticos.map(d=>`
+    <div style="background:#FEF2F2;border-left:3px solid var(--red);padding:10px 14px;border-radius:0 6px 6px 0;margin-bottom:8px">
+      <b style="color:var(--red)">${d.nome}</b> <span style="font-size:.78rem;color:var(--slate)">— Score ${d.score.toFixed(1)} / 5,0</span>
+      <div style="font-size:.8rem;color:var(--slate);margin-top:3px">${d.acao}</div>
+    </div>`).join(''):
+  '<div style="color:var(--green);font-size:.85rem">Nenhuma dimensão em nível crítico.</div>';
+
+const acoesData=[
+  ['Pressão e Urgência','Reunião com liderança para revisão de metas e prazos','30 dias','Gestão / RH'],
+  ['Sobrecarga','Mapeamento e redistribuição de carga por função','45 dias','RH'],
+  ['Demandas','Clarificação de papéis e prioridades por setor','30 dias','Gestores'],
+  ['Crescimento','Criar plano de carreira e política de reconhecimento','60 dias','RH / Diretoria'],
+  ['Equilíbrio','Implementar política de desconexão digital','30 dias','RH / TI'],
+  ['Liderança','Capacitação em liderança humanizada','60 dias','RH'],
+];
+document.getElementById('pgrAcoes').innerHTML=acoesData.map((r,i)=>`
+  <tr style="background:${i%2?'var(--ivory)':'var(--white)'}">
+    <td style="padding:8px 12px;font-weight:600">${r[0]}</td>
+    <td style="padding:8px 12px;font-size:.82rem">${r[1]}</td>
+    <td style="padding:8px 12px;font-size:.82rem;color:var(--slate)">${r[2]}</td>
+    <td style="padding:8px 12px;font-size:.82rem;color:var(--slate)">${r[3]}</td>
+  </tr>`).join('');
+
+// ═══════════════════════════════════════════════
+// DOWNLOAD XLS
+// ═══════════════════════════════════════════════
+function downloadXLS(){
+  const wb=XLSX.utils.book_new();
+
+  // Aba 1 — Colaboradores
+  const colabHeader=['Nome','Setor','Cargo','Risco','Score Geral',...DIMENSOES.map(d=>d.nome)];
+  const colabRows=COLABORADORES.map(c=>[c.nome,c.setor,c.cargo,c.risco,c.total,...DIMENSOES.map(d=>c.scores[d.id])]);
+  const wsColab=XLSX.utils.aoa_to_sheet([colabHeader,...colabRows]);
+  XLSX.utils.book_append_sheet(wb,wsColab,'Colaboradores');
+
+  // Aba 2 — Por Setor
+  const setorHeader=['Setor','N Colaboradores','Risco','Score Geral',...DIMENSOES.map(d=>d.nome)];
+  const setorRows=SETORES_DATA.map(s=>[s.nome,s.n,s.risco,s.score,...DIMENSOES.map(d=>s.dims[d.id])]);
+  const wsSetor=XLSX.utils.aoa_to_sheet([setorHeader,...setorRows]);
+  XLSX.utils.book_append_sheet(wb,wsSetor,'Por Setor');
+
+  // Aba 3 — Dimensões
+  const dimHeader=['Dimensão','NR-1','Score Médio','Nível de Risco','Ação Recomendada'];
+  const dimRows=DIMENSOES.map(d=>[d.nome,d.nr1,d.score,scoreLabel(d.score),d.acao]);
+  const wsDim=XLSX.utils.aoa_to_sheet([dimHeader,...dimRows]);
+  XLSX.utils.book_append_sheet(wb,wsDim,'Dimensões');
+
+  // Aba 4 — Plano de Ação PGR
+  const pgrHeader=['Dimensão Crítica','Ação Recomendada','Prazo','Responsável'];
+  const wsAcoes=XLSX.utils.aoa_to_sheet([pgrHeader,...acoesData]);
+  XLSX.utils.book_append_sheet(wb,wsAcoes,'Plano de Ação PGR');
+
+  XLSX.writeFile(wb,'Diagnostico_Psicossocial_EmpresaModelo.xlsx');
+}
+</script>
+</body>
+</html>
