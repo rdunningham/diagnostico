@@ -166,15 +166,17 @@ section{padding:5rem 1.5rem}
 @media(max-width:700px){.team-grid{grid-template-columns:1fr;gap:3rem}}
 .expert{}
 .expert-photo-wrap{
-  width:100%;max-width:280px;position:relative;margin-bottom:1.5rem;
+  width:100%;max-width:280px;height:340px;position:relative;margin-bottom:1.5rem;
+  overflow:hidden;
 }
 .expert-photo-wrap::before{
   content:'';position:absolute;inset:-1px;
   border:1px solid rgba(201,168,76,.25);
-  transform:translate(8px,8px);pointer-events:none;z-index:0;
+  transform:translate(8px,8px);pointer-events:none;z-index:2;
 }
 .expert-photo-wrap img{
-  width:100%;display:block;position:relative;z-index:1;
+  width:100%;height:100%;object-fit:cover;object-position:center 15%;
+  display:block;position:relative;z-index:1;
   filter:brightness(.9) contrast(1.04) saturate(.85);
 }
 .expert-name{
@@ -438,36 +440,29 @@ footer{
       <div class="step">
         <div class="step-num">1</div>
         <div class="step-content">
-          <h3>Alinhamento com RH ou gestão</h3>
-          <p>Uma reunião de 45 minutos para mapear o contexto da empresa, setores de maior tensão e expectativas. Nenhuma burocracia desnecessária.</p>
+          <h3>Reunião prévia com a gestão</h3>
+          <p>Alinhamento rápido sobre o contexto da empresa, setores e expectativas. Base para calibrar o formulário antes da aplicação.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">2</div>
         <div class="step-content">
-          <h3>Aplicação do Diagnóstico com os colaboradores</h3>
-          <p>Protocolo de imersão guiada adaptado para ambiente corporativo — aplicado por setor ou turno. Cada colaborador passa pelo processo em até 35 minutos.</p>
+          <h3>Formulário individual para cada colaborador</h3>
+          <p>Cada um dos 140 colaboradores responde um formulário de diagnóstico psicossocial. Processo simples, individual e sem exposição — pode ser feito de forma remota ou presencial.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">3</div>
         <div class="step-content">
-          <h3>Mapeamento e análise do campo</h3>
-          <p>Processamento das respostas para identificar padrões de tensão, bloqueios de performance e riscos psicossociais presentes na equipe.</p>
+          <h3>Entrega do Relatório</h3>
+          <p>Documento completo com os dados psicossociais da empresa, estruturado para compor o PGR exigido pela NR-1 e com os padrões identificados no campo.</p>
         </div>
       </div>
       <div class="step">
         <div class="step-num">4</div>
         <div class="step-content">
-          <h3>Entrega do Relatório de Campo</h3>
-          <p>Documento estruturado com os dados necessários para composição do PGR e, mais importante, com os insights que revelam onde a operação pode melhorar sem novas contratações.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-content">
-          <h3>Apresentação e próximos passos</h3>
-          <p>Reunião de devolutiva com a gestão para apresentar os resultados e mostrar — com dados concretos — como o próximo nível de trabalho pode transformar produtividade sem aumentar quadro.</p>
+          <h3>Reunião de devolutiva</h3>
+          <p>Apresentação dos resultados para a gestão — o que o diagnóstico revelou e o que ele abre de possibilidade para o próximo passo.</p>
         </div>
       </div>
     </div>
@@ -710,12 +705,10 @@ footer{
       <div class="price-amount"><sup>R$</sup>12.000</div>
       <p class="price-desc">investimento único · 140 colaboradores</p>
       <ul class="price-includes">
-        <li>Reunião de alinhamento com RH ou gestão</li>
-        <li>Aplicação do protocolo com todos os 140 colaboradores</li>
-        <li>Análise e mapeamento do campo psicossocial por setor</li>
-        <li>Relatório estruturado para composição do PGR (NR-1)</li>
+        <li>Reunião prévia de alinhamento com a gestão</li>
+        <li>Formulário individual de diagnóstico psicossocial para os 140 colaboradores</li>
+        <li>Relatório completo estruturado para composição do PGR (NR-1)</li>
         <li>Reunião de devolutiva com apresentação dos resultados</li>
-        <li>Identificação de oportunidades de melhoria sem novas contratações</li>
       </ul>
       <p class="price-note">Na entrega do diagnóstico, apresentaremos como a próxima fase de trabalho pode transformar os dados em resultados mensuráveis para a operação.</p>
     </div>
