@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico Psicossocial NR-1 — [NOME DA EMPRESA]</title>
+<style>
+  :root {
+    --ink:     #0F1318;
+    --copper:  #B87333;
+    --copper2: #D4956A;
+    --ivory:   #F8F4EE;
+    --stone:   #E8E2D9;
+    --slate:   #6B7280;
+    --white:   #FFFFFF;
+    --rule:    #D4C4B0;
+    --green:   #2A6E4A;
+    --red:     #8B2020;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #F2EDE6;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--ink);
+    padding: 0;
+    border-bottom: 4px solid var(--copper);
+  }
+  .header-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 28px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .header-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .header-logo .empresa {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 700;
+  }
+  .header-logo .titulo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .header-logo .subtitulo {
+    font-size: 0.78rem;
+    color: #9A9080;
+    margin-top: 2px;
+  }
+  .header-badge {
+    background: rgba(184,115,51,0.15);
+    border: 1px solid var(--copper);
+    border-radius: 6px;
+    padding: 8px 14px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .header-badge span {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--copper);
+    font-weight: 700;
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: #1E2430;
+    padding: 10px 24px;
+    border-bottom: 1px solid #2E3A48;
+  }
+  .progress-inner {
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 4px;
+    background: #2E3A48;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--copper);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .progress-text {
+    font-size: 0.72rem;
+    color: #9A9080;
+    white-space: nowrap;
+    min-width: 80px;
+    text-align: right;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* INTRO CARD */
+  .intro-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--copper);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+  .intro-card h2 {
+    font-size: 1.05rem;
+    color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .intro-card p {
+    font-size: 0.875rem;
+    color: var(--slate);
+    line-height: 1.65;
+    margin-bottom: 8px;
+  }
+  .intro-card .aviso {
+    background: var(--ivory);
+    border-left: 3px solid var(--copper);
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--slate);
+    margin-top: 14px;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* IDENTIFICAÇÃO */
+  .section-id {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .section-id-header {
+    background: var(--ink);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-id-header .num {
+    background: var(--copper);
+    color: var(--white);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+  }
+  .section-id-header h3 {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .section-id-body {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .field-group.full { grid-column: 1 / -1; }
+  .field-group label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--slate);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .field-group input,
+  .field-group select {
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--ivory);
+    transition: border-color 0.2s;
+    font-family: inherit;
+  }
+  .field-group input:focus,
+  .field-group select:focus {
+    outline: none;
+    border-color: var(--copper);
+    background: var(--white);
+  }
+  .field-group .optional {
+    font-size: 0.7rem;
+    color: #B0A090;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  /* DIMENSÃO */
+  .dimensao {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .dimensao-header {
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--ink);
+  }
+  .dimensao-header .dim-num {
+    background: var(--copper);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+  .dimensao-header h3 {
+    font-size: 0.95rem;
+    color: var(--white);
+    font-weight: 600;
+  }
+  .dimensao-header .dim-nr1 {
+    margin-left: auto;
+    font-size: 0.68rem;
+    color: #9A9080;
+    white-space: nowrap;
+  }
+
+  /* PERGUNTA */
+  .pergunta {
+    padding: 18px 24px;
+    border-bottom: 1px solid #F0EBE3;
+  }
+  .pergunta:last-child { border-bottom: none; }
+  .pergunta:nth-child(even) { background: var(--ivory); }
+  .pergunta-texto {
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .pergunta-num {
+    color: var(--copper);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  /* ESCALA */
+  .escala {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .escala-opcao {
+    flex: 1;
+    position: relative;
+  }
+  .escala-opcao input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  .escala-opcao label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 4px 8px;
+    cursor: pointer;
+    border-right: 1px solid var(--rule);
+    background: var(--white);
+    transition: background 0.15s;
+    min-height: 56px;
+    gap: 4px;
+  }
+  .escala-opcao:last-child label { border-right: none; }
+  .escala-opcao label .dot {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--rule);
+    border-radius: 50%;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .escala-opcao label .lbl {
+    font-size: 0.62rem;
+    color: var(--slate);
+    text-align: center;
+    line-height: 1.2;
+  }
+  .escala-opcao input[type="radio"]:checked + label {
+    background: var(--ivory);
+  }
+  .escala-opcao input[type="radio"]:checked + label .dot {
+    background: var(--copper);
+    border-color: var(--copper);
+    box-shadow: 0 0 0 3px rgba(184,115,51,0.15);
+  }
+  .escala-opcao input[type="radio"]:checked + label .lbl {
+    color: var(--copper);
+    font-weight: 600;
+  }
+  .escala-opcao:hover label { background: #FDF9F4; }
+
+  /* MOBILE escala */
+  @media (max-width: 540px) {
+    .escala-opcao label { padding: 8px 2px; min-height: 50px; }
+    .escala-opcao label .lbl { font-size: 0.55rem; }
+    .section-id-body { grid-template-columns: 1fr; }
+    .header-inner { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* SUBMIT */
+  .submit-area {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--copper);
+    border-radius: 8px;
+    padding: 28px 32px;
+    margin-top: 32px;
+    text-align: center;
+  }
+  .submit-area p {
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  .btn-submit {
+    background: var(--copper);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    padding: 14px 40px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-submit:hover { background: #A06828; }
+  .btn-submit:active { transform: scale(0.98); }
+  .btn-submit:disabled { background: var(--stone); cursor: not-allowed; }
+
+  /* OBRIGATORIO */
+  .pergunta.obrigatorio-erro .pergunta-texto { color: var(--red); }
+  .pergunta.obrigatorio-erro .escala { border-color: var(--red); }
+
+  /* SUCESSO */
+  .tela-sucesso {
+    display: none;
+    text-align: center;
+    padding: 60px 32px;
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--green);
+    border-radius: 8px;
+    margin-top: 32px;
+  }
+  .tela-sucesso .icone { font-size: 3rem; margin-bottom: 16px; }
+  .tela-sucesso h2 { font-size: 1.3rem; color: var(--green); margin-bottom: 12px; }
+  .tela-sucesso p { font-size: 0.9rem; color: var(--slate); line-height: 1.6; }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    border-top: 3px solid var(--copper);
+    padding: 18px 24px;
+    text-align: center;
+  }
+  .footer p {
+    font-size: 0.72rem;
+    color: #6A5E4E;
+    letter-spacing: 0.06em;
+  }
+  .footer span { color: var(--copper); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="empresa"><!-- NOME DA EMPRESA --></span>
+      <span class="titulo">Diagnóstico Psicossocial</span>
+      <span class="subtitulo">Gestão de Riscos Ocupacionais — NR-1 / Portaria MTE 1.419/2024</span>
+    </div>
+    <div class="header-badge">
+      <span>Confidencial</span>
+      <span style="color:#9A9080;font-size:0.6rem;margin-top:2px;display:block;">Dados protegidos</span>
+    </div>
+  </div>
+</div>
+
+<div class="progress-bar-wrap">
+  <div class="progress-inner">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">0 de 50 respondidas</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="intro-card">
+    <h2>Sobre este questionário</h2>
+    <p>Este diagnóstico faz parte do processo de adequação da empresa à NR-1 — Norma Regulamentadora que exige a identificação e gestão dos riscos psicossociais no ambiente de trabalho.</p>
+    <p>Não existem respostas certas ou erradas. Responda com base na sua experiência real no trabalho. Quanto mais honesto for, mais útil será o diagnóstico para toda a equipe.</p>
+    <div class="aviso">🔒 Suas respostas são tratadas com sigilo. Os resultados individuais não serão compartilhados com gestores ou lideranças — apenas o panorama coletivo por setor será utilizado.</div>
+  </div>
+
+  <form id="formDiagnostico" novalidate>
+
+    <!-- IDENTIFICAÇÃO -->
+    <div class="section-id">
+      <div class="section-id-header">
+        <span class="num">IDENTIFICAÇÃO</span>
+        <h3>Dados do colaborador</h3>
+      </div>
+      <div class="section-id-body">
+        <div class="field-group">
+          <label>Nome <span class="optional">(opcional — pode deixar em branco)</span></label>
+          <input type="text" name="nome" placeholder="Seu nome completo">
+        </div>
+        <div class="field-group">
+          <label>Setor / Departamento</label>
+          <input type="text" name="setor" placeholder="Ex: Vendas, Administrativo, Estoque..." required>
+        </div>
+        <div class="field-group">
+          <label>Cargo / Função</label>
+          <input type="text" name="cargo" placeholder="Ex: Atendente, Supervisor, Gerente..." required>
+        </div>
+        <div class="field-group">
+          <label>Tempo de empresa</label>
+          <select name="tempo" required>
+            <option value="">Selecione...</option>
+            <option value="menos6m">Menos de 6 meses</option>
+            <option value="6m1a">6 meses a 1 ano</option>
+            <option value="1a3a">1 a 3 anos</option>
+            <option value="3a5a">3 a 5 anos</option>
+            <option value="mais5a">Mais de 5 anos</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEGENDA -->
+    <div style="background:var(--white);border:1px solid var(--rule);border-radius:8px;padding:16px 24px;margin-bottom:24px;">
+      <p style="font-size:0.78rem;color:var(--slate);margin-bottom:12px;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;">Escala de resposta</p>
+      <div style="display:flex;gap:0;border:1px solid var(--rule);border-radius:6px;overflow:hidden;max-width:500px;">
+        <div style="flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--rule);background:var(--ivory);">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--ink);">1</div>
+          <div style="font-size:0.68rem;color:var(--slate);margin-top:2px;">Nunca</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--rule);">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--ink);">2</div>
+          <div style="font-size:0.68rem;color:var(--slate);margin-top:2px;">Raramente</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--rule);background:var(--ivory);">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--ink);">3</div>
+          <div style="font-size:0.68rem;color:var(--slate);margin-top:2px;">Às vezes</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:8px 4px;border-right:1px solid var(--rule);">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--ink);">4</div>
+          <div style="font-size:0.68rem;color:var(--slate);margin-top:2px;">Frequentemente</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:8px 4px;background:var(--ivory);">
+          <div style="font-size:0.7rem;font-weight:700;color:var(--ink);">5</div>
+          <div style="font-size:0.68rem;color:var(--slate);margin-top:2px;">Sempre</div>
+        </div>
+      </div>
+      <p style="font-size:0.75rem;color:#B0A090;margin-top:10px;">Notas mais altas indicam maior frequência do que é descrito. Não há resposta certa ou errada.</p>
+    </div>
+
+    <!-- PERGUNTAS -->
+    <div id="perguntas"></div>
+
+    <div class="submit-area" id="submitArea">
+      <p>Ao enviar, suas respostas serão registradas de forma segura e utilizadas exclusivamente para o diagnóstico coletivo da empresa, em conformidade com a NR-1.</p>
+      <button type="submit" class="btn-submit" id="btnSubmit">Enviar diagnóstico</button>
+    </div>
+
+    <div class="tela-sucesso" id="telaSucesso">
+      <div class="icone">✓</div>
+      <h2>Diagnóstico enviado com sucesso</h2>
+      <p>Obrigado pela sua participação. Suas respostas foram registradas.<br>Os resultados serão analisados e o RH receberá o relatório em breve.</p>
+    </div>
+
+  </form>
+</div>
+
+<div class="footer">
+  <p>Diagnóstico Psicossocial NR-1  ·  <span>Código Interno Corporativo</span>  ·  Ravel Dunningham  ·  ocodigointerno.com.br</p>
+</div>
+
+<script>
+// ─── CONFIGURAÇÃO ────────────────────────────────────────────────
+// Substitua pela URL do seu Google Apps Script (veja instruções abaixo)
+const GOOGLE_SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+// ─── DIMENSÕES E PERGUNTAS ───────────────────────────────────────
+const dimensoes = [
+  {
+    id: "portal",
+    num: "01",
+    titulo: "Ambiente e Pertencimento",
+    nr1: "Segurança Psicológica",
+    perguntas: [
+      "Sinto que sou bem recebido e aceito no ambiente de trabalho.",
+      "Sinto que minha presença é valorizada pela empresa.",
+      "Me sinto à vontade para ser eu mesmo no trabalho.",
+      "Considero que a empresa cria um ambiente seguro para todos os colaboradores.",
+    ]
+  },
+  {
+    id: "caminho",
+    num: "02",
+    titulo: "Demandas e Ritmo de Trabalho",
+    nr1: "Demandas do Trabalho",
+    perguntas: [
+      "A quantidade de tarefas que preciso realizar é compatível com o meu tempo disponível.",
+      "Consigo concluir minhas atividades sem precisar trabalhar além do horário regular.",
+      "As prioridades do meu trabalho são claras e consistentes.",
+      "O ritmo de trabalho me permite executar as tarefas com qualidade.",
+      "Não recebo demandas contraditórias — como 'faça rápido' e 'faça perfeito' ao mesmo tempo.",
+      "Tenho clareza sobre o que é esperado de mim no meu cargo.",
+    ]
+  },
+  {
+    id: "mochila",
+    num: "03",
+    titulo: "Carga e Sobrecarga",
+    nr1: "Demandas do Trabalho",
+    perguntas: [
+      "Ao final do dia de trabalho, sinto que minha energia foi bem administrada.",
+      "Consigo descansar e desconectar do trabalho fora do horário comercial.",
+      "Não me sinto sobrecarregado com responsabilidades que vão além da minha função.",
+      "A empresa respeita meus limites em relação à carga de trabalho.",
+      "Não carrego preocupações do trabalho para minha vida pessoal com frequência.",
+    ]
+  },
+  {
+    id: "relogio",
+    num: "04",
+    titulo: "Pressão e Urgência",
+    nr1: "Demandas do Trabalho",
+    perguntas: [
+      "Os prazos estabelecidos são realistas e possíveis de cumprir.",
+      "Não me sinto pressionado a responder mensagens ou e-mails fora do meu horário de trabalho.",
+      "A empresa não exige disponibilidade permanente além do combinado.",
+      "Tenho pausas adequadas durante a jornada de trabalho.",
+      "A pressão por resultados na empresa é saudável e dentro do razoável.",
+    ]
+  },
+  {
+    id: "farol",
+    num: "05",
+    titulo: "Liderança e Suporte",
+    nr1: "Apoio Organizacional",
+    perguntas: [
+      "Meu gestor imediato está disponível quando preciso de orientação.",
+      "Recebo feedback claro e construtivo sobre o meu desempenho.",
+      "Meu gestor defende os interesses da equipe perante a empresa.",
+      "A liderança comunica as mudanças e decisões importantes de forma transparente.",
+      "Me sinto apoiado pela minha liderança em momentos de dificuldade.",
+      "Confio nas decisões tomadas pela liderança da empresa.",
+    ]
+  },
+  {
+    id: "jardim",
+    num: "06",
+    titulo: "Clima e Relações no Trabalho",
+    nr1: "Relações e Conduta Ética",
+    perguntas: [
+      "O relacionamento entre as pessoas da minha equipe é respeitoso e colaborativo.",
+      "Não presencio ou experimento situações de humilhação, constrangimento ou assédio.",
+      "A comunicação entre os colegas e gestores é aberta e respeitosa.",
+      "Me sinto à vontade para expressar minha opinião sem medo de represálias.",
+      "O ambiente de trabalho é livre de discriminação ou tratamento injusto.",
+    ]
+  },
+  {
+    id: "torre",
+    num: "07",
+    titulo: "Crescimento e Reconhecimento",
+    nr1: "Reconhecimento e Justiça",
+    perguntas: [
+      "Meu esforço e desempenho são reconhecidos pela empresa.",
+      "Vejo oportunidades reais de crescimento profissional nesta empresa.",
+      "As decisões sobre promoções e reconhecimento são justas e transparentes.",
+      "A empresa investe no meu desenvolvimento profissional.",
+    ]
+  },
+  {
+    id: "bussola",
+    num: "08",
+    titulo: "Propósito e Clareza",
+    nr1: "Controle e Autonomia",
+    perguntas: [
+      "Entendo como o meu trabalho contribui para os objetivos da empresa.",
+      "Os valores e objetivos da empresa fazem sentido para mim.",
+      "Tenho clareza sobre o meu papel e minhas responsabilidades.",
+      "Me sinto motivado com o trabalho que realizo.",
+    ]
+  },
+  {
+    id: "painel",
+    num: "09",
+    titulo: "Autonomia e Controle",
+    nr1: "Controle e Autonomia",
+    perguntas: [
+      "Tenho autonomia para tomar decisões dentro da minha área de atuação.",
+      "Posso organizar a forma como executo minhas tarefas.",
+      "Não me sinto monitorado ou controlado de forma excessiva.",
+      "Tenho acesso às informações necessárias para realizar bem meu trabalho.",
+      "Posso sugerir melhorias nos processos sem ser ignorado.",
+    ]
+  },
+  {
+    id: "janela",
+    num: "10",
+    titulo: "Segurança e Futuro",
+    nr1: "Segurança no Emprego",
+    perguntas: [
+      "Me sinto seguro em relação à minha permanência na empresa.",
+      "A empresa comunica com clareza os planos e mudanças que podem afetar meu cargo.",
+      "Tenho uma perspectiva positiva sobre meu futuro nesta empresa.",
+    ]
+  },
+  {
+    id: "banco",
+    num: "11",
+    titulo: "Equilíbrio e Recuperação",
+    nr1: "Conflito Trabalho-Vida",
+    perguntas: [
+      "Consigo equilibrar minha vida profissional e pessoal de forma satisfatória.",
+      "A empresa respeita meu tempo de descanso e minhas férias.",
+      "Me sinto renovado e com energia para trabalhar na maior parte dos dias.",
+    ]
+  },
+];
+
+// ─── RENDERIZAÇÃO ────────────────────────────────────────────────
+let totalPerguntas = 0;
+dimensoes.forEach(d => totalPerguntas += d.perguntas.length);
+
+const container = document.getElementById('perguntas');
+let qNum = 0;
+
+dimensoes.forEach((dim, di) => {
+  const section = document.createElement('div');
+  section.className = 'dimensao';
+  section.innerHTML = `
+    <div class="dimensao-header">
+      <span class="dim-num">DIMENSÃO ${dim.num}</span>
+      <h3>${dim.titulo}</h3>
+      <span class="dim-nr1">NR-1: ${dim.nr1}</span>
+    </div>
+  `;
+
+  dim.perguntas.forEach((perg, pi) => {
+    qNum++;
+    const qId = `${dim.id}_${pi+1}`;
+    const div = document.createElement('div');
+    div.className = 'pergunta';
+    div.dataset.qid = qId;
+    div.innerHTML = `
+      <div class="pergunta-texto">
+        <span class="pergunta-num">${qNum}.</span>${perg}
+      </div>
+      <div class="escala" role="radiogroup" aria-label="Resposta para pergunta ${qNum}">
+        ${['Nunca','Raramente','Às vezes','Frequentemente','Sempre'].map((op,vi) => `
+          <div class="escala-opcao">
+            <input type="radio" name="${qId}" id="${qId}_${vi+1}" value="${vi+1}" required>
+            <label for="${qId}_${vi+1}">
+              <span class="dot"></span>
+              <span class="lbl">${op}</span>
+            </label>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    section.appendChild(div);
+  });
+
+  container.appendChild(section);
+});
+
+// ─── PROGRESSO ───────────────────────────────────────────────────
+function updateProgress() {
+  let respondidas = 0;
+  dimensoes.forEach(dim => {
+    dim.perguntas.forEach((_, pi) => {
+      const qId = `${dim.id}_${pi+1}`;
+      if (document.querySelector(`input[name="${qId}"]:checked`)) respondidas++;
+    });
+  });
+  const pct = Math.round((respondidas / totalPerguntas) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${respondidas} de ${totalPerguntas} respondidas`;
+}
+
+document.addEventListener('change', e => {
+  if (e.target.type === 'radio') {
+    updateProgress();
+    // remove erro se respondeu
+    const pergDiv = e.target.closest('.pergunta');
+    if (pergDiv) pergDiv.classList.remove('obrigatorio-erro');
+  }
+});
+
+// ─── ENVIO ───────────────────────────────────────────────────────
+document.getElementById('formDiagnostico').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  // validação
+  let invalidas = [];
+  dimensoes.forEach(dim => {
+    dim.perguntas.forEach((_, pi) => {
+      const qId = `${dim.id}_${pi+1}`;
+      const respondida = document.querySelector(`input[name="${qId}"]:checked`);
+      const pergDiv = document.querySelector(`[data-qid="${qId}"]`);
+      if (!respondida) {
+        invalidas.push(pergDiv);
+        pergDiv.classList.add('obrigatorio-erro');
+      }
+    });
+  });
+
+  if (invalidas.length > 0) {
+    invalidas[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    alert(`Por favor, responda todas as ${invalidas.length} pergunta(s) em destaque.`);
+    return;
+  }
+
+  // campos obrigatórios
+  const setor = document.querySelector('[name="setor"]').value.trim();
+  const cargo = document.querySelector('[name="cargo"]').value.trim();
+  const tempo = document.querySelector('[name="tempo"]').value;
+  if (!setor || !cargo || !tempo) {
+    alert('Por favor, preencha Setor, Cargo e Tempo de empresa.');
+    return;
+  }
+
+  // coleta dados
+  const dados = {
+    timestamp: new Date().toISOString(),
+    empresa: document.querySelector('.empresa').textContent.trim() || 'Empresa',
+    nome: document.querySelector('[name="nome"]').value.trim() || 'Anônimo',
+    setor, cargo, tempo,
+    respostas: {}
+  };
+
+  dimensoes.forEach(dim => {
+    dim.perguntas.forEach((_, pi) => {
+      const qId = `${dim.id}_${pi+1}`;
+      const val = document.querySelector(`input[name="${qId}"]:checked`).value;
+      dados.respostas[qId] = parseInt(val);
+    });
+  });
+
+  // envio
+  const btn = document.getElementById('btnSubmit');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados)
+    });
+
+    document.getElementById('submitArea').style.display = 'none';
+    document.getElementById('perguntas').style.display = 'none';
+    document.querySelector('.intro-card').style.display = 'none';
+    document.querySelector('.section-id').style.display = 'none';
+    document.querySelectorAll('[style*="border-radius:6px"][style*="max-width:500px"]').forEach(el => el.closest('div') && (el.closest('div').style.display='none'));
+    document.getElementById('telaSucesso').style.display = 'block';
+    document.getElementById('progressFill').style.width = '100%';
+    document.getElementById('progressText').textContent = '50 de 50 respondidas';
+
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Enviar diagnóstico';
+    alert('Erro ao enviar. Verifique sua conexão e tente novamente.');
+  }
+});
+</script>
+
+<!--
+═══════════════════════════════════════════════════════════════
+INSTRUÇÕES DE CONFIGURAÇÃO — GOOGLE SHEETS VIA APPS SCRIPT
+═══════════════════════════════════════════════════════════════
+
+1. Crie uma planilha Google Sheets para cada empresa
+   (ou uma planilha geral com abas por empresa)
+
+2. No Google Sheets, vá em Extensões → Apps Script
+
+3. Cole este código no editor:
+
+   function doPost(e) {
+     const dados = JSON.parse(e.postData.contents);
+     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+     
+     if (sheet.getLastRow() === 0) {
+       // cabeçalho na primeira vez
+       const headers = ['Timestamp','Empresa','Nome','Setor','Cargo','Tempo'];
+       // adiciona colunas para cada resposta
+       for (let i = 1; i <= 50; i++) headers.push('Q' + i);
+       sheet.appendRow(headers);
+     }
+     
+     const linha = [
+       dados.timestamp, dados.empresa, dados.nome,
+       dados.setor, dados.cargo, dados.tempo
+     ];
+     
+     // adiciona respostas em ordem
+     const ordem = ['portal_1','portal_2','portal_3','portal_4',
+       'caminho_1','caminho_2','caminho_3','caminho_4','caminho_5','caminho_6',
+       'mochila_1','mochila_2','mochila_3','mochila_4','mochila_5',
+       'relogio_1','relogio_2','relogio_3','relogio_4','relogio_5',
+       'farol_1','farol_2','farol_3','farol_4','farol_5','farol_6',
+       'jardim_1','jardim_2','jardim_3','jardim_4','jardim_5',
+       'torre_1','torre_2','torre_3','torre_4',
+       'bussola_1','bussola_2','bussola_3','bussola_4',
+       'painel_1','painel_2','painel_3','painel_4','painel_5',
+       'janela_1','janela_2','janela_3',
+       'banco_1','banco_2','banco_3'];
+     
+     ordem.forEach(k => linha.push(dados.respostas[k] || ''));
+     sheet.appendRow(linha);
+     
+     return ContentService
+       .createTextOutput(JSON.stringify({status:'ok'}))
+       .setMimeType(ContentService.MimeType.JSON);
+   }
+
+4. Clique em Implantar → Nova implantação
+   - Tipo: Aplicativo da Web
+   - Executar como: Eu mesmo
+   - Quem tem acesso: Qualquer pessoa
+   
+5. Copie a URL gerada e cole em:
+   const GOOGLE_SCRIPT_URL = "COLE_AQUI_A_URL_DO_APPS_SCRIPT";
+
+6. Para personalizar cada empresa:
+   - Mude o texto em: <span class="empresa">NOME DA EMPRESA</span>
+   - Salve como empresa_nomedaempresa.html
+   - Hospede em ocodigointerno.com.br/empresa_nomedaempresa
+
+═══════════════════════════════════════════════════════════════
+-->
+
+</body>
+</html>
