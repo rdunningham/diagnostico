@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#082d31">
+  <title>Mapa de Desenvolvimento Estrutural — Sua dinâmica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--petrol:#082d31;--petrol-light:#104148;--petrol-deep:#061d20;--cream:#f7f2e8;--soft:#dcd7cb;--gold:#b99a5b;--gold-light:#ddc783;--sage:#91a29a;--ink:#153236}
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--petrol-deep);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    button,input,textarea{font:inherit}
+    @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(185,154,91,.12)}50%{box-shadow:0 0 32px 4px rgba(185,154,91,.15)}}
+    .top{position:sticky;top:0;z-index:10;min-height:70px;padding:13px 22px;display:flex;justify-content:center;align-items:center;background:rgba(6,29,32,.92);border-bottom:1px solid rgba(185,154,91,.16);backdrop-filter:blur(10px)}
+    .brand{font-family:Cinzel,serif;text-align:center;text-transform:uppercase;line-height:1.03;letter-spacing:.11em;color:var(--cream);font-size:.9rem;font-weight:400}.brand b{display:block;font-size:.84rem;font-weight:700;letter-spacing:.175em;margin-top:3px}.brand small{display:block;font-family:'DM Sans',sans-serif;font-size:.48rem;letter-spacing:.23em;color:var(--gold);margin-top:7px}
+    main{max-width:760px;margin:0 auto;padding-bottom:48px}
+    .hero{padding:56px 24px 29px;text-align:center;position:relative;isolation:isolate;overflow:hidden}.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;z-index:-1;filter:blur(3px)}.hero:before{width:340px;height:340px;background:radial-gradient(circle,rgba(185,154,91,.17),transparent 67%);top:-175px;left:50%;transform:translateX(-50%)}.hero:after{width:400px;height:300px;background:radial-gradient(circle,rgba(51,110,107,.22),transparent 66%);bottom:-220px;right:-160px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.63rem;letter-spacing:.19em;text-transform:uppercase;color:var(--gold-light);padding:8px 13px;border:1px solid rgba(185,154,91,.32);animation:rise .6s ease both}.eyebrow:before{content:"✦";font-size:.72rem}
+    h1,h2{font-family:'Cormorant Garamond',serif;font-weight:400;line-height:1.05}h1{font-size:clamp(2.55rem,9vw,4.55rem);letter-spacing:-.035em;margin:20px auto 13px;animation:rise .65s .1s ease both}h1 em,h2 em{font-style:italic;color:var(--gold-light)}.lead{max-width:520px;margin:auto;font-size:.98rem;line-height:1.75;color:rgba(247,242,232,.68);animation:rise .65s .2s ease both}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);padding:22px 20px 34px;gap:8px;animation:rise .65s .3s ease both}.step{text-align:center;position:relative}.step:not(:last-child):after{content:"";position:absolute;height:1px;width:32%;right:-16%;top:19px;background:rgba(185,154,91,.35)}.n{display:grid;place-items:center;margin:0 auto 9px;width:39px;height:39px;border-radius:50%;background:var(--petrol-light);border:1px solid rgba(185,154,91,.45);color:var(--gold-light);font-family:'Cormorant Garamond',serif;font-size:1.18rem}.step:first-child .n{background:var(--gold);color:var(--petrol-deep);border-color:var(--gold)}.step p{font-size:.66rem;letter-spacing:.055em;line-height:1.45;color:rgba(247,242,232,.57)}
+    .card{margin:0 16px 25px;padding:clamp(22px,5vw,35px);background:linear-gradient(145deg,rgba(19,66,71,.92),rgba(7,35,39,.92));border:1px solid rgba(185,154,91,.26);box-shadow:0 16px 50px rgba(0,0,0,.18)}
+    .listen-head{text-align:center;margin-bottom:21px}.listen-head .head-icon{color:var(--gold-light);font-size:1.35rem;margin-bottom:10px}.listen-head h2{font-size:clamp(1.85rem,6.5vw,2.65rem);margin-bottom:8px}.listen-head p{font-size:.9rem;line-height:1.65;color:rgba(247,242,232,.63);max-width:440px;margin:auto}
+    .audio-box{padding:15px;background:rgba(0,0,0,.16);border:1px solid rgba(247,242,232,.12)}audio{width:100%;height:48px;accent-color:var(--gold)}.audio-note{margin-top:13px;text-align:center;font-size:.77rem;line-height:1.55;color:rgba(247,242,232,.48)}
+    .tip{display:flex;align-items:flex-start;gap:12px;margin:0 16px 28px;padding:15px 18px;border-left:3px solid var(--gold);background:rgba(185,154,91,.08);color:rgba(247,242,232,.79);font-size:.88rem;line-height:1.65}.tip span{font-size:1.1rem}.tip strong{color:var(--gold-light)}
+    .parent-note{margin-bottom:25px}.parent-note h2{font-size:1.45rem;margin-bottom:5px;color:var(--cream)}
+    .divider{display:flex;align-items:center;gap:12px;margin:32px 24px 28px;color:var(--gold)}.divider:before,.divider:after{content:"";height:1px;flex:1;background:rgba(185,154,91,.25)}.divider span{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;white-space:nowrap}
+    .form-card{margin:0 16px;padding:clamp(23px,5vw,38px);background:var(--cream);color:var(--ink);box-shadow:0 16px 50px rgba(0,0,0,.17)}.form-card header{text-align:center;margin-bottom:28px}.form-card h2{font-size:clamp(2rem,7vw,3rem);margin-bottom:8px}.form-card header p{font-size:.88rem;line-height:1.65;color:rgba(21,50,54,.68);max-width:430px;margin:auto}
+    .fields{display:grid;gap:20px}.field{display:grid;gap:8px}.field label{font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#56706d}.field label span{color:#a16940}input,textarea{width:100%;border:1px solid rgba(8,45,49,.22);background:#fffdf8;color:var(--ink);outline:none;padding:13px 14px;font-size:.94rem;line-height:1.55;transition:border-color .2s,box-shadow .2s}textarea{min-height:108px;resize:vertical}input:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(185,154,91,.15)}input::placeholder,textarea::placeholder{color:rgba(21,50,54,.38)}.question{padding-bottom:20px;border-bottom:1px solid rgba(8,45,49,.1)}.question:last-of-type{border:0;padding-bottom:0}.question .q-title{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-size:1.28rem;color:var(--petrol)}.q-number{display:grid;place-items:center;width:25px;height:25px;border:1px solid var(--gold);font-family:'DM Sans',sans-serif;font-size:.65rem;color:#80683d}.question .help{font-size:.8rem;line-height:1.55;color:rgba(21,50,54,.58);margin-bottom:10px}
+    .send{margin-top:26px;text-align:center}.send button{width:100%;border:0;background:var(--petrol);color:var(--cream);padding:17px 20px;cursor:pointer;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;transition:transform .2s,background .2s;animation:glow 3s ease-in-out infinite}.send button:hover{background:#0d3e43}.send button:active{transform:scale(.985)}.send p{font-size:.75rem;line-height:1.55;color:rgba(21,50,54,.52);margin-top:12px}.message{display:none!important;color:#9b493e!important;font-weight:600}.message.show{display:block!important}
+    footer{padding:38px 20px 12px;text-align:center;color:rgba(247,242,232,.34);font-size:.65rem;letter-spacing:.035em}footer a{color:var(--gold);text-decoration:none}
+    @media(min-width:660px){.hero{padding-top:70px}.card,.form-card{margin-left:0;margin-right:0}.tip{margin-left:0;margin-right:0}.steps{padding-left:60px;padding-right:60px}.form-card{padding:42px 68px}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="brand">O Código<b>Interno</b><small>Mapa de Desenvolvimento Estrutural</small></div></header>
+  <main>
+    <section class="hero">
+      <span class="eyebrow">A sua experiência</span>
+      <h1>Vamos fazer uma<br><em>pausa para imaginar?</em></h1>
+      <p class="lead">Aqui não existe resposta certa nem errada. É só você, sua imaginação e um tempo tranquilo para perceber o que aparece.</p>
+    </section>
+    <section class="steps" aria-label="Três passos simples">
+      <div class="step"><div class="n">1</div><p>Escute com<br>calma</p></div>
+      <div class="step"><div class="n">2</div><p>Imagine do<br>seu jeito</p></div>
+      <div class="step"><div class="n">3</div><p>Conte o que<br>aconteceu</p></div>
+    </section>
+    <aside class="tip parent-note"><span>👨‍👩‍👧</span><div><h2>Um recado para os pais</h2><p>Vocês podem ajudar o jovem a escrever e enviar as respostas. Mas deixem que ele conte <strong>o que ele viu e sentiu</strong>, do jeito dele. Não existe resposta certa, então não precisam sugerir nem mudar o que ele disser.</p></div></aside>
+    <section class="card" aria-labelledby="ouvir-titulo">
+      <div class="listen-head"><div class="head-icon">◖◗</div><h2 id="ouvir-titulo">Primeiro, aperte o <em>play.</em></h2><p>Sente em um lugar confortável. Você pode fechar os olhos, se quiser. Escute até o fim e deixe as imagens aparecerem na sua cabeça.</p></div>
+      <div class="audio-box"><audio controls preload="metadata"><source src="assets/audio-mde.mp3" type="audio/mpeg">Seu navegador não consegue tocar este áudio.</audio></div>
+      <p class="audio-note">Pode pausar se precisar. Não tem pressa.</p>
+    </section>
+    <aside class="tip"><span>💡</span><p><strong>Uma dica:</strong> quando o áudio terminar, respire fundo e pense no que você viu. Se não lembrar de tudo, tudo bem. Conte apenas o que ficou na sua memória.</p></aside>
+    <div class="divider"><span>Agora é a sua vez</span></div>
+    <section class="form-card" aria-labelledby="contar-titulo">
+      <header><h2 id="contar-titulo">O que você <em>imaginou?</em></h2><p>Escreva do seu jeito. Pode ser curto ou longo. Não precisa usar palavras difíceis.</p></header>
+      <form id="mde-form" novalidate>
+        <div class="fields">
+          <div class="field"><label for="nome-jovem">Nome completo do jovem <span>*</span></label><input id="nome-jovem" type="text" autocomplete="name" placeholder="Nome de quem fez a dinâmica"></div>
+          <div class="field"><label for="nome-responsavel">Nome completo do pai, mãe ou responsável <span>*</span></label><input id="nome-responsavel" type="text" placeholder="Nome de quem acompanha o jovem"></div>
+          <div class="question"><div class="q-title"><span class="q-number">1</span>A Mochila</div><p class="help">Conte todos os detalhes da mochila que você imaginou.</p><textarea id="mochila" placeholder="A mochila era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">2</span>A Ponte</div><p class="help">Conte todos os detalhes da ponte que você imaginou.</p><textarea id="ponte" placeholder="A ponte era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">3</span>O Guardião</div><p class="help">Conte todos os detalhes do guardião que você imaginou.</p><textarea id="guardiao" placeholder="O guardião era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">4</span>A Árvore</div><p class="help">Conte todos os detalhes da árvore que você imaginou.</p><textarea id="arvore" placeholder="A árvore era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">5</span>A Casa</div><p class="help">Conte todos os detalhes da casa que você imaginou.</p><textarea id="casa" placeholder="A casa era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">6</span>O Melhor Amigo</div><p class="help">Conte todos os detalhes do seu melhor amigo.</p><textarea id="melhor-amigo" placeholder="Meu melhor amigo era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">7</span>O Vilão</div><p class="help">Conte todos os detalhes do vilão que você imaginou.</p><textarea id="vilao" placeholder="O vilão era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">8</span>O Tesouro</div><p class="help">Conte todos os detalhes do tesouro que você imaginou.</p><textarea id="tesouro" placeholder="O tesouro era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">9</span>O Espelho</div><p class="help">Conte todos os detalhes do espelho que você imaginou.</p><textarea id="espelho" placeholder="O espelho era..."></textarea></div>
+          <div class="question"><div class="q-title"><span class="q-number">10</span>Você no Futuro</div><p class="help">Conte todos os detalhes de como você estava no futuro.</p><textarea id="futuro" placeholder="No futuro, eu estava..."></textarea></div>
+        </div>
+        <div class="send"><button type="submit">Enviar o que eu imaginei</button><p>Um adulto pode te ajudar a enviar, se você quiser.</p><p id="alerta" class="message">Escreva os dois nomes e conte pelo menos uma coisa antes de enviar.</p></div>
+      </form>
+    </section>
+  </main>
+  <footer>© 2026 O Código Interno · <a href="https://www.instagram.com/raveldunningham/" target="_blank" rel="noopener">@raveldunningham</a></footer>
+  <script>
+    document.getElementById('mde-form').addEventListener('submit', function(event){
+      event.preventDefault();
+      const nome=document.getElementById('nome-jovem').value.trim();
+      const responsavel=document.getElementById('nome-responsavel').value.trim();
+      const campos=[['Mochila','mochila'],['Ponte','ponte'],['Guardião','guardiao'],['Árvore','arvore'],['Casa','casa'],['Melhor Amigo','melhor-amigo'],['Vilão','vilao'],['Tesouro','tesouro'],['Espelho','espelho'],['Como eu estou no Futuro','futuro']];
+      const respostas=campos.map(([titulo,id])=>[titulo,document.getElementById(id).value.trim()]);
+      const alerta=document.getElementById('alerta');
+      if(!nome || !responsavel || !respostas.some(([,resposta])=>resposta)){alerta.classList.add('show');return}
+      alerta.classList.remove('show');
+      let texto='Olá, Ravel! Fiz a dinâmica do MDE.\n\n*Jovem:* '+nome+'\n*Pai, mãe ou responsável:* '+responsavel+'\n\n';
+      respostas.forEach(([titulo,resposta])=>{if(resposta)texto+='*'+titulo+':*\n'+resposta+'\n\n'});
+      texto+='Obrigado!';
+      window.open('https://wa.me/5574999943621?text='+encodeURIComponent(texto),'_blank','noopener');
+    });
+  </script>
+</body>
+</html>
