@@ -85,6 +85,8 @@ textarea:focus{border-color:rgba(201,168,76,.45)}
 .btn-send{animation:btnGlow 2.8s ease-in-out infinite}
 .btn-send:active{transform:scale(.98)}
 .btn-send svg{width:18px;height:18px;flex-shrink:0}
+.btn-next{display:flex;width:max-content;max-width:100%;margin:1rem auto 0;padding:.95rem 1.5rem;border:1px solid rgba(201,168,76,.55);color:var(--gold);font-family:'DM Sans',sans-serif;font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:background .25s,color .25s,transform .2s}
+.btn-next:hover{background:rgba(201,168,76,.1);color:var(--cream);transform:translateY(-2px)}
 .send-note{margin-top:1rem;font-size:.74rem;color:rgba(245,240,232,.2);font-style:italic}
 .val-msg{display:none;margin-top:.8rem;font-size:.8rem;color:rgba(232,180,80,.7)}
 .next-section{background:var(--deep2);padding:3.5rem 1.5rem;border-top:1px solid rgba(201,168,76,.08)}
@@ -272,6 +274,7 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
       <button class="btn-send" id="btn-cadastro" onclick="salvarEContinuar()">
         Quero minha leitura
       </button>
+      <a class="btn-next" href="./ciclo-invisivel.html">Já fiz os 4 símbolos · Quero avançar →</a>
       <p class="send-note">Suas respostas serão guardadas antes da criação da conta.</p>
       <p class="val-msg" id="val-msg">⚠ Descreva os quatro símbolos antes de continuar.</p>
     </div>
@@ -322,7 +325,7 @@ footer a{color:rgba(201,168,76,.38);text-decoration:none}
   <div class="upsell-inner">
     <span class="upsell-eyebrow">Já passou por aqui antes?</span>
     <p class="upsell-text">Se você já fez essa leitura comigo, existe uma experiência <strong>muito mais completa e profunda</strong> esperando por você — onde o seu inconsciente revela camadas que a dinâmica dos 4 símbolos apenas toca.</p>
-    <a class="btn-upsell" href="./diagnostico.html">
+    <a class="btn-upsell" href="./ciclo-invisivel.html">
       Quero ir mais fundo
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
