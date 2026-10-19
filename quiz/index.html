@@ -89,5 +89,92 @@
     form.addEventListener("submit",async event=>{event.preventDefault();if(sending)return;rebuildQuestions();if(index<visibleQuestions.length-1){if(valid(visibleQuestions[index]))move(1);return;}if(!valid(visibleQuestions[index])){showError("Preencha esta etapa para continuar.");return;}if(document.getElementById("website").value){showResult("readings");return;}sending=true;finish.disabled=true;finish.textContent="Salvando suas respostas…";hideError();const attributionData=attribution();const payload={name:answers.name,email:answers.email,whatsapp:answers.whatsapp,answers:{focus:answers.focus,personalImpact:answers.personalImpact,professionalImpact:answers.professionalImpact,profile:answers.profile,revenue:answers.revenue,prior:answers.prior,priorOutcome:answers.priorOutcome,patternInsight:answers.patternInsight,selfResolution:answers.selfResolution,desiredClarity:answers.desiredClarity,urgency:answers.urgency,investment:answers.investment,availability:answers.availability,challenge:answers.challenge},privacyAccepted:answers.privacyAccepted,emailMarketingConsent:answers.emailMarketingConsent,whatsappMarketingConsent:answers.whatsappMarketingConsent,referralCode:attributionData.referralCode,utm:attributionData.utm,website:document.getElementById("website").value};try{const response=await fetch(API_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)});const data=await response.json();if(!response.ok||!data.ok)throw new Error(data.error||"Não foi possível salvar suas respostas.");showResult(data.destination);}catch(err){showError(err instanceof Error?err.message:"Falha ao enviar. Confira sua conexão e tente novamente.");}finally{sending=false;finish.textContent="Ver minha recomendação →";updateButtons();}});
     render();
   </script>
+  <script>
+    showResult = function(destination) {
+      form.hidden = true;
+      document.getElementById("intro").hidden = true;
+      result.hidden = false;
+
+      const focusCopy = {
+        personal: "Você destacou um tema que aparece na vida pessoal. Um percurso gradual pode ajudar a observar os padrões envolvidos e escolher por onde começar.",
+        professional: "Você destacou uma questão profissional. As leituras podem organizar os padrões percebidos e oferecer um ponto de partida para refletir sobre suas decisões.",
+        financial: "Você destacou uma questão financeira. O Mapa e Movimento amplia a observação dos padrões relacionados às escolhas, sem prometer resultados financeiros.",
+        relationships: "Você destacou repetições nas relações. A sequência de leituras ajuda a examinar o que se repete e quais movimentos podem ser observados.",
+        clarity: "Você ainda está buscando nomear o que acontece. Começar por uma leitura progressiva pode ajudar a organizar essa percepção."
+      };
+      const focusText = focusCopy[answers.focus] || "Suas respostas ajudam a orientar uma próxima etapa compatível com o momento que você descreveu.";
+
+      const firstQuestion = `
+        <div class="bundle salesFlow">
+          <p class="eyebrow">UMA PERGUNTA DIRETA</p>
+          <h3>Se você pudesse acessar uma experiência do Código Interno, com uma devolutiva individual feita por Ravel para explorar os padrões por trás das suas escolhas, teria interesse?</h3>
+          <div class="resultActions">
+            <button class="button" type="button" data-sales-choice="yes">SIM, QUERO CONHECER</button>
+            <button class="button secondary" type="button" data-sales-choice="no">Não, vou deixar passar</button>
+          </div>
+        </div>`;
+
+      const offerQuestion = (meeting) => `
+        <div class="bundle salesFlow">
+          <p class="eyebrow">CONDIÇÃO PROMOCIONAL · POR TEMPO LIMITADO</p>
+          <h3>${meeting ? "Garanta agora seu acesso às quatro dinâmicas do Código Interno." : "E se, em vez de uma experiência, você pudesse percorrer as quatro dinâmicas do Código Interno?"}</h3>
+          <p>O combo inclui Primeiros Sinais, Primeiros Sinais: Parte 2, O Ciclo Invisível, Mapa e Movimento e o Plano de 21 dias personalizado a partir da leitura.</p>
+          <p><strong>De R$ 297 por 12x de R$ 9,70 no cartão (total de R$ 116,40) ou R$ 97 no Pix.</strong></p>
+          <p class="privacy">Acesso pela plataforma após a confirmação do pagamento. O MDE não faz parte deste combo.</p>
+          <div class="price"><s>R$ 297</s><strong>12x R$ 9,70</strong></div>
+          <p class="privacy">Ou R$ 97 no Pix · pagamento único</p>
+          <div class="resultActions">
+            <a class="button" href="https://app.ocodigointerno.com.br/?mode=signup&amp;area=upgrade">SIM! QUERO GARANTIR AS QUATRO AGORA →</a>
+            <button class="button secondary" type="button" data-sales-choice="no">Não, vou deixar essa condição passar</button>
+          </div>
+          <p class="privacy">Depois de informar seu e-mail, você segue para o checkout seguro. Após a confirmação do pagamento, conclui o cadastro para acessar a plataforma.</p>
+        </div>`;
+
+      const meetingQuestion = `
+        <div class="bundle salesFlow">
+          <p class="eyebrow">ENQUANTO VOCÊ AGUARDA</p>
+          <h3>Enquanto aguarda Ravel entrar em contato, gostaria de aproveitar a promoção e acessar as quatro dinâmicas?</h3>
+          <div class="resultActions">
+            <button class="button" type="button" data-sales-choice="yes">SIM, QUERO VER A OFERTA</button>
+            <button class="button secondary" type="button" data-sales-choice="no">Não, vou aguardar o contato</button>
+          </div>
+        </div>`;
+
+      if (destination === "meeting") {
+        result.innerHTML = `<article class="resultCard">
+          <p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p>
+          <span class="routeLabel">Conversa sobre acompanhamento individual</span>
+          <h2>Vale avaliar se um acompanhamento mais próximo faz sentido para você.</h2>
+          <p>${escapeHtml(focusText)}</p>
+          <p>O acompanhamento individual com Ravel é organizado em <strong>4 sessões, uma por semana</strong>. A conversa inicial serve para entender seu contexto e verificar se existe alinhamento; ela não obriga você a contratar nem garante uma vaga.</p>
+          <div class="meetingFacts"><strong>Próximo passo:</strong> sua resposta já foi registrada para Ravel avaliar. Você também pode solicitar uma conversa pelo WhatsApp; a agenda e a adequação serão avaliadas individualmente.</div>
+          <div class="resultActions"><a class="button" target="_blank" rel="noreferrer" href="https://wa.me/5574999943621?text=${encodeURIComponent("Olá, Ravel. Preenchi o quiz do Código Interno e gostaria de conversar sobre a possibilidade do acompanhamento de 4 sessões.")}">SOLICITAR MINHA CONVERSA →</a></div>
+          ${meetingQuestion}
+        </article>`;
+      } else {
+        result.innerHTML = `<article class="resultCard">
+          <p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p>
+          <span class="routeLabel">Combo de leituras · acesso na plataforma</span>
+          <h2>Você já reconheceu que algo merece atenção. Vamos ao próximo passo?</h2>
+          <p>${escapeHtml(focusText)}</p>
+          ${firstQuestion}
+        </article>`;
+      }
+
+      result.onclick = (event) => {
+        const button = event.target.closest("[data-sales-choice]");
+        if (!button) return;
+        const flow = button.closest(".salesFlow");
+        if (!flow) return;
+        if (button.dataset.salesChoice === "yes") {
+          flow.outerHTML = offerQuestion(destination === "meeting");
+        } else {
+          flow.innerHTML = `<p class="eyebrow">OBRIGADO PELAS SUAS RESPOSTAS</p><h3>${destination === "meeting" ? "Sua solicitação de conversa continua registrada." : "Tudo certo. Agradeço por responder ao quiz."}</h3><p>${destination === "meeting" ? "Ravel avaliará o seu pedido e a disponibilidade. A oferta das dinâmicas não altera essa análise." : "Encerramos por aqui. Se quiser retomar esse caminho depois, a página do Código Interno continua disponível."}</p>`;
+        }
+      };
+
+      result.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+  </script>
 </body>
 </html>
