@@ -109,10 +109,11 @@
     render();
   </script>
   <script>
-    showResult = function(destination) {
+    showResult = function(destination, leadId) {
       form.hidden = true;
       document.getElementById("intro").hidden = true;
       result.hidden = false;
+      document.cookie = `ci_quiz_email=${encodeURIComponent(answers.email.trim().toLowerCase())}; Domain=.ocodigointerno.com.br; Path=/; Max-Age=604800; SameSite=Lax; Secure`;
 
       const focusCopy = {
         personal: "Você destacou um tema que aparece na vida pessoal. Um percurso gradual pode ajudar a observar os padrões envolvidos e escolher por onde começar.",
@@ -123,72 +124,51 @@
       };
       const focusText = focusCopy[answers.focus] || "Suas respostas ajudam a orientar uma próxima etapa compatível com o momento que você descreveu.";
 
-      const firstQuestion = `
+      const routeText = destination === "meeting"
+        ? "Pelas suas respostas, uma conversa pode ser um bom primeiro passo para entender seu contexto e avaliar qual caminho faz sentido."
+        : "Pelas suas respostas, as leituras podem ser um caminho interessante. Se quiser, conversamos para eu explicar como funcionam e ajudar você a escolher.";
+      result.innerHTML = `<article class="resultCard">
+        <p class="eyebrow">SUA RECOMENDAÇÃO</p>
+        <span class="routeLabel">${destination === "meeting" ? "Conversa individual" : "Combo de leituras"}</span>
+        <h2>Antes de decidir, vamos conversar?</h2>
+        <p>${escapeHtml(focusText)}</p>
+        <p>${routeText}</p>
         <div class="bundle salesFlow">
-          <p class="eyebrow">UMA PERGUNTA DIRETA</p>
-          <h3>Se você pudesse acessar uma experiência do Código Interno, com uma devolutiva individual feita por Ravel para explorar os padrões por trás das suas escolhas, teria interesse?</h3>
+          <p class="eyebrow">PRÓXIMO PASSO</p>
+          <h3>Você teria disponibilidade para conversar comigo pelo WhatsApp sobre o caminho mais adequado para você?</h3>
           <div class="resultActions">
-            <button class="button" type="button" data-sales-choice="yes">SIM, QUERO CONHECER</button>
-            <button class="button secondary" type="button" data-sales-choice="no">Não, vou deixar passar</button>
+            <button class="button" type="button" data-conversation-choice="yes">SIM, PODE ME CHAMAR</button>
+            <button class="button secondary" type="button" data-conversation-choice="no">AGORA NÃO</button>
           </div>
-        </div>`;
+        </div>
+      </article>`;
 
-      const offerQuestion = (meeting) => `
-        <div class="bundle salesFlow">
-          <p class="eyebrow">COMBO COMPLETO · DUAS FORMAS DE PAGAMENTO</p>
-          <h3>${meeting ? "Garanta agora seu acesso às quatro dinâmicas do Código Interno." : "E se, em vez de uma experiência, você pudesse percorrer as quatro dinâmicas do Código Interno?"}</h3>
-          <p>O combo inclui Primeiros Sinais, Primeiros Sinais: Parte 2, O Ciclo Invisível, Mapa e Movimento e o Plano de 21 dias personalizado a partir da leitura.</p>
-          <p><strong>12x de R$ 29,70 no cartão ou R$ 297 à vista no Pix.</strong></p>
-          <p class="privacy">Acesso pela plataforma após a confirmação do pagamento. O MDE não faz parte deste combo.</p>
-          <div class="price"><strong>12x R$ 29,70</strong><strong>ou R$ 297 no Pix</strong></div>
-          <p class="privacy">No cartão em 12 parcelas · Pix à vista</p>
-          <div class="resultActions">
-            <a class="button" href="https://app.ocodigointerno.com.br/?mode=signup&amp;area=upgrade">SIM! QUERO ACESSAR O COMBO AGORA →</a>
-            <button class="button secondary" type="button" data-sales-choice="no">Não, vou deixar essa condição passar</button>
-          </div>
-          <p class="privacy">Depois de informar seu e-mail, você segue para o checkout seguro. Após a confirmação do pagamento, conclui o cadastro para acessar a plataforma.</p>
-        </div>`;
-
-      const meetingQuestion = `
-        <div class="bundle salesFlow">
-          <p class="eyebrow">ENQUANTO VOCÊ AGUARDA</p>
-          <h3>Enquanto aguarda Ravel entrar em contato, gostaria de aproveitar a promoção e acessar as quatro dinâmicas?</h3>
-          <div class="resultActions">
-            <button class="button" type="button" data-sales-choice="yes">SIM, QUERO VER A OFERTA</button>
-            <button class="button secondary" type="button" data-sales-choice="no">Não, vou aguardar o contato</button>
-          </div>
-        </div>`;
-
-      if (destination === "meeting") {
-        result.innerHTML = `<article class="resultCard">
-          <p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p>
-          <span class="routeLabel">Conversa sobre acompanhamento individual</span>
-          <h2>Vale avaliar se um acompanhamento mais próximo faz sentido para você.</h2>
-          <p>${escapeHtml(focusText)}</p>
-          <p>O acompanhamento individual com Ravel é organizado em <strong>4 sessões, uma por semana</strong>. A conversa inicial serve para entender seu contexto e verificar se existe alinhamento; ela não obriga você a contratar nem garante uma vaga.</p>
-          <div class="meetingFacts"><strong>Próximo passo:</strong> sua resposta já foi registrada para Ravel avaliar. Você também pode solicitar uma conversa pelo WhatsApp; a agenda e a adequação serão avaliadas individualmente.</div>
-          <div class="resultActions"><a class="button" target="_blank" rel="noreferrer" href="https://wa.me/5574999943621?text=${encodeURIComponent("Olá, Ravel. Preenchi o quiz do Código Interno e gostaria de conversar sobre a possibilidade do acompanhamento de 4 sessões.")}">SOLICITAR MINHA CONVERSA →</a></div>
-          ${meetingQuestion}
-        </article>`;
-      } else {
-        result.innerHTML = `<article class="resultCard">
-          <p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p>
-          <span class="routeLabel">Combo de leituras · acesso na plataforma</span>
-          <h2>Você já reconheceu que algo merece atenção. Vamos ao próximo passo?</h2>
-          <p>${escapeHtml(focusText)}</p>
-          ${firstQuestion}
-        </article>`;
-      }
-
-      result.onclick = (event) => {
-        const button = event.target.closest("[data-sales-choice]");
+      result.onclick = async (event) => {
+        const button = event.target.closest("[data-conversation-choice]");
         if (!button) return;
         const flow = button.closest(".salesFlow");
         if (!flow) return;
-        if (button.dataset.salesChoice === "yes") {
-          flow.outerHTML = offerQuestion(destination === "meeting");
-        } else {
-          flow.innerHTML = `<p class="eyebrow">OBRIGADO PELAS SUAS RESPOSTAS</p><h3>${destination === "meeting" ? "Sua solicitação de conversa continua registrada." : "Tudo certo. Agradeço por responder ao quiz."}</h3><p>${destination === "meeting" ? "Ravel avaliará o seu pedido e a disponibilidade. A oferta das dinâmicas não altera essa análise." : "Encerramos por aqui. Se quiser retomar esse caminho depois, a página do Código Interno continua disponível."}</p>`;
+        const available = button.dataset.conversationChoice === "yes";
+        flow.querySelectorAll("button").forEach((item) => { item.disabled = true; });
+        try {
+          const response = await fetch(API_URL, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ action: "conversation", leadId: leadId || "", email: answers.email, available })
+          });
+          const saved = await response.json();
+          if (!response.ok || !saved.ok) throw new Error(saved.error || "Não foi possível registrar sua resposta.");
+          if (available) {
+            const firstName = answers.name.trim().split(/\s+/)[0];
+            const message = `Olá, Ravel. Sou ${firstName} e acabei de preencher o quiz do Código Interno. Gostaria de conversar sobre ${destination === "meeting" ? "o acompanhamento individual" : "as leituras"} e entender qual caminho faz mais sentido para mim.`;
+            flow.innerHTML = `<p class="eyebrow">DISPONIBILIDADE REGISTRADA</p><h3>Obrigado. Marquei que você tem disponibilidade para conversar.</h3><p>Suas respostas ficaram salvas para eu localizar seu contato. Se quiser adiantar a conversa, pode me chamar agora pelo WhatsApp.</p><div class="resultActions"><a class="button" target="_blank" rel="noreferrer" href="https://wa.me/5574999943621?text=${encodeURIComponent(message)}">ABRIR WHATSAPP →</a></div>`;
+          } else {
+            flow.innerHTML = `<p class="eyebrow">OBRIGADO PELAS SUAS RESPOSTAS</p><h3>Sem problema. Você pode retomar essa conversa quando for melhor para você.</h3><p>Suas respostas continuam registradas e não vamos encaminhar você ao checkout agora.</p>`;
+          }
+        } catch (error) {
+          flow.querySelectorAll("button").forEach((item) => { item.disabled = false; });
+          const message = error instanceof Error ? error.message : "Tente novamente em instantes.";
+          showError(message);
         }
       };
 
