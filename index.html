@@ -82,10 +82,11 @@ body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;f
   opacity:0;animation:fadeUp .8s ease forwards .5s;
 }
 .hero-desc{
-  font-size:.9rem;color:rgba(245,240,232,.55);line-height:1.75;
+  font-size:.9rem;color:rgba(245,240,232,.7);line-height:1.7;
   max-width:460px;margin:0 auto 2rem;
   opacity:0;animation:fadeUp .8s ease forwards .65s;
 }
+.hero-offer{color:var(--gold-light);font-size:.9rem;line-height:1.5;margin:-.8rem 0 1.5rem;font-weight:500}
 .hero-actions{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;opacity:0;animation:fadeUp .8s ease forwards .8s}
 .hero-proof{display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 1.2rem;margin-top:1.4rem;color:rgba(245,240,232,.42);font-size:.68rem;letter-spacing:.06em;opacity:0;animation:fadeUp .8s ease forwards .95s}
 .hero-proof span::before{content:'✦';color:var(--gold);font-size:.45rem;margin-right:.45rem}
@@ -121,7 +122,18 @@ body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;f
   }
   .hero h1{font-size:clamp(3rem,4.5vw,5.5rem)}
   .hero-desc{margin:0 0 2rem}
+  .hero-offer{margin:-.8rem 0 1.5rem}
   .hero-actions,.hero-proof{justify-content:flex-start}
+}
+
+@media(max-width:768px){
+  .hero-content{padding:1.5rem 1.25rem 3.5rem}
+  .hero-tagline{font-size:1.05rem;line-height:1.45;margin-bottom:1rem;color:rgba(245,240,232,.62)}
+  .hero-desc{font-size:.98rem;line-height:1.6;max-width:35ch;margin:0 auto 1.2rem;color:rgba(245,240,232,.76)}
+  .hero-offer{font-size:.92rem;margin:0 auto 1.2rem}
+  .hero-actions{width:min(100%,400px);margin:0 auto;flex-direction:column;gap:.65rem}
+  .hero-actions a{width:100%;text-align:center;padding:.95rem 1rem;letter-spacing:.08em;font-size:.72rem}
+  .hero-proof{max-width:360px;margin:1.1rem auto 0;gap:.65rem 1rem;font-size:.67rem;line-height:1.5}
 }
 
 /* ══ BTN ══ */
@@ -335,9 +347,10 @@ footer a{color:rgba(201,168,76,.55);text-decoration:none}
   <div class="hero-content">
     <span class="eyebrow">O Código Interno · autoconhecimento aplicado</span>
     <h1>Entenda o padrão por trás das suas escolhas — e transforme percepção em <em>direção.</em></h1>
-    <p class="hero-tagline">Uma plataforma de autoajuda aplicada — não um curso para acumular aulas. Observe seu funcionamento interno e pratique novas escolhas.</p>
-    <p class="hero-desc">Acesse quatro dinâmicas, conteúdos de apoio, práticas guiadas e leituras simbólicas. Entenda seus gatilhos de proteção, reconheça padrões que invadem o núcleo emocional e construa um sistema de decisão mais claro. No Mapa e Movimento, eu analiso suas respostas e preparo uma devolutiva pessoal por escrito. Tudo por 12x de R$ 29,70 ou R$ 297 à vista no Pix.</p>
-    <div class="hero-actions"><a href="#oferta" class="btn-primary">Quero acessar O Código Interno →</a><a href="#como-funciona" class="btn-secondary">Entender como funciona</a></div>
+    <p class="hero-tagline">Uma plataforma de autoajuda aplicada — para compreender seus padrões e praticar novas escolhas.</p>
+    <p class="hero-desc">Explore quatro dinâmicas, reconheça o que se repete e transforme percepção em decisões mais claras. No Mapa e Movimento, eu analiso suas respostas e preparo uma devolutiva pessoal por escrito.</p>
+    <p class="hero-offer">12x de R$ 29,70 ou R$ 297 à vista no Pix</p>
+    <div class="hero-actions"><a href="#oferta" class="btn-primary">Quero acessar →</a><a href="#como-funciona" class="btn-secondary">Ver como funciona ↓</a></div>
     <div class="hero-proof"><span>quatro dinâmicas</span><span>devolutiva pessoal por Ravel</span><span>jornada autoguiada</span></div>
   </div>
 </section>
