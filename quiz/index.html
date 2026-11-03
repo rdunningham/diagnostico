@@ -6,14 +6,14 @@
   <meta name="theme-color" content="#0a0702">
   <link rel="icon" type="image/png" sizes="32x32" href="https://www.ocodigointerno.com.br/assets/favicon-32-v1.png">
   <link rel="apple-touch-icon" href="https://www.ocodigointerno.com.br/assets/apple-touch-icon-v1.png">
-  <meta name="description" content="Descubra se o melhor próximo passo para você é aprofundar suas leituras ou conversar sobre um acompanhamento individual com Ravel Dunningham.">
-  <title>Encontre seu próximo passo — O Código Interno</title>
+  <meta name="description" content="Entenda como O Código Interno combina dinâmicas, práticas guiadas e análises pessoais para ajudar você a observar seus padrões.">
+  <title>Conheça O Código Interno — Quiz</title>
   <link rel="canonical" href="https://www.ocodigointerno.com.br/quiz/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="O Código Interno">
-  <meta property="og:title" content="Encontre seu próximo passo — O Código Interno">
-  <meta property="og:description" content="Responda ao quiz e descubra qual experiência do Código Interno combina com o momento que você está vivendo.">
+  <meta property="og:title" content="Conheça O Código Interno — Quiz">
+  <meta property="og:description" content="Não é mais um curso: conheça um método de análise personalizada do inconsciente.">
   <meta property="og:url" content="https://www.ocodigointerno.com.br/quiz/">
   <meta property="og:image" content="https://www.ocodigointerno.com.br/assets/og-v1.png">
   <meta property="og:image:secure_url" content="https://www.ocodigointerno.com.br/assets/og-v1.png">
@@ -22,8 +22,8 @@
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="O Código Interno — veja seus padrões e transforme seus movimentos">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Encontre seu próximo passo — O Código Interno">
-  <meta name="twitter:description" content="Responda ao quiz e descubra qual experiência do Código Interno combina com o momento que você está vivendo.">
+  <meta name="twitter:title" content="Conheça O Código Interno — Quiz">
+  <meta name="twitter:description" content="Não é mais um curso: conheça um método de análise personalizada do inconsciente.">
   <meta name="twitter:image" content="https://www.ocodigointerno.com.br/assets/og-v1.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,13 +39,13 @@
   <main class="page">
     <header class="top"><a class="wordmark" href="/" aria-label="O Código Interno — página inicial">O Código Interno</a><span>QUIZ · SEU PRÓXIMO PASSO</span></header>
     <section class="intro" id="intro">
-      <p class="eyebrow">UMA RECOMENDAÇÃO A PARTIR DO SEU MOMENTO</p>
-      <h1>Nem todo próximo passo é igual. <em>Vamos encontrar o seu.</em></h1>
-      <p>Responda com sinceridade. No final, você recebe uma direção: aprofundar sua leitura com o combo completo ou solicitar uma conversa sobre o acompanhamento individual com Ravel.</p>
-      <div class="promise"><span>Uma pergunta por etapa</span><span>Leva poucos minutos</span><span>Sem promessa de resultado</span></div>
+      <p class="eyebrow">UMA EXPERIÊNCIA PERSONALIZADA</p>
+      <h1>O que se repete pode revelar um caminho. <em>Vamos olhar para isso?</em></h1>
+      <p>Responda a algumas perguntas sobre o seu momento. No final, você poderá conhecer O Código Interno: um método de análise e práticas guiadas, não uma coleção de aulas para assistir e esquecer.</p>
+      <div class="promise"><span>Uma pergunta por etapa</span><span>Leva poucos minutos</span><span>Responda só o que se sentir confortável</span></div>
     </section>
     <form class="quiz" id="quiz" novalidate>
-      <div class="progressHead"><span id="progressLabel">SEU CONTATO</span><strong id="progressCount"></strong></div>
+      <div class="progressHead"><span id="progressLabel">SEU MOMENTO</span><strong id="progressCount"></strong></div>
       <div class="track" role="progressbar" aria-label="Progresso do quiz" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="progressBar"></i></div>
       <section class="step" id="step" aria-live="polite"></section>
       <p class="error" id="error" role="alert" hidden></p>
@@ -53,123 +53,63 @@
       <label class="quizHoney" aria-hidden="true">Não preencha este campo<input id="website" tabindex="-1" autocomplete="off"></label>
     </form>
     <section class="result" id="result" hidden aria-live="polite"></section>
-    <p class="fine">O quiz é uma ferramenta de orientação comercial e reflexão. As leituras são interpretativas; não constituem diagnóstico nem substituem cuidado profissional. O envio não garante seleção para uma conversa individual.</p>
+    <p class="fine">O quiz é uma ferramenta de reflexão e apresentação do método. As leituras são interpretativas; não constituem diagnóstico nem substituem cuidado profissional.</p>
     <footer class="footer">O Código Interno · Ravel Dunningham · Brasil</footer>
   </main>
   <script>
-    const API_URL = "https://app.ocodigointerno.com.br/api/marketing-quiz";
-    const questions = [
-      {key:"contact", label:"SEU CONTATO", title:"Como posso enviar sua recomendação?", hint:"Seus dados só serão enviados quando você concluir o quiz.", type:"contact"},
-      {key:"trigger", label:"O QUE TROUXE VOCÊ AQUI", title:"O que fez você parar para responder este quiz hoje?", options:[["stuck","Estou vivendo uma situação que não consigo destravar"],["repeats","Percebi que certos padrões se repetem"],["decision","Quero entender melhor minhas decisões"],["change","Estou buscando clareza para uma mudança importante"],["other","Outro motivo"]]},
-      {key:"situation", label:"SUA SITUAÇÃO", title:"Qual situação concreta mais tem ocupado sua cabeça ultimamente?", hint:"Pode contar do seu jeito, sem precisar organizar tudo.", type:"textarea", required:true, placeholder:"O que aconteceu? O que tem sido difícil?"},
-      {key:"focus", label:"ONDE ISSO APARECE", title:"Em que área isso mais aparece hoje?", options:[["personal","Vida pessoal"],["relationships","Relações"],["professional","Trabalho ou negócio"],["financial","Dinheiro"],["multiple","Mais de uma dessas áreas"]]},
-      {key:"pattern", label:"UM PADRÃO OU ALGO NOVO?", title:"Isso parece algo novo ou um padrão que já apareceu outras vezes?", options:[["recent","É algo recente"],["few_times","Já aconteceu algumas vezes"],["long_time","Parece se repetir há bastante tempo"],["unsure","Ainda não sei dizer"]]},
-      {key:"impact", label:"O QUE ISSO DIFICULTA", title:"O que essa situação tem dificultado para você?", options:[["decisions","Tomar decisões"],["consistency","Manter constância"],["work_plans","Avançar no trabalho ou nos meus planos"],["relationships","Ter tranquilidade nas relações"],["money","Lidar com dinheiro"],["other","Outra coisa"]]},
-      {key:"tried", label:"O QUE VOCÊ JÁ TENTOU", title:"O que você já tentou fazer para mudar esse cenário?", options:[["self","Tentei resolver por conta própria"],["trusted_person","Conversei com alguém de confiança"],["therapy_mentoring","Fiz terapia, mentoria ou consultoria"],["courses","Busquei cursos, livros ou outros métodos"],["none","Ainda não tentei algo específico"]]},
-      {key:"unclear", label:"O QUE AINDA NÃO ESTÁ CLARO", title:"O que você sente que ainda não conseguiu compreender sobre essa situação?", hint:"Se quiser, escreva algumas palavras. Você também pode seguir sem detalhar.", type:"textarea", placeholder:"O que ainda parece difícil de explicar?"},
-      {key:"concern", label:"SE NADA MUDAR", title:"Se nada mudar nos próximos meses, o que mais preocupa você?", hint:"Responda apenas o que se sentir confortável em compartilhar.", type:"textarea", placeholder:"Qual seria a principal consequência para você?"},
-      {key:"desiredClarity", label:"O QUE VOCÊ QUER COMPREENDER", title:"O que você gostaria de compreender ou mudar primeiro?", options:[["why_repeat","Enxergar o padrão por trás das minhas escolhas"],["decision_influences","Entender por que continuo voltando ao mesmo ponto"],["next_step","Ter mais clareza sobre uma decisão"],["organize_experience","Encontrar um próximo passo concreto"],["unsure","Ainda estou tentando descobrir"]]},
-      {key:"urgency", label:"SUA PRIORIDADE", title:"Qual é a prioridade de olhar para isso agora?", options:[["today","Quero começar hoje"],["48h","Quero cuidar disso em até 48 horas"],["week","Pretendo olhar para isso nesta semana"],["month","Ainda estou avaliando"]]},
-      {key:"consent", label:"PRIVACIDADE E PREFERÊNCIAS", title:"Antes de ver sua recomendação", type:"consent"}
+    const API_URL="https://app.ocodigointerno.com.br/api/marketing-quiz";
+    const questions=[
+      {key:"trigger",label:"O QUE TROUXE VOCÊ AQUI",title:"O que fez você parar para responder este quiz hoje?",options:[["stuck","Estou vivendo uma situação que não consigo destravar"],["repeats","Percebi que certos padrões se repetem"],["decision","Quero compreender melhor minhas decisões"],["change","Estou diante de uma mudança importante"],["other","Outro motivo"]]},
+      {key:"situation",label:"SUA SITUAÇÃO",title:"Qual situação concreta mais tem ocupado sua cabeça ultimamente?",hint:"Conte do seu jeito. Você não precisa saber explicar por que isso está acontecendo.",type:"textarea",required:true,placeholder:"O que aconteceu? O que tem sido difícil?"},
+      {key:"focus",label:"ONDE ISSO APARECE",title:"Em que área da sua vida você sente que algo está travando?",options:[["personal","Vida pessoal"],["relationships","Relacionamentos"],["professional","Profissional ou negócio"],["financial","Financeiro"],["multiple","Mais de uma área"]]},
+      {key:"pattern",label:"O QUE SE REPETE",title:"Isso parece algo novo ou já apareceu outras vezes na sua vida?",options:[["recent","É algo recente"],["few_times","Já aconteceu algumas vezes"],["long_time","Parece se repetir há bastante tempo"],["unsure","Ainda não sei dizer"]]},
+      {key:"impact",label:"O QUE ISSO DIFICULTA",title:"O que essa situação tem dificultado para você?",options:[["decisions","Tomar decisões"],["consistency","Manter constância"],["work_plans","Avançar no trabalho ou nos meus planos"],["relationships","Ter tranquilidade nas relações"],["money","Lidar com dinheiro"],["other","Outra coisa"]]},
+      {key:"tried",label:"O QUE VOCÊ JÁ TENTOU",title:"O que você já tentou para compreender melhor seus bloqueios?",options:[["self","Tentei entender por conta própria"],["trusted_person","Conversei com alguém de confiança"],["therapy_mentoring","Busquei terapia, mentoria ou consultoria"],["courses","Pesquisei cursos, livros ou outros métodos"],["none","Ainda não tentei algo específico"]]},
+      {key:"unclear",label:"O QUE AINDA NÃO ESTÁ CLARO",title:"O que você sente que ainda não conseguiu compreender sobre essa situação?",hint:"Se quiser, escreva algumas palavras. Você também pode seguir sem detalhar.",type:"textarea",placeholder:"O que ainda parece difícil de explicar?"},
+      {key:"priority",label:"SUA PRIORIDADE",title:"De 0 a 10, qual seu nível de prioridade para resolver isso?",hint:"0 significa que não é uma prioridade agora; 10 significa que você quer cuidar disso com máxima prioridade.",options:Array.from({length:11},function(_,n){return[String(n),String(n)]})},
+      {key:"desiredClarity",label:"O QUE VOCÊ QUER COMPREENDER",title:"O que você gostaria de compreender primeiro?",options:[["why_repeat","O padrão por trás das minhas escolhas"],["decision_influences","Por que continuo voltando ao mesmo ponto"],["next_step","Como tomar uma decisão com mais clareza"],["organize_experience","Como organizar o que estou vivendo"],["unsure","Ainda não sei nomear"]]},
+      {key:"urgency",label:"SEU MOMENTO",title:"Quando você gostaria de começar a olhar para isso com mais atenção?",options:[["today","Quero começar hoje"],["48h","Nos próximos dias"],["week","Nesta semana"],["month","Ainda estou avaliando"]]},
+      {key:"contact",label:"SEU CONTATO",title:"Confirma suas informações de contato junto com o aceite.",hint:"Usaremos seus dados para registrar as respostas e dar continuidade à experiência que você escolher.",type:"contact"}
     ];
     const form=document.getElementById("quiz"),step=document.getElementById("step"),back=document.getElementById("back"),next=document.getElementById("next"),finish=document.getElementById("finish"),result=document.getElementById("result"),errorBox=document.getElementById("error");
-    const answers={name:"",email:"",whatsapp:"",trigger:"",situation:"",focus:"",pattern:"",impact:"",tried:"",unclear:"",concern:"",desiredClarity:"",urgency:"",privacyAccepted:false,emailMarketingConsent:false,whatsappMarketingConsent:false};
-    let visibleQuestions=[],index=0,sending=false;
-    const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-    function rebuildQuestions(){visibleQuestions=questions.filter(question=>!question.conditional||question.conditional());if(index>=visibleQuestions.length)index=visibleQuestions.length-1;}
-    function selectedOptions(question){return `<fieldset class="options" aria-label="${escapeHtml(question.title)}">${question.options.map(([value,label])=>`<label class="option"><input type="radio" name="${question.key}" value="${value}" ${answers[question.key]===value?"checked":""}><span>${escapeHtml(label)}</span></label>`).join("")}</fieldset>`;}
+    const answers={name:"",email:"",whatsapp:"",trigger:"",situation:"",focus:"",pattern:"",impact:"",tried:"",unclear:"",priority:"",desiredClarity:"",urgency:"",privacyAccepted:false,emailMarketingConsent:false,whatsappMarketingConsent:false};
+    let index=0,sending=false;
+    const escapeHtml=function(value){return String(value==null?"":value).replace(/[&<>"']/g,function(char){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char];});};
+    function selectedOptions(question){return '<fieldset class="options" aria-label="'+escapeHtml(question.title)+'">'+question.options.map(function(option){return '<label class="option"><input type="radio" name="'+question.key+'" value="'+option[0]+'" '+(answers[question.key]===option[0]?"checked":"")+'><span>'+escapeHtml(option[1])+'</span></label>';}).join("")+'</fieldset>';}
     function render(){
-      rebuildQuestions();const question=visibleQuestions[index];if(!question)return;
-      let content="";
-      if(question.type==="contact")content=`<div class="fields"><label class="field">Seu nome<input name="name" autocomplete="name" maxlength="120" placeholder="Nome e sobrenome" value="${escapeHtml(answers.name)}" required></label><label class="field">E-mail<input name="email" type="email" autocomplete="email" maxlength="180" placeholder="voce@exemplo.com" value="${escapeHtml(answers.email)}" required></label><label class="field">WhatsApp com DDD<input name="whatsapp" type="tel" autocomplete="tel" maxlength="40" placeholder="(11) 99999-9999" value="${escapeHtml(answers.whatsapp)}" required></label></div>`;
-      else if(question.type==="textarea")content=`<label class="field"><span>Sua resposta</span><textarea name="${question.key}" maxlength="1000" placeholder="${escapeHtml(question.placeholder||"Escreva do seu jeito, em poucas frases.")}">${escapeHtml(answers[question.key])}</textarea></label>`;
-      else if(question.type==="consent")content=`<p class="hint">Para registrar suas respostas e mostrar o próximo passo, precisamos do aceite abaixo. As autorizações de marketing são opcionais e independentes.</p><label class="checkRow"><input id="privacyAccepted" type="checkbox" ${answers.privacyAccepted?"checked":""}><span>Li o <a href="https://app.ocodigointerno.com.br/privacidade" target="_blank" rel="noreferrer">aviso de privacidade</a> e autorizo o uso das respostas e dos meus contatos para receber o resultado deste quiz e dar continuidade ao caminho recomendado. <strong>Obrigatório.</strong></span></label><label class="checkRow"><input id="emailMarketingConsent" type="checkbox" ${answers.emailMarketingConsent?"checked":""}><span>Quero receber conteúdos e ofertas do Código Interno por e-mail. Posso cancelar quando quiser. <em>Opcional.</em></span></label><label class="checkRow"><input id="whatsappMarketingConsent" type="checkbox" ${answers.whatsappMarketingConsent?"checked":""}><span>Quero receber conteúdos e ofertas do Código Interno pelo WhatsApp. Posso cancelar quando quiser. <em>Opcional.</em></span></label><p class="privacy">Sem autorização, não enviaremos publicidade pelo respectivo canal. Você pode pedir acesso, correção ou exclusão dos dados pelo <a href="https://wa.me/5574999943621" target="_blank" rel="noreferrer">atendimento</a>.</p>`;
+      var question=questions[index],content="";
+      if(question.type==="contact")content='<div class="fields"><label class="field">Seu nome<input name="name" autocomplete="name" maxlength="120" placeholder="Nome e sobrenome" value="'+escapeHtml(answers.name)+'" required></label><label class="field">E-mail<input name="email" type="email" autocomplete="email" maxlength="180" placeholder="voce@exemplo.com" value="'+escapeHtml(answers.email)+'" required></label><label class="field">WhatsApp com DDD<input name="whatsapp" type="tel" autocomplete="tel" maxlength="40" placeholder="(11) 99999-9999" value="'+escapeHtml(answers.whatsapp)+'" required></label></div><label class="checkRow"><input id="privacyAccepted" type="checkbox" '+(answers.privacyAccepted?"checked":"")+'><span>Li o <a href="https://app.ocodigointerno.com.br/privacidade" target="_blank" rel="noreferrer">aviso de privacidade</a> e autorizo o uso das minhas respostas e dos meus contatos para registrar este quiz e dar continuidade à experiência. <strong>Obrigatório.</strong></span></label><label class="checkRow"><input id="emailMarketingConsent" type="checkbox" '+(answers.emailMarketingConsent?"checked":"")+'><span>Quero receber conteúdos e ofertas do Código Interno por e-mail. Posso cancelar quando quiser. <em>Opcional.</em></span></label><label class="checkRow"><input id="whatsappMarketingConsent" type="checkbox" '+(answers.whatsappMarketingConsent?"checked":"")+'><span>Quero receber conteúdos e ofertas do Código Interno pelo WhatsApp. Posso cancelar quando quiser. <em>Opcional.</em></span></label><p class="privacy">As autorizações de marketing são opcionais e independentes do aceite obrigatório.</p>';
+      else if(question.type==="textarea")content='<label class="field"><span>Sua resposta</span><textarea name="'+question.key+'" maxlength="1000" placeholder="'+escapeHtml(question.placeholder||"Escreva do seu jeito.")+'">'+escapeHtml(answers[question.key])+'</textarea></label>';
       else content=selectedOptions(question);
-      step.innerHTML=`<span class="stepNo">${escapeHtml(question.label)}</span><h2>${escapeHtml(question.title)}</h2>${question.hint?`<p class="hint">${escapeHtml(question.hint)}</p>`:""}${content}`;
-      step.querySelectorAll('input[type="radio"]').forEach(input=>input.addEventListener("change",()=>{answers[question.key]=input.value;if(question.key==="prior"){answers.priorOutcome=input.value==="yes"?"": "not_applicable";}hideError();updateButtons();}));
-      step.querySelectorAll("input[name],textarea[name]").forEach(input=>input.addEventListener("input",()=>{answers[input.name]=input.value;hideError();updateButtons();}));
-      [["privacyAccepted","privacyAccepted"],["emailMarketingConsent","emailMarketingConsent"],["whatsappMarketingConsent","whatsappMarketingConsent"]].forEach(([id,key])=>{const input=document.getElementById(id);if(input)input.addEventListener("change",()=>{answers[key]=input.checked;hideError();updateButtons();});});
-      const count=visibleQuestions.length;document.getElementById("progressLabel").textContent=question.label;document.getElementById("progressCount").textContent=`${index+1} / ${count}`;const pct=Math.round((index+1)/count*100);document.getElementById("progressBar").style.width=`${pct}%`;document.querySelector(".track").setAttribute("aria-valuenow",String(pct));
-      back.hidden=index===0;next.hidden=index===count-1;finish.hidden=index!==count-1;updateButtons();
+      step.innerHTML='<span class="stepNo">'+escapeHtml(question.label)+'</span><h2>'+escapeHtml(question.title)+'</h2>'+(question.hint?'<p class="hint">'+escapeHtml(question.hint)+'</p>':"")+content;
+      step.querySelectorAll('input[type="radio"]').forEach(function(input){input.addEventListener("change",function(){answers[question.key]=input.value;hideError();updateButtons();});});
+      step.querySelectorAll("input[name],textarea[name]").forEach(function(input){input.addEventListener("input",function(){answers[input.name]=input.value;hideError();updateButtons();});});
+      [["privacyAccepted","privacyAccepted"],["emailMarketingConsent","emailMarketingConsent"],["whatsappMarketingConsent","whatsappMarketingConsent"]].forEach(function(pair){var input=document.getElementById(pair[0]);if(input)input.addEventListener("change",function(){answers[pair[1]]=input.checked;hideError();updateButtons();});});
+      document.getElementById("progressLabel").textContent=question.label;document.getElementById("progressCount").textContent=(index+1)+" / "+questions.length;var pct=Math.round((index+1)/questions.length*100);document.getElementById("progressBar").style.width=pct+"%";document.querySelector(".track").setAttribute("aria-valuenow",String(pct));
+      back.hidden=index===0;next.hidden=index===questions.length-1;finish.hidden=index!==questions.length-1;updateButtons();
     }
-    function valid(question){if(question.type==="contact")return answers.name.trim().length>1&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.email.trim())&&answers.whatsapp.replace(/\D/g,"").length>=10;if(question.type==="textarea")return !question.required||answers[question.key].trim().length>=8;if(question.type==="consent")return answers.privacyAccepted===true;return Boolean(answers[question.key]);}
-    function updateButtons(){const question=visibleQuestions[index];if(!question)return;const ok=valid(question);next.disabled=!ok||sending;finish.disabled=!ok||sending;}
+    function valid(question){if(question.type==="contact")return answers.name.trim().length>1&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.email.trim())&&answers.whatsapp.replace(/\D/g,"").length>=10&&answers.privacyAccepted;if(question.type==="textarea")return !question.required||answers[question.key].trim().length>=8;return Boolean(answers[question.key]);}
+    function updateButtons(){var ok=valid(questions[index]);next.disabled=!ok||sending;finish.disabled=!ok||sending;}
     function hideError(){errorBox.hidden=true;errorBox.textContent="";}
     function showError(text){errorBox.hidden=false;errorBox.textContent=text;errorBox.scrollIntoView({behavior:"smooth",block:"center"});}
-    function move(delta){if(!valid(visibleQuestions[index]))return;index=Math.max(0,Math.min(visibleQuestions.length-1,index+delta));hideError();render();step.scrollIntoView({behavior:"smooth",block:"start"});}
-    next.addEventListener("click",()=>move(1));back.addEventListener("click",()=>move(-1));
-    function getDestination(){return "readings";}
-    function attribution(){const params=new URLSearchParams(location.search),utm={};["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(key=>{const value=params.get(key);if(value)utm[key.replace("utm_","")]=value.slice(0,160);});return{utm,referralCode:params.get("ref")||""};}
-    function showResult(destination){form.hidden=true;document.getElementById("intro").hidden=true;result.hidden=false;const focusCopy={personal:"Você destacou um tema que aparece na vida pessoal. Um percurso gradual pode ajudar a observar os padrões envolvidos e escolher por onde começar.",professional:"Você destacou uma questão profissional. As leituras podem organizar os padrões percebidos e oferecer um ponto de partida para refletir sobre suas decisões.",financial:"Você destacou uma questão financeira. O Mapa e Movimento amplia a observação dos padrões e movimentos relacionados às escolhas, sem prometer resultados financeiros.",relationships:"Você destacou repetições nas relações. A sequência de leituras ajuda a examinar o que se repete e quais movimentos podem ser observados.",clarity:"Você ainda está buscando nomear o que acontece. Começar por uma leitura progressiva pode ajudar a organizar essa percepção."};const focusText=focusCopy[answers.focus]||"Suas respostas ajudam a orientar uma próxima etapa compatível com o momento que você descreveu.";const bundleOffer=`<div class="bundle"><h3>Você está pronto(a) para acessar as dinâmicas do Código Interno?</h3><p>Você já parou para olhar com honestidade para o que está acontecendo. Agora, pode transformar essa percepção em movimento: acesse o percurso completo, avance no seu ritmo e leve cada leitura para a vida real.</p><p>Acesse o combo completo por <strong>12x de R$ 29,70 no cartão ou R$ 297 à vista no Pix.</strong></p><ul><li>Primeiros Sinais e Primeiros Sinais: Parte 2</li><li>O Ciclo Invisível</li><li>Mapa e Movimento, com leitura escrita revisada por Ravel</li><li>Plano de 21 dias personalizado a partir do Mapa e Movimento</li></ul><p class="privacy">Acesso pela plataforma após a confirmação do pagamento. O MDE não faz parte deste combo.</p><div class="price"><strong>12x R$ 29,70</strong><strong>ou R$ 297 no Pix</strong></div><p class="privacy">No cartão em 12 parcelas · Pix à vista</p><div class="resultActions"><a class="button" href="https://app.ocodigointerno.com.br/?mode=signup&amp;area=upgrade">Sim, quero começar agora →</a></div><p class="privacy">Depois de informar seu e-mail, você segue para o checkout seguro. Após a confirmação, conclui o cadastro para acessar a plataforma.</p></div>`;result.innerHTML=destination==="meeting"?`<article class="resultCard"><p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p><span class="routeLabel">Conversa sobre acompanhamento individual</span><h2>Vale avaliar se um acompanhamento mais próximo faz sentido para você.</h2><p>${focusText}</p><p>O acompanhamento individual com Ravel é organizado em <strong>4 sessões, uma por semana</strong>. A conversa inicial serve para entender seu contexto e verificar se existe alinhamento; ela não obriga você a contratar nem garante uma vaga.</p><div class="meetingFacts"><strong>Próximo passo:</strong> fale pelo WhatsApp para solicitar uma conversa. A agenda e a adequação do acompanhamento serão avaliadas individualmente.</div><div class="resultActions"><a class="button" target="_blank" rel="noreferrer" href="https://wa.me/5574999943621?text=${encodeURIComponent(`Olá, Ravel. Preenchi o quiz do Código Interno e gostaria de conversar sobre a possibilidade do acompanhamento de 4 sessões.`)}">Solicitar uma conversa →</a></div>${bundleOffer}</article>`:`<article class="resultCard"><p class="eyebrow">RECOMENDAÇÃO PARA O SEU MOMENTO</p><span class="routeLabel">Combo de leituras · acesso na plataforma</span><h2>Um percurso estruturado pode ajudar você a observar esse padrão com mais clareza.</h2><p>${focusText}</p>${bundleOffer}</article>`;result.scrollIntoView({behavior:"smooth",block:"start"});}
-    form.addEventListener("submit",async event=>{event.preventDefault();if(sending)return;rebuildQuestions();if(index<visibleQuestions.length-1){if(valid(visibleQuestions[index]))move(1);return;}if(!valid(visibleQuestions[index])){showError("Confirme o aviso de privacidade para continuar.");return;}if(document.getElementById("website").value){showResult("readings");return;}sending=true;finish.disabled=true;finish.textContent="Salvando suas respostas…";hideError();const attributionData=attribution();const payload={quizVersion:"consultative-v2",name:answers.name,email:answers.email,whatsapp:answers.whatsapp,answers:{trigger:answers.trigger,situation:answers.situation,focus:answers.focus,pattern:answers.pattern,impact:answers.impact,tried:answers.tried,unclear:answers.unclear,concern:answers.concern,desiredClarity:answers.desiredClarity,urgency:answers.urgency},privacyAccepted:answers.privacyAccepted,emailMarketingConsent:answers.emailMarketingConsent,whatsappMarketingConsent:answers.whatsappMarketingConsent,referralCode:attributionData.referralCode,utm:attributionData.utm,website:document.getElementById("website").value};try{const response=await fetch(API_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)});const data=await response.json();if(!response.ok||!data.ok)throw new Error(data.error||"Não foi possível salvar suas respostas.");showResult(data.destination,data.leadId);}catch(err){showError(err instanceof Error?err.message:"Falha ao enviar. Confira sua conexão e tente novamente.");}finally{sending=false;finish.textContent="Ver minha recomendação →";updateButtons();}});
+    function move(delta){if(!valid(questions[index]))return;index=Math.max(0,Math.min(questions.length-1,index+delta));hideError();render();step.scrollIntoView({behavior:"smooth",block:"start"});}
+    next.addEventListener("click",function(){move(1);});back.addEventListener("click",function(){move(-1);});
+    function attribution(){var params=new URLSearchParams(location.search),utm={};["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(function(key){var value=params.get(key);if(value)utm[key.replace("utm_","")]=value.slice(0,160);});return{utm:utm,referralCode:params.get("ref")||""};}
+    function showResult(){
+      form.hidden=true;document.getElementById("intro").hidden=true;result.hidden=false;
+      document.cookie="ci_quiz_email="+encodeURIComponent(answers.email.trim().toLowerCase())+"; Domain=.ocodigointerno.com.br; Path=/; Max-Age=604800; SameSite=Lax; Secure";
+      var focusCopy={personal:"Você trouxe uma questão da vida pessoal.",relationships:"Você percebe algo importante nas relações.",professional:"Você apontou uma questão profissional ou do seu negócio.",financial:"Você destacou uma preocupação financeira.",multiple:"Você percebe que isso atravessa mais de uma área."};
+      var focusText=focusCopy[answers.focus]||"Suas respostas mostram que existe algo importante que você quer compreender melhor.";
+      result.innerHTML='<article class="resultCard"><p class="eyebrow">O PRÓXIMO PASSO</p><span class="routeLabel">O Código Interno · método personalizado</span><h2>Você não está procurando mais um curso para deixar parado.</h2><p>'+escapeHtml(focusText)+' O que você descreveu merece mais do que uma resposta genérica: merece um caminho para observar os padrões por trás das escolhas e experimentar novos movimentos.</p><p>O Código Interno é um ambiente de autoajuda guiada: você aprende a reconhecer gatilhos de proteção, níveis de maturidade e padrões que invadem o núcleo emocional; pratica um sistema de decisão mais claro e realiza dinâmicas guiadas de limpeza emocional.</p><p>As dinâmicas que você vê nos meus Reels ganham profundidade dentro do método. Nas leituras simbólicas, eu analiso suas respostas e preparo pessoalmente uma devolutiva escrita — uma experiência individualizada, próxima da atenção de um atendimento comigo, dentro de uma jornada que você percorre no seu ritmo.</p><div class="bundle"><p class="eyebrow">CONDIÇÃO PROMOCIONAL APRESENTADA AGORA</p><h3>Você chegou até aqui porque esse tema já chamou sua atenção. Aproveite o momento para transformar essa curiosidade em um passo concreto.</h3><p>O valor regular é <del>R$ 997</del>. A condição promocional apresentada agora é <strong>12x de R$ 29,70 no cartão</strong>.</p><ul><li>Quatro dinâmicas e conteúdos de apoio</li><li>Práticas guiadas para levar a experiência adiante</li><li>Leituras simbólicas analisadas e revisadas pessoalmente por Ravel</li><li>Um método para reconhecer padrões e orientar suas decisões</li></ul><p class="privacy">Confira as condições completas no checkout.</p><div class="resultActions"><a class="button" href="https://ocodigointerno.com.br/dinamica">Experimentar gratuitamente</a><a class="button secondary" href="https://ocodigointerno.com.br/">Comprar o Código Interno →</a></div></div></article>';
+      result.scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    form.addEventListener("submit",async function(event){
+      event.preventDefault();if(sending)return;if(index<questions.length-1){move(1);return;}if(!valid(questions[index])){showError("Confira seus contatos e confirme o aviso de privacidade para continuar.");return;}if(document.getElementById("website").value){showResult();return;}
+      sending=true;finish.disabled=true;finish.textContent="Salvando suas respostas…";hideError();var source=attribution();
+      var payload={quizVersion:"consultative-v2",name:answers.name,email:answers.email,whatsapp:answers.whatsapp,answers:{trigger:answers.trigger,situation:answers.situation,focus:answers.focus,pattern:answers.pattern,impact:answers.impact,tried:answers.tried,unclear:answers.unclear,priority:answers.priority,desiredClarity:answers.desiredClarity,urgency:answers.urgency},privacyAccepted:answers.privacyAccepted,emailMarketingConsent:answers.emailMarketingConsent,whatsappMarketingConsent:answers.whatsappMarketingConsent,referralCode:source.referralCode,utm:source.utm,website:document.getElementById("website").value};
+      try{var response=await fetch(API_URL,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)});var data=await response.json();if(!response.ok||!data.ok)throw new Error(data.error||"Não foi possível salvar suas respostas.");showResult();}catch(err){showError(err instanceof Error?err.message:"Falha ao enviar. Confira sua conexão e tente novamente.");}finally{sending=false;finish.textContent="Ver O Código Interno →";updateButtons();}
+    });
     render();
-  </script>
-  <script>
-    showResult = function(destination, leadId) {
-      form.hidden = true;
-      document.getElementById("intro").hidden = true;
-      result.hidden = false;
-      document.cookie = `ci_quiz_email=${encodeURIComponent(answers.email.trim().toLowerCase())}; Domain=.ocodigointerno.com.br; Path=/; Max-Age=604800; SameSite=Lax; Secure`;
-
-      const focusCopy = {
-        personal: "Você destacou um tema que aparece na vida pessoal. Um percurso gradual pode ajudar a observar os padrões envolvidos e escolher por onde começar.",
-        professional: "Você destacou uma questão profissional. As leituras podem organizar os padrões percebidos e oferecer um ponto de partida para refletir sobre suas decisões.",
-        financial: "Você destacou uma questão financeira. O Mapa e Movimento amplia a observação dos padrões relacionados às escolhas, sem prometer resultados financeiros.",
-        relationships: "Você destacou repetições nas relações. A sequência de leituras ajuda a examinar o que se repete e quais movimentos podem ser observados.",
-        clarity: "Você ainda está buscando nomear o que acontece. Começar por uma leitura progressiva pode ajudar a organizar essa percepção."
-      };
-      const focusText = focusCopy[answers.focus] || "Suas respostas ajudam a orientar uma próxima etapa compatível com o momento que você descreveu.";
-
-      const routeText = destination === "meeting"
-        ? "Pelas suas respostas, uma conversa pode ser um bom primeiro passo para entender seu contexto e avaliar qual caminho faz sentido."
-        : "Pelas suas respostas, as leituras podem ser um caminho interessante. Se quiser, conversamos para eu explicar como funcionam e ajudar você a escolher.";
-      result.innerHTML = `<article class="resultCard">
-        <p class="eyebrow">SUA RECOMENDAÇÃO</p>
-        <span class="routeLabel">${destination === "meeting" ? "Conversa individual" : "Combo de leituras"}</span>
-        <h2>Antes de decidir, vamos conversar?</h2>
-        <p>${escapeHtml(focusText)}</p>
-        <p>${routeText}</p>
-        <div class="bundle salesFlow">
-          <p class="eyebrow">PRÓXIMO PASSO</p>
-          <h3>Você teria disponibilidade para conversar comigo pelo WhatsApp sobre o caminho mais adequado para você?</h3>
-          <div class="resultActions">
-            <button class="button" type="button" data-conversation-choice="yes">SIM, PODE ME CHAMAR</button>
-            <button class="button secondary" type="button" data-conversation-choice="no">AGORA NÃO</button>
-          </div>
-        </div>
-      </article>`;
-
-      result.onclick = async (event) => {
-        const button = event.target.closest("[data-conversation-choice]");
-        if (!button) return;
-        const flow = button.closest(".salesFlow");
-        if (!flow) return;
-        const available = button.dataset.conversationChoice === "yes";
-        flow.querySelectorAll("button").forEach((item) => { item.disabled = true; });
-        try {
-          const response = await fetch(API_URL, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ action: "conversation", leadId: leadId || "", email: answers.email, available })
-          });
-          const saved = await response.json();
-          if (!response.ok || !saved.ok) throw new Error(saved.error || "Não foi possível registrar sua resposta.");
-          if (available) {
-            const firstName = answers.name.trim().split(/\s+/)[0];
-            const message = `Olá, Ravel. Sou ${firstName} e acabei de preencher o quiz do Código Interno. Gostaria de conversar sobre ${destination === "meeting" ? "o acompanhamento individual" : "as leituras"} e entender qual caminho faz mais sentido para mim.`;
-            flow.innerHTML = `<p class="eyebrow">DISPONIBILIDADE REGISTRADA</p><h3>Obrigado. Marquei que você tem disponibilidade para conversar.</h3><p>Suas respostas ficaram salvas para eu localizar seu contato. Se quiser adiantar a conversa, pode me chamar agora pelo WhatsApp.</p><div class="resultActions"><a class="button" target="_blank" rel="noreferrer" href="https://wa.me/5574999943621?text=${encodeURIComponent(message)}">ABRIR WHATSAPP →</a></div>`;
-          } else {
-            flow.innerHTML = `<p class="eyebrow">OBRIGADO PELAS SUAS RESPOSTAS</p><h3>Sem problema. Você pode retomar essa conversa quando for melhor para você.</h3><p>Suas respostas continuam registradas e não vamos encaminhar você ao checkout agora.</p>`;
-          }
-        } catch (error) {
-          flow.querySelectorAll("button").forEach((item) => { item.disabled = false; });
-          const message = error instanceof Error ? error.message : "Tente novamente em instantes.";
-          showError(message);
-        }
-      };
-
-      result.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
   </script>
 </body>
 </html>
