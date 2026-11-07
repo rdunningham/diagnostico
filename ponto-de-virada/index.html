@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a0702">
+  <meta name="description" content="Uma jornada interativa para olhar sua vida financeira com mais clareza e escolher um próximo passo possível.">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://ocodigointerno.com.br/assets/favicon-32-v1.png?v=20261105">
+  <title>O Ponto de Virada — Código da Prosperidade</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="O Código Interno">
+  <meta property="og:title" content="O Ponto de Virada — Código da Prosperidade">
+  <meta property="og:description" content="Uma experiência guiada para olhar suas escolhas financeiras e encontrar um próximo passo possível.">
+  <meta property="og:url" content="https://ocodigointerno.com.br/ponto-de-virada/">
+  <meta property="og:image" content="https://ocodigointerno.com.br/assets/og-codigo-interno-v2.png?v=20261107">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#0a0702;--panel:#151108;--gold:#c9a84c;--light:#e8c96a;--cream:#f2e8d0;--muted:#aaa18f;--line:#c9a84c40;--soft:#c8bfad}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}.shell{width:min(100% - 34px,850px);margin:auto}.top{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}.topnote,.eyebrow,.progressText{font:500 9px 'Cinzel',serif;letter-spacing:.18em;color:var(--gold)}.intro{padding:clamp(42px,8vw,78px) 0 28px}.eyebrow{margin:0 0 15px}h1{font:300 clamp(43px,8vw,82px)/.96 'Cormorant Garamond',serif;max-width:760px;margin:0 0 16px;letter-spacing:-.02em}h1 em{color:var(--light)}.lede{max-width:620px;color:var(--soft);font-size:15px;line-height:1.75;margin:0}.promise{display:flex;gap:10px 20px;flex-wrap:wrap;margin-top:23px;color:var(--muted);font-size:11px}.promise span:before{content:'✦';color:var(--gold);margin-right:7px}.card{max-width:730px;margin:22px auto 55px;padding:clamp(22px,5vw,42px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08)}.progress{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px}.progress strong{font:500 10px 'Cinzel',serif;color:var(--light)}.track{height:2px;margin:13px 0 28px;background:#332b19}.track i{display:block;width:0;height:100%;background:var(--gold);transition:width .25s}.question{min-height:286px;animation:in .22s ease}@keyframes in{from{opacity:.5;transform:translateY(5px)}to{opacity:1;transform:none}}h2{font:400 clamp(31px,5vw,48px)/1.06 'Cormorant Garamond',serif;margin:10px 0 8px}.helper{margin:0 0 17px;color:var(--muted);font-size:13px;line-height:1.6}.options{display:grid;gap:9px;margin:19px 0 0}.choice{display:flex;align-items:center;gap:12px;min-height:55px;padding:13px 15px;border:1px solid var(--line);background:#100d08;color:var(--soft);font-size:14px;line-height:1.45;cursor:pointer;transition:.16s}.choice:hover{border-color:#c9a84c99}.choice:has(input:checked){background:#c9a84c16;border-color:var(--gold);color:var(--cream)}.choice input{flex:none;accent-color:var(--gold);width:17px;height:17px}.textInput{display:block;width:100%;min-height:105px;resize:vertical;padding:14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px/1.65 'DM Sans',sans-serif}.textInput:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}.controls{display:flex;justify-content:space-between;gap:12px;margin-top:24px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:49px;padding:13px 18px;border:1px solid var(--gold);background:var(--gold);color:#0a0702;font:600 10px 'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;text-align:center;cursor:pointer}.btn.secondary{background:transparent;border-color:#51462b;color:var(--cream)}.btn:hover:not(:disabled){filter:brightness(1.08)}.btn:disabled{opacity:.4;cursor:not-allowed}.result[hidden]{display:none}.result{animation:in .25s ease}.result .eyebrow{margin-bottom:12px}.result h2{font-size:clamp(36px,6vw,54px)}.result p{color:var(--soft);font-size:14px;line-height:1.8}.insight{padding:16px 18px;margin:19px 0;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--cream);font:400 25px/1.2 'Cormorant Garamond',serif}.offer{margin-top:25px;padding-top:23px;border-top:1px solid var(--line)}.offer h3{font:400 clamp(28px,4vw,39px)/1.05 'Cormorant Garamond',serif;margin:0 0 9px}.items{display:grid;gap:9px;margin:18px 0;color:var(--soft);font-size:13px}.items span:before{content:'✦';color:var(--gold);margin-right:9px}.price{display:flex;align-items:baseline;gap:10px;margin:17px 0 4px}.price strong{color:var(--light);font:400 48px 'Cormorant Garamond',serif}.price small{color:var(--muted);font-size:12px}.buy{width:100%;min-height:58px;margin-top:15px;font-size:11px}.fine{color:#817969;font-size:10px;line-height:1.7;margin:13px 0 0}.notice{display:none;margin-top:12px;padding:12px;border-left:2px solid var(--gold);background:#c9a84c10;color:var(--soft);font-size:12px;line-height:1.6}.notice.show{display:block}.footer{border-top:1px solid var(--line);padding:18px 0 28px;color:#797262;font-size:10px;letter-spacing:.08em}.error{color:#ffb7a9;font-size:12px;min-height:18px;margin:12px 0 0}.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:600px){.shell{width:calc(100% - 26px)}.top{height:66px}.topnote{font-size:7px}.intro{padding-top:39px}.lede{font-size:14px}.card{padding:21px 17px;margin-top:12px}.question{min-height:300px}.choice{font-size:13px}.controls{position:sticky;bottom:0;padding:12px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 22%)}.btn{flex:1}.result .buy{position:static}.price strong{font-size:44px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><a class="brand" href="/">O Código <span>Interno</span></a><span class="topnote">UMA EXPERIÊNCIA GUIADA</span></header>
+    <section class="intro" id="intro">
+      <p class="eyebrow">O PONTO DE VIRADA · CÓDIGO DA PROSPERIDADE</p>
+      <h1>Qual pode ser o seu <em>próximo passo?</em></h1>
+      <p class="lede">Responda com sinceridade. São perguntas simples para olhar o que acontece com seu dinheiro, suas escolhas e as oportunidades que aparecem. No fim, você decide se quer fazer a experiência guiada.</p>
+      <div class="promise"><span>Uma pergunta por vez</span><span>Leva poucos minutos</span><span>Não existe resposta certa</span></div>
+    </section>
+    <section class="card" aria-label="Experiência interativa">
+      <div id="flow">
+        <div class="progress"><span id="stage" class="progressText">SEU MOMENTO</span><strong id="count">1 / 8</strong></div>
+        <div class="track" role="progressbar" aria-label="Progresso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="bar"></i></div>
+        <section id="question" class="question" aria-live="polite"></section>
+        <p id="error" class="error" role="alert"></p>
+        <div class="controls"><button id="back" class="btn secondary" type="button">← Voltar</button><button id="next" class="btn" type="button" disabled>Continuar →</button></div>
+      </div>
+      <section id="result" class="result" hidden aria-live="polite"></section>
+    </section>
+    <p class="fine">Esta experiência é de reflexão e desenvolvimento pessoal. Ela não promete renda, não prevê resultados financeiros e não substitui orientação financeira profissional.</p>
+    <footer class="footer">O Código Interno · Ravel Dunningham · Brasil</footer>
+  </main>
+  <script>
+    // Insira o link de pagamento da InfinitePay depois que ele for criado.
+    const CHECKOUT_URL = "INSERIR_LINK_DO_CHECKOUT_AQUI";
+    const questions = [
+      {key:"now",stage:"OLHE PARA AGORA",title:"Quando você pensa no seu dinheiro hoje, o que mais pesa?",options:[["short","O dinheiro acaba antes do mês"],["work","Trabalho bastante, mas queria ganhar melhor"],["avoid","Evito olhar para contas e números"],["ideas","Tenho ideias, mas não sei por onde começar"]]},
+      {key:"repeat",stage:"O QUE SE REPETE",title:"Qual dessas cenas parece mais com você?",options:[["chance","Uma chance aparece e eu deixo passar"],["begin","Começo algo, mas paro no meio"],["charge","Tenho dificuldade de cobrar o que meu trabalho vale"],["unknown","Ainda não sei dizer o que se repete"]]},
+      {key:"chance",stage:"UMA CHANCE REAL",title:"Lembre de uma chance recente de ganhar ou guardar dinheiro. O que você fez?",options:[["took","Aproveitei"],["waited","Esperei tanto que passou"],["fear","Quis tentar, mas fiquei com medo"],["none","Não lembro de uma chance recente"]]},
+      {key:"thought",stage:"O QUE VOCÊ PENSA",title:"Qual frase aparece mais quando você pensa em mudar isso?",options:[["fail","“E se eu tentar e der errado?”"],["later","“Depois eu vejo.”"],["ready","“Preciso estar mais preparado.”"],["start","“Posso começar com o que tenho.”"]]},
+      {key:"tried",stage:"O QUE JÁ TENTOU",title:"O que você já tentou fazer para melhorar sua vida financeira?",options:[["work","Trabalhar mais"],["learn","Fazer curso ou aprender algo novo"],["plan","Fazer planos e organizar as contas"],["startstop","Comecei uma ideia, mas parei"],["nothing","Ainda não tentei com um plano claro"]]},
+      {key:"same",stage:"O QUE AINDA ESTÁ IGUAL",title:"Depois de tudo isso, o que ainda continua difícil?",options:[["start","Não sei por onde começar"],["persist","Sei o que fazer, mas não consigo continuar"],["show","Tenho algo bom, mas não mostro para as pessoas"],["understand","Ainda não entendi o que me faz parar"]]},
+      {key:"resource",stage:"O QUE VOCÊ JÁ TEM",title:"O que alguém já elogiou ou pediu sua ajuda para fazer?",options:[["skill","Uma coisa que sei fazer bem"],["idea","Uma ideia ou conselho"],["service","Um trabalho ou serviço que eu poderia oferecer"],["unknown","Ainda não sei"]]},
+      {key:"move",stage:"SEU PRÓXIMO MOVIMENTO",title:"Se você pudesse escolher um passo pequeno para hoje, qual seria?",options:[["offer","Falar com alguém sobre o que posso oferecer"],["ask","Perguntar sobre uma oportunidade"],["organize","Olhar para uma conta ou decisão que venho evitando"],["find","Primeiro, preciso entender melhor o que está acontecendo"]]}
+    ];
+    const answers={};let index=0;
+    const questionEl=document.getElementById("question"),next=document.getElementById("next"),back=document.getElementById("back"),error=document.getElementById("error");
+    const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    function render(){const q=questions[index];document.getElementById("stage").textContent=q.stage;document.getElementById("count").textContent=`${index+1} / ${questions.length}`;const pct=Math.round((index+1)/questions.length*100);document.getElementById("bar").style.width=pct+"%";document.querySelector(".track").setAttribute("aria-valuenow",String(pct));questionEl.innerHTML=`<h2>${esc(q.title)}</h2><div class="options">${q.options.map(([value,label])=>`<label class="choice"><input type="radio" name="${q.key}" value="${value}" ${answers[q.key]===value?"checked":""}><span>${esc(label)}</span></label>`).join("")}</div>`;questionEl.querySelectorAll("input").forEach(el=>el.addEventListener("change",()=>{answers[q.key]=el.value;error.textContent="";next.disabled=false;}));back.hidden=index===0;next.textContent=index===questions.length-1?"Ver meu próximo passo →":"Continuar →";next.disabled=!answers[q.key];questionEl.scrollIntoView({behavior:"smooth",block:"nearest"});}
+    back.addEventListener("click",()=>{if(index>0){index--;render();}});
+    next.addEventListener("click",()=>{if(!answers[questions[index].key]){error.textContent="Escolha uma resposta para continuar.";return;}if(index<questions.length-1){index++;render();return;}showOffer();});
+    function showOffer(){document.getElementById("flow").hidden=true;document.getElementById("intro").hidden=true;const result=document.getElementById("result");result.hidden=false;const q=answers.move==="offer"?"Você já apontou um passo que pode testar.":answers.move==="ask"?"Você já sabe que conversa pode abrir um caminho.":answers.move==="organize"?"Você já escolheu algo concreto para olhar de frente.":"Você percebeu que quer entender melhor antes de escolher.";result.innerHTML=`<p class="eyebrow">SEU PRÓXIMO PASSO</p><h2>Você não precisa resolver tudo hoje.</h2><div class="insight">${esc(q)} O importante é não deixar essa resposta se perder no meio do dia.</div><p>O Ponto de Virada é uma experiência guiada de cerca de 12 minutos. Você vai imaginar um caminho, observar o que aparece diante de uma oportunidade e escolher uma ação possível para as próximas 24 horas.</p><div class="items"><span>Áudio guiado com cinco momentos</span><span>Perguntas para registrar o que você percebeu</span><span>Uma decisão prática para levar à vida real</span><span>Suas respostas organizadas para salvar em PDF</span></div><p>Não é uma promessa de dinheiro fácil. É um espaço curto para olhar para suas escolhas e decidir o que fazer em seguida.</p><div class="offer"><p class="eyebrow">O PONTO DE VIRADA · CÓDIGO DA PROSPERIDADE</p><h3>Faça a experiência enquanto essa pergunta ainda está viva para você.</h3><div class="price"><strong>R$ 27,90</strong><small>pagamento único</small></div><button class="btn buy" id="buy" type="button">Quero fazer a experiência agora →</button><p class="fine">O acesso será enviado ao e-mail usado na compra. Confira os detalhes no checkout.</p><div class="notice" id="notice">O botão de pagamento será conectado assim que você me enviar o link da InfinitePay.</div></div>`;document.getElementById("buy").addEventListener("click",()=>{if(CHECKOUT_URL.startsWith("https://")){location.assign(CHECKOUT_URL);}else{document.getElementById("notice").classList.add("show");}});result.scrollIntoView({behavior:"smooth",block:"start"});}
+    render();
+  </script>
+</body>
+</html>
