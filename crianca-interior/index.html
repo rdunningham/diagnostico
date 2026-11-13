@@ -38,6 +38,8 @@
     .closing{max-width:610px;margin:22px auto 0;color:var(--light);font:500 clamp(25px,3.8vw,32px)/1.25 'Cormorant Garamond',serif}
     .closing span{display:block;margin-top:8px;color:var(--soft);font:300 15px/1.7 'DM Sans',sans-serif}
     .pricing{max-width:610px;margin:29px auto 0;padding-top:24px;border-top:1px solid var(--line)}
+    .offerDescription{margin:20px 0 24px;padding:18px 20px;border:1px solid var(--line);background:linear-gradient(135deg,#c9a84c12,#c9a84c05);color:var(--soft);font-size:14px;line-height:1.7;text-align:left}
+    .priceIntro{margin:0 auto 15px;padding:13px 16px;border-left:3px solid var(--gold);background:#c9a84c18;color:var(--light);font:500 13px/1.5 'Cinzel',serif;letter-spacing:.07em;text-align:left;text-transform:uppercase}
     .price{margin:0 0 4px;color:var(--light);font:400 clamp(46px,8vw,60px)/1 'Cormorant Garamond',serif}
     .payment{margin:9px 0 22px;color:var(--muted);font-size:12px;letter-spacing:.04em}
     .payment small{display:block;margin-top:5px;color:#928979;font-size:10px;letter-spacing:0}
@@ -49,7 +51,7 @@
     .notice{min-height:20px;margin:10px 0 0;color:#ffb7a9;font-size:12px;text-align:left}
     .legal{max-width:570px;margin:18px auto 0;color:#928979;font-size:11px;line-height:1.65}
     footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}
-    @media(max-width:520px){header{height:66px}.label{font-size:7px}.card{padding:27px 20px}.lead{font-size:21px;padding:13px 15px;margin-top:19px}.copy{font-size:14px;line-height:1.7;margin-top:20px}.copy p+p{margin-top:14px}.question{margin-top:23px;font-size:24px}.closing{margin-top:19px;font-size:26px}.closing span{font-size:14px}.pricing{margin-top:26px;padding-top:22px}.cta{font-size:10px;line-height:1.5}}
+    @media(max-width:520px){header{height:66px}.label{font-size:7px}.card{padding:27px 20px}.lead{font-size:21px;padding:13px 15px;margin-top:19px}.copy{font-size:14px;line-height:1.7;margin-top:20px}.copy p+p{margin-top:14px}.question{margin-top:23px;font-size:24px}.closing{margin-top:19px;font-size:26px}.closing span{font-size:14px}.pricing{margin-top:26px;padding-top:22px}.offerDescription{margin:18px 0 21px;padding:15px 16px;font-size:13px}.priceIntro{font-size:11px;padding:12px 13px}.cta{font-size:10px;line-height:1.5}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
@@ -74,9 +76,11 @@
         <p class="question"><strong>E se você pudesse oferecer hoje o cuidado que tanto precisou um dia?</strong></p>
         <p class="closing"><strong>Está na hora de cuidar de quem você precisou deixar para trás.</strong><span>Você não pode mudar o que viveu. Mas pode mudar a forma como cuida de si hoje.</span></p>
         <div class="pricing">
-          <div class="price">R$ 19,90</div>
-          <p class="payment">no Pix <small>ou até 12x de R$ 1,99</small></p>
           <form id="buyForm" novalidate>
+            <p class="priceIntro">Acesse essa experiência imersiva por apenas</p>
+            <div class="price">R$ 19,90</div>
+            <p class="payment">no Pix <small>ou até 12x de R$ 1,99</small></p>
+            <p class="offerDescription">Uma experiência guiada em áudio para acolher sua criança interior.</p>
             <label class="email-label" for="email">Seu e-mail para receber o acesso</label>
             <input class="email-input" id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com">
             <button class="cta" id="buyButton" type="submit">Quero acolher minha Criança Interior →</button>
