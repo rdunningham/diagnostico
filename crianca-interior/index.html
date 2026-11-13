@@ -2,53 +2,105 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#100d08">
-  <meta name="description" content="Uma experiência guiada de acolhimento e proteção. Ouça no seu ritmo, registre o que percebeu e escolha um pequeno cuidado para esta semana.">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="pt_BR">
-  <meta property="og:title" content="A Criança Interior · O Código Interno">
-  <meta property="og:description" content="Uma experiência guiada para encontrar uma imagem de cuidado e escolher um gesto possível para esta semana.">
-  <link rel="icon" href="../assets/favicon-32-v1.png" type="image/png">
-  <title>A Criança Interior — O Código Interno</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0702">
+  <meta name="description" content="Uma experiência guiada de acolhimento para olhar com cuidado para a criança que você foi e escolher um gesto possível para si hoje.">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://ocodigointerno.com.br/assets/favicon-32-v1.png?v=20261108">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://ocodigointerno.com.br/assets/apple-touch-icon-v1.png?v=20261108">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="O Código Interno">
+  <meta property="og:title" content="A Criança Interior — O Código Interno">
+  <meta property="og:description" content="Você cresceu. Mas talvez ainda esteja esperando receber o cuidado que precisava quando era pequeno.">
+  <meta property="og:url" content="https://ocodigointerno.com.br/crianca-interior/">
+  <title>A Criança Interior — O Código Interno</title>
   <style>
-    :root{--ink:#100d08;--panel:#17130c;--cream:#f2e8d0;--muted:#b9b0a0;--gold:#c9a84c;--line:#c9a84c45}*{box-sizing:border-box}body{margin:0;background:#f5f0e8;color:var(--cream);font-family:"DM Sans",Arial,sans-serif}.page{width:min(100% - 36px,1000px);margin:34px auto;background:var(--ink);border:1px solid var(--line);box-shadow:0 22px 80px #100d0818}.hero{padding:clamp(38px,7vw,82px) clamp(22px,7vw,84px) 42px;text-align:center}.brand{font:500 14px "Cinzel",serif;letter-spacing:.12em}.brand b{color:var(--gold)}.eyebrow{margin:58px 0 16px;color:var(--gold);font:500 11px "Cinzel",serif;letter-spacing:.28em;text-transform:uppercase}.hero h1{max-width:800px;margin:0 auto 20px;font:400 clamp(45px,8vw,82px)/.98 "Cormorant Garamond",Georgia,serif;letter-spacing:-.025em}.hero h1 em{color:#e8c96a}.intro{max-width:620px;margin:0 auto;color:var(--muted);font-size:17px;line-height:1.8}.promise{max-width:680px;margin:35px auto 0;padding:20px 24px;text-align:left;border-left:2px solid var(--gold);background:#c9a84c0c;color:#ddd3bf;font-size:14px;line-height:1.75}.offer{padding:30px 22px 40px;text-align:center;border-top:1px solid #c9a84c25;background:linear-gradient(180deg,#c9a84c08,transparent)}.price{font:400 clamp(48px,8vw,68px) "Cormorant Garamond",Georgia,serif;color:#e8c96a}.price-note{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#a79d8b}.form{width:min(100%,620px);margin:24px auto 0;text-align:left}.form label{display:block;margin-bottom:8px;color:#e8dfcf;font-size:12px;font-weight:600}.form input{width:100%;min-height:54px;padding:15px 16px;background:#17130c;color:var(--cream);border:1px solid var(--line);font:15px "DM Sans",sans-serif}.form input:focus{outline:1px solid var(--gold)}.form button{width:100%;min-height:58px;margin-top:12px;padding:14px;background:var(--gold);border:0;color:#100d08;font:600 12px "Cinzel",serif;letter-spacing:.1em;cursor:pointer}.form button:disabled{opacity:.6}.notice{min-height:20px;margin:12px 0 0;color:#e8c96a;font-size:12px}.one-time{margin:12px 0;color:#958b7a;font-size:11px}.details{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--line)}.details article{padding:25px;background:#141008}.details b{display:block;margin-bottom:7px;color:var(--gold);font:500 11px "Cinzel",serif;letter-spacing:.12em}.details p{margin:0;color:#b9b0a0;font-size:13px;line-height:1.6}.safety{padding:26px clamp(22px,7vw,84px);border-top:1px solid #c9a84c25;color:#8d8476;text-align:center;font-size:11px;line-height:1.7}.footer{padding:16px;text-align:center;color:#847b6d;font-size:10px;border-top:1px solid #c9a84c25}@media(max-width:650px){.page{width:100%;margin:0;border-left:0;border-right:0}.hero{padding-top:38px}.eyebrow{margin-top:40px}.intro{font-size:15px}.promise{font-size:13px}.details{grid-template-columns:1fr}.details article{padding:18px 22px}}
+    :root{color-scheme:dark;--bg:#0a0702;--panel:#151108;--gold:#c9a84c;--light:#e8c96a;--cream:#f2e8d0;--muted:#aaa18f;--line:#c9a84c40;--soft:#c8bfad}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
+    .shell{width:min(100% - 32px,760px);min-height:100svh;margin:auto;display:flex;flex-direction:column}
+    header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}
+    .label,.eyebrow{font:500 9px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:58px 0}
+    .card{width:100%;padding:clamp(27px,6vw,58px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08);text-align:center}
+    .symbol{width:54px;height:54px;margin:0 auto 24px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--light);font:24px 'Cormorant Garamond',serif}
+    .eyebrow{margin:0 0 16px}
+    h1{max-width:680px;margin:0 auto;color:var(--cream);font:300 clamp(38px,6vw,60px)/1.05 'Cormorant Garamond',serif;letter-spacing:-.02em}
+    .lead{max-width:610px;margin:24px auto 0;padding:15px 18px;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--cream);font:500 clamp(20px,3.1vw,24px)/1.4 'Cormorant Garamond',serif;text-align:left}
+    .copy{max-width:610px;margin:24px auto 0;color:var(--soft);font-size:15px;line-height:1.75;text-align:left}
+    .copy p{margin:0}.copy p+p{margin-top:16px}
+    .copy .short-lines{padding-left:17px;border-left:1px solid var(--line);color:#ddd3bf}
+    .question{max-width:610px;margin:26px auto 0;color:var(--cream);font:500 clamp(22px,3.3vw,28px)/1.35 'Cormorant Garamond',serif}
+    .closing{max-width:610px;margin:22px auto 0;color:var(--light);font:500 clamp(25px,3.8vw,32px)/1.25 'Cormorant Garamond',serif}
+    .closing span{display:block;margin-top:8px;color:var(--soft);font:300 15px/1.7 'DM Sans',sans-serif}
+    .pricing{max-width:610px;margin:29px auto 0;padding-top:24px;border-top:1px solid var(--line)}
+    .price{margin:0 0 4px;color:var(--light);font:400 clamp(46px,8vw,60px)/1 'Cormorant Garamond',serif}
+    .payment{margin:9px 0 22px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .email-label{display:block;margin:20px 0 7px;color:var(--soft);font-size:12px;text-align:left}
+    .email-input{display:block;width:100%;min-height:52px;padding:13px 14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px 'DM Sans',sans-serif}
+    .email-input:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}
+    .cta{display:flex;width:100%;min-height:58px;align-items:center;justify-content:center;margin-top:13px;padding:16px 22px;border:0;background:var(--gold);color:#0a0702;font:600 11px 'Cinzel',serif;letter-spacing:.09em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:filter .18s ease}
+    .cta:hover{filter:brightness(1.1)}.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}.cta:disabled{opacity:.6;cursor:wait}
+    .notice{min-height:20px;margin:10px 0 0;color:#ffb7a9;font-size:12px;text-align:left}
+    .legal{max-width:570px;margin:18px auto 0;color:#928979;font-size:11px;line-height:1.65}
+    footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}
+    @media(max-width:520px){header{height:66px}.label{font-size:7px}.card{padding:27px 20px}.lead{font-size:21px;padding:13px 15px;margin-top:19px}.copy{font-size:14px;line-height:1.7;margin-top:20px}.copy p+p{margin-top:14px}.question{margin-top:23px;font-size:24px}.closing{margin-top:19px;font-size:26px}.closing span{font-size:14px}.pricing{margin-top:26px;padding-top:22px}.cta{font-size:10px;line-height:1.5}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <div class="brand">O CÓDIGO <b>INTERNO</b></div>
-      <p class="eyebrow">EXPERIÊNCIA GUIADA DE ACOLHIMENTO E PROTEÇÃO</p>
-      <h1>Um encontro com a parte sua que ainda <em>espera por cuidado.</em></h1>
-      <p class="intro">Em dez minutos, uma dinâmica guiada convida você a imaginar uma casa, encontrar uma criança e escolher um gesto simples de proteção para levar à sua semana.</p>
-      <p class="promise">Você não precisa lembrar de algo difícil nem encontrar uma resposta perfeita. Pode acompanhar a experiência no seu ritmo, registrar o que percebeu e interromper quando quiser.</p>
-    </section>
-    <section class="offer" id="acesso">
-      <div class="price">R$ 19,90</div>
-      <div class="price-note">pagamento único · acesso à experiência guiada</div>
-      <form class="form" id="buyForm">
-        <label for="email">Seu e-mail para vincular o acesso</label>
-        <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com">
-        <button id="buyButton" type="submit">ACESSAR A EXPERIÊNCIA →</button>
-        <p class="notice" id="notice" role="status"></p>
-      </form>
-      <p class="one-time">Depois do pagamento, você entra com este e-mail na área de membros.</p>
-    </section>
-    <section class="details" aria-label="O que está incluído">
-      <article><b>OUÇA</b><p>Uma experiência guiada de cerca de dez minutos, feita para acompanhar no seu ritmo.</p></article>
-      <article><b>REGISTRE</b><p>Sete perguntas simples para guardar o que você percebeu e o cuidado que escolheu.</p></article>
-      <article><b>ESCOLHA</b><p>Salve seu registro em PDF ou, se desejar, peça uma leitura individual escrita por Ravel.</p></article>
-    </section>
-    <aside class="safety">A dinâmica é de acolhimento simbólico. Você pode manter os olhos abertos, interromper o exercício ou voltar a prestar atenção ao ambiente sempre que quiser. Caso surjam emoções intensas, não precisa continuar. A experiência não substitui acompanhamento psicológico quando necessário.</aside>
-    <footer class="footer">O Código Interno · Desenvolvimento pessoal</footer>
-  </main>
+  <div class="shell">
+    <header>
+      <a class="brand" href="https://ocodigointerno.com.br/">O Código <span>Interno</span></a>
+      <span class="label">UMA EXPERIÊNCIA DE ACOLHIMENTO</span>
+    </header>
+    <main>
+      <section class="card" aria-labelledby="title">
+        <div class="symbol" aria-hidden="true">◇</div>
+        <p class="eyebrow">A CRIANÇA INTERIOR · CUIDADO E PROTEÇÃO</p>
+        <h1 id="title">Tem uma criança dentro de você que ainda precisa de cuidado.</h1>
+        <p class="lead"><strong>Você cresceu. Mas talvez ainda esteja esperando receber o cuidado que precisava quando era pequeno.</strong></p>
+        <div class="copy">
+          <p>Talvez você tenha aprendido a ser forte muito cedo.</p>
+          <p class="short-lines">A engolir o choro.<br>A esconder o medo.<br>A dizer que estava tudo bem, mesmo quando não estava.</p>
+          <p>Você cresceu. Mas algumas coisas ainda podem doer.</p>
+          <p class="short-lines">O medo de ser abandonado.<br>A sensação de nunca ser bom o bastante.<br>A dificuldade de dizer não.<br>A vontade de agradar todo mundo, mesmo se machucando.</p>
+        </div>
+        <p class="question"><strong>E se você pudesse oferecer hoje o cuidado que tanto precisou um dia?</strong></p>
+        <p class="closing"><strong>Está na hora de cuidar de quem você precisou deixar para trás.</strong><span>Você não pode mudar o que viveu. Mas pode mudar a forma como cuida de si hoje.</span></p>
+        <div class="pricing">
+          <div class="price">R$ 19,90</div>
+          <p class="payment">Pagamento único</p>
+          <form id="buyForm" novalidate>
+            <label class="email-label" for="email">Seu e-mail para receber o acesso</label>
+            <input class="email-input" id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com">
+            <button class="cta" id="buyButton" type="submit">Quero acolher minha Criança Interior →</button>
+            <p class="notice" id="notice" role="alert" aria-live="polite"></p>
+          </form>
+          <p class="legal"><em>Esta é uma experiência de reflexão e autocuidado. Não substitui acompanhamento psicológico.</em></p>
+        </div>
+      </section>
+    </main>
+    <footer>O Código Interno · Ravel Dunningham · Brasil</footer>
+  </div>
   <script>
-    const form=document.getElementById('buyForm'),button=document.getElementById('buyButton'),notice=document.getElementById('notice');
-    form.addEventListener('submit',event=>{event.preventDefault();const email=document.getElementById('email').value.trim();if(!email)return;button.disabled=true;button.textContent='CONTINUANDO…';notice.textContent='';location.href='https://app.ocodigointerno.com.br/crianca-interior/comprar?email='+encodeURIComponent(email)});
+    const form=document.getElementById('buyForm');
+    const emailInput=document.getElementById('email');
+    const button=document.getElementById('buyButton');
+    const notice=document.getElementById('notice');
+    form.addEventListener('submit',event=>{
+      event.preventDefault();
+      const email=emailInput.value.trim().toLowerCase();
+      if(!email||!emailInput.validity.valid){notice.textContent='Digite um e-mail válido para receber seu acesso.';emailInput.focus();return;}
+      button.disabled=true;
+      button.textContent='Preparando pagamento…';
+      notice.textContent='';
+      location.assign('https://app.ocodigointerno.com.br/crianca-interior/comprar?email='+encodeURIComponent(email));
+    });
   </script>
 </body>
 </html>
