@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#0a0702">
-  <meta name="description" content="Uma experiência guiada de acolhimento para olhar com cuidado para a criança que você foi e escolher um gesto possível para si hoje.">
+  <meta name="description" content="Uma experiência guiada em áudio para acolher sua criança interior, registrar o que percebeu e escolher um cuidado possível para hoje.">
   <link rel="icon" type="image/png" sizes="32x32" href="https://ocodigointerno.com.br/assets/favicon-32-v1.png?v=20261108">
   <link rel="apple-touch-icon" sizes="180x180" href="https://ocodigointerno.com.br/assets/apple-touch-icon-v1.png?v=20261108">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,107 +14,49 @@
   <meta property="og:locale" content="pt_BR">
   <meta property="og:site_name" content="O Código Interno">
   <meta property="og:title" content="A Criança Interior — O Código Interno">
-  <meta property="og:description" content="Você cresceu. Mas talvez ainda esteja esperando receber o cuidado que precisava quando era pequeno.">
+  <meta property="og:description" content="Uma experiência guiada em áudio para acolher sua criança interior e escolher um cuidado possível para hoje.">
   <meta property="og:url" content="https://ocodigointerno.com.br/crianca-interior/">
   <meta property="og:image" content="https://ocodigointerno.com.br/assets/og-crianca-interior-v1.jpg">
   <meta property="og:image:secure_url" content="https://ocodigointerno.com.br/assets/og-crianca-interior-v1.jpg">
-  <meta property="og:image:alt" content="A Criança Interior — uma experiência guiada de acolhimento, com uma mulher diante de uma criança em um ambiente iluminado e seguro.">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="A Criança Interior — uma experiência guiada de acolhimento em áudio.">
+  <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="A Criança Interior — O Código Interno">
-  <meta name="twitter:description" content="Uma experiência guiada de acolhimento para olhar com cuidado para a criança que você foi.">
+  <meta name="twitter:description" content="Uma experiência guiada em áudio para acolher sua criança interior.">
   <meta name="twitter:image" content="https://ocodigointerno.com.br/assets/og-crianca-interior-v1.jpg">
   <title>A Criança Interior — O Código Interno</title>
   <style>
     :root{color-scheme:dark;--bg:#0a0702;--panel:#151108;--gold:#c9a84c;--light:#e8c96a;--cream:#f2e8d0;--muted:#aaa18f;--line:#c9a84c40;--soft:#c8bfad}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
-    .shell{width:min(100% - 32px,760px);min-height:100svh;margin:auto;display:flex;flex-direction:column}
-    header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
-    .brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}
-    .label,.eyebrow{font:500 9px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}
-    main{flex:1;display:flex;align-items:center;justify-content:center;padding:58px 0}
-    .card{width:100%;padding:clamp(27px,6vw,58px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08);text-align:center}
-    .symbol{width:54px;height:54px;margin:0 auto 24px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--light);font:24px 'Cormorant Garamond',serif}
-    .eyebrow{margin:0 0 16px}
-    h1{max-width:680px;margin:0 auto;color:var(--cream);font:300 clamp(38px,6vw,60px)/1.05 'Cormorant Garamond',serif;letter-spacing:-.02em}
-    .lead{max-width:610px;margin:24px auto 0;padding:15px 18px;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--cream);font:500 clamp(20px,3.1vw,24px)/1.4 'Cormorant Garamond',serif;text-align:left}
-    .copy{max-width:610px;margin:24px auto 0;color:var(--soft);font-size:15px;line-height:1.75;text-align:left}
-    .copy p{margin:0}.copy p+p{margin-top:16px}
-    .copy .short-lines{padding-left:17px;border-left:1px solid var(--line);color:#ddd3bf}
-    .question{max-width:610px;margin:26px auto 0;color:var(--cream);font:500 clamp(22px,3.3vw,28px)/1.35 'Cormorant Garamond',serif}
-    .closing{max-width:610px;margin:22px auto 0;color:var(--light);font:500 clamp(25px,3.8vw,32px)/1.25 'Cormorant Garamond',serif}
-    .closing span{display:block;margin-top:8px;color:var(--soft);font:300 15px/1.7 'DM Sans',sans-serif}
-    .pricing{max-width:610px;margin:29px auto 0;padding-top:24px;border-top:1px solid var(--line)}
-    .offerDescription{margin:20px 0 24px;padding:18px 20px;border:1px solid var(--line);background:linear-gradient(135deg,#c9a84c12,#c9a84c05);color:var(--soft);font-size:14px;line-height:1.7;text-align:left}
-    .priceIntro{margin:0 auto 15px;padding:13px 16px;border-left:3px solid var(--gold);background:#c9a84c18;color:var(--light);font:500 13px/1.5 'Cinzel',serif;letter-spacing:.07em;text-align:left;text-transform:uppercase}
-    .price{margin:0 0 4px;color:var(--light);font:400 clamp(46px,8vw,60px)/1 'Cormorant Garamond',serif}
-    .payment{margin:9px 0 22px;color:var(--muted);font-size:12px;letter-spacing:.04em}
-    .payment small{display:block;margin-top:5px;color:#928979;font-size:10px;letter-spacing:0}
-    .email-label{display:block;margin:20px 0 7px;color:var(--soft);font-size:12px;text-align:left}
-    .email-input{display:block;width:100%;min-height:52px;padding:13px 14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px 'DM Sans',sans-serif}
-    .email-input:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}
-    .cta{display:flex;width:100%;min-height:58px;align-items:center;justify-content:center;margin-top:13px;padding:16px 22px;border:0;background:var(--gold);color:#0a0702;font:600 11px 'Cinzel',serif;letter-spacing:.09em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:filter .18s ease}
-    .cta:hover{filter:brightness(1.1)}.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}.cta:disabled{opacity:.6;cursor:wait}
-    .notice{min-height:20px;margin:10px 0 0;color:#ffb7a9;font-size:12px;text-align:left}
-    .legal{max-width:570px;margin:18px auto 0;color:#928979;font-size:11px;line-height:1.65}
-    footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}
-    @media(max-width:520px){header{height:66px}.label{font-size:7px}.card{padding:27px 20px}.lead{font-size:21px;padding:13px 15px;margin-top:19px}.copy{font-size:14px;line-height:1.7;margin-top:20px}.copy p+p{margin-top:14px}.question{margin-top:23px;font-size:24px}.closing{margin-top:19px;font-size:26px}.closing span{font-size:14px}.pricing{margin-top:26px;padding-top:22px}.offerDescription{margin:18px 0 21px;padding:15px 16px;font-size:13px}.priceIntro{font-size:11px;padding:12px 13px}.cta{font-size:10px;line-height:1.5}}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
+    .shell{width:min(100% - 32px,900px);margin:auto}header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}.label,.eyebrow{font:500 9px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}
+    main{padding:clamp(34px,7vw,74px) 0}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.8fr);gap:clamp(26px,5vw,58px);align-items:center}.heroCopy{padding:8px 0}.eyebrow{margin:0 0 17px}h1{max-width:650px;margin:0;color:var(--cream);font:300 clamp(42px,6.5vw,70px)/.99 'Cormorant Garamond',serif;letter-spacing:-.025em}.lead{max-width:590px;margin:22px 0 0;color:var(--soft);font-size:16px;line-height:1.7}.heroNote{margin:22px 0 0;color:#ddd3bf;font-size:13px;line-height:1.65}
+    .buyCard{padding:clamp(22px,4vw,34px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08);text-align:center}.priceLabel{margin:0 auto 12px;color:var(--light);font:500 11px/1.55 'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase}.price{margin:0;color:var(--light);font:400 clamp(48px,8vw,66px)/.96 'Cormorant Garamond',serif}.payment{margin:9px 0 17px;color:var(--muted);font-size:12px}.productLine{margin:0 auto 19px;padding-top:16px;border-top:1px solid var(--line);color:var(--cream);font-size:14px;line-height:1.6}.email-label{display:block;margin:18px 0 7px;color:var(--soft);font-size:12px;text-align:left}.email-input{display:block;width:100%;min-height:52px;padding:13px 14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px 'DM Sans',sans-serif}.email-input:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}.cta{display:flex;width:100%;min-height:56px;align-items:center;justify-content:center;margin-top:12px;padding:15px 18px;border:0;background:var(--gold);color:#0a0702;font:600 10px/1.5 'Cinzel',serif;letter-spacing:.07em;text-decoration:none;text-transform:uppercase;cursor:pointer}.cta:hover{filter:brightness(1.1)}.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}.cta:disabled{opacity:.6;cursor:wait}.notice{min-height:18px;margin:9px 0 0;color:#ffb7a9;font-size:12px;text-align:left}.fine{margin:12px 0 0;color:#928979;font-size:10px;line-height:1.55}
+    .section{margin-top:clamp(48px,8vw,84px);padding-top:clamp(28px,5vw,46px);border-top:1px solid var(--line)}.section h2{max-width:700px;margin:8px 0 14px;color:var(--cream);font:400 clamp(32px,5vw,48px)/1.05 'Cormorant Garamond',serif}.sectionIntro{max-width:660px;color:var(--soft);font-size:14px;line-height:1.7}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}.infoCard{padding:21px;border:1px solid var(--line);background:#151108}.infoCard b{display:block;margin-bottom:9px;color:var(--light);font:500 12px 'Cinzel',serif;letter-spacing:.05em}.infoCard p{margin:0;color:var(--soft);font-size:13px;line-height:1.65}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}.step{border-left:2px solid var(--gold);padding:4px 0 4px 16px}.step span{display:block;margin-bottom:7px;color:var(--gold);font:500 9px 'Cinzel',serif;letter-spacing:.15em}.step p{margin:0;color:var(--soft);font-size:13px;line-height:1.65}.safety{max-width:760px;margin-top:34px;padding:19px 21px;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--soft);font-size:12px;line-height:1.7}.safety strong{color:var(--cream)}.faq{margin-top:16px;border-bottom:1px solid var(--line)}.faq details{padding:16px 0;border-top:1px solid var(--line)}.faq summary{color:var(--cream);font:500 16px 'Cormorant Garamond',serif;cursor:pointer}.faq p{max-width:700px;margin:11px 0 0;color:var(--soft);font-size:13px;line-height:1.7}.lastCta{max-width:560px;margin:30px 0 0}.lastCta .cta{margin-top:0}footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}
+    @media(max-width:700px){.hero{grid-template-columns:1fr;gap:24px}.heroCopy{padding:0}.lead{font-size:15px}.buyCard{max-width:530px;width:100%;margin:auto}.cards,.steps{grid-template-columns:1fr;gap:10px}.infoCard{padding:17px}.label{font-size:7px}header{height:66px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
-<body>
-  <div class="shell">
-    <header>
-      <a class="brand" href="https://ocodigointerno.com.br/">O Código <span>Interno</span></a>
-      <span class="label">UMA EXPERIÊNCIA DE ACOLHIMENTO</span>
-    </header>
-    <main>
-      <section class="card" aria-labelledby="title">
-        <div class="symbol" aria-hidden="true">◇</div>
-        <p class="eyebrow">A CRIANÇA INTERIOR · CUIDADO E PROTEÇÃO</p>
-        <h1 id="title">Tem uma criança dentro de você que ainda precisa de cuidado.</h1>
-        <p class="lead"><strong>Você cresceu. Mas talvez ainda esteja esperando receber o cuidado que precisava quando era pequeno.</strong></p>
-        <div class="copy">
-          <p>Talvez você tenha aprendido a ser forte muito cedo.</p>
-          <p class="short-lines">A engolir o choro.<br>A esconder o medo.<br>A dizer que estava tudo bem, mesmo quando não estava.</p>
-          <p>Você cresceu. Mas algumas coisas ainda podem doer.</p>
-          <p class="short-lines">O medo de ser abandonado.<br>A sensação de nunca ser bom o bastante.<br>A dificuldade de dizer não.<br>A vontade de agradar todo mundo, mesmo se machucando.</p>
-        </div>
-        <p class="question"><strong>E se você pudesse oferecer hoje o cuidado que tanto precisou um dia?</strong></p>
-        <p class="closing"><strong>Está na hora de cuidar de quem você precisou deixar para trás.</strong><span>Você não pode mudar o que viveu. Mas pode mudar a forma como cuida de si hoje.</span></p>
-        <div class="pricing">
-          <form id="buyForm" novalidate>
-            <p class="priceIntro">Acesse essa experiência imersiva por apenas</p>
-            <div class="price">R$ 19,90</div>
-            <p class="payment">no Pix <small>ou até 12x de R$ 1,99</small></p>
-            <p class="offerDescription">Uma experiência guiada em áudio para acolher sua criança interior.</p>
-            <label class="email-label" for="email">Seu e-mail para receber o acesso</label>
-            <input class="email-input" id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com">
-            <button class="cta" id="buyButton" type="submit">Quero acolher minha Criança Interior →</button>
-            <p class="notice" id="notice" role="alert" aria-live="polite"></p>
-          </form>
-          <p class="legal"><em>Esta é uma experiência de reflexão e autocuidado. Não substitui acompanhamento psicológico.</em></p>
-        </div>
+<body><div class="shell">
+  <header><a class="brand" href="https://ocodigointerno.com.br/">O Código <span>Interno</span></a><span class="label">UMA EXPERIÊNCIA GUIADA EM ÁUDIO</span></header>
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <div class="heroCopy"><p class="eyebrow">A CRIANÇA INTERIOR · ACOLHIMENTO E AUTOCUIDADO</p><h1 id="title">Tem uma criança dentro de você que ainda precisa de cuidado.</h1><p class="lead">Você cresceu. Mas talvez ainda esteja esperando receber o cuidado que precisava quando era pequeno.</p><p class="heroNote">Em uma experiência guiada em áudio, você vai registrar o que percebeu e escolher um pequeno cuidado possível para os próximos dias.</p></div>
+      <section class="buyCard" id="comprar" aria-label="Acesso à experiência">
+        <p class="priceLabel">Acesse essa experiência imersiva por apenas</p><p class="price">R$ 19,90</p><p class="payment">no Pix <span aria-hidden="true">·</span> ou até 12x de R$ 1,99</p>
+        <p class="productLine">Uma experiência guiada em áudio para acolher sua criança interior.</p>
+        <form id="buyForm" novalidate><label class="email-label" for="email">Seu e-mail para vincular o acesso</label><input class="email-input" id="email" name="email" type="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"><button class="cta" id="buyButton" type="submit">Quero acolher minha Criança Interior →</button><p class="notice" id="notice" role="alert" aria-live="polite"></p><p class="fine">Use o mesmo e-mail ao entrar na sua área. Pagamento processado pela InfinitePay.</p></form>
       </section>
-    </main>
-    <footer>O Código Interno · Ravel Dunningham · Brasil</footer>
-  </div>
-  <script>
-    const form=document.getElementById('buyForm');
-    const emailInput=document.getElementById('email');
-    const button=document.getElementById('buyButton');
-    const notice=document.getElementById('notice');
-    form.addEventListener('submit',event=>{
-      event.preventDefault();
-      const email=emailInput.value.trim().toLowerCase();
-      if(!email||!emailInput.validity.valid){notice.textContent='Digite um e-mail válido para receber seu acesso.';emailInput.focus();return;}
-      button.disabled=true;
-      button.textContent='Preparando pagamento…';
-      notice.textContent='';
-      location.assign('https://app.ocodigointerno.com.br/crianca-interior/comprar?email='+encodeURIComponent(email));
-    });
-  </script>
-</body>
-</html>
+    </section>
+    <section class="section" aria-labelledby="recebeTitle"><p class="eyebrow">SIMPLES, NO SEU TEMPO</p><h2 id="recebeTitle">O que você vai encontrar</h2><p class="sectionIntro">Não precisa saber interpretar símbolos nem escrever bonito. A proposta é fazer a dinâmica, registrar com suas palavras e sair com uma atitude de cuidado que faça sentido para você.</p>
+      <div class="cards"><article class="infoCard"><b>01 · Áudio guiado</b><p>Uma condução simbólica para imaginar um encontro com sua criança interior, no seu ritmo.</p></article><article class="infoCard"><b>02 · Sete perguntas</b><p>Um espaço para organizar o que percebeu e o cuidado que gostaria de oferecer a si.</p></article><article class="infoCard"><b>03 · Seu registro</b><p>Salve suas respostas em PDF e consulte sua experiência quando quiser.</p></article></div>
+    </section>
+    <section class="section" aria-labelledby="passosTitle"><p class="eyebrow">COMO FUNCIONA</p><h2 id="passosTitle">Do pagamento ao seu registro</h2><div class="steps"><div class="step"><span>PASSO 1</span><p>Informe seu e-mail e conclua a compra pelo checkout.</p></div><div class="step"><span>PASSO 2</span><p>Entre na área da experiência com a conta vinculada ao e-mail da compra.</p></div><div class="step"><span>PASSO 3</span><p>Ouça, responda às perguntas e salve seu registro em PDF.</p></div></div><aside class="safety"><strong>Você decide o seu ritmo.</strong> Pode manter os olhos abertos, pausar o áudio ou interromper a dinâmica sempre que quiser. É uma experiência simbólica de reflexão e autocuidado; não substitui acompanhamento psicológico quando necessário.</aside></section>
+    <section class="section" aria-labelledby="faqTitle"><p class="eyebrow">ANTES DE COMEÇAR</p><h2 id="faqTitle">Dúvidas rápidas</h2><div class="faq"><details><summary>Preciso saber interpretar o que aparecer?</summary><p>Não. Você só precisa registrar o que percebeu com suas próprias palavras. A experiência não exige uma resposta certa.</p></details><details><summary>Posso fazer no meu tempo?</summary><p>Sim. Você pode pausar e voltar quando se sentir confortável. Se não quiser continuar, pode interromper.</p></details><details><summary>Isso é terapia ou diagnóstico?</summary><p>Não. É uma prática simbólica de reflexão e autocuidado, e não substitui acompanhamento psicológico ou outro cuidado profissional.</p></details><details><summary>Como recebo o acesso?</summary><p>Informe no checkout o e-mail que usará na sua conta. Após a confirmação do pagamento, acesse a área da Criança Interior no app O Código Interno.</p></details></div>
+      <div class="lastCta"><a class="cta" href="#comprar">Quero começar minha experiência →</a></div>
+    </section>
+  </main><footer>O Código Interno · Ravel Dunningham · Brasil</footer>
+</div>
+<script>
+  const form=document.getElementById('buyForm'),emailInput=document.getElementById('email'),button=document.getElementById('buyButton'),notice=document.getElementById('notice');
+  form.addEventListener('submit',event=>{event.preventDefault();const email=emailInput.value.trim().toLowerCase();if(!email||!emailInput.validity.valid){notice.textContent='Digite um e-mail válido para receber seu acesso.';emailInput.focus();return;}button.disabled=true;button.textContent='Preparando pagamento…';notice.textContent='';location.assign('https://app.ocodigointerno.com.br/crianca-interior/comprar?email='+encodeURIComponent(email));});
+</script></body></html>

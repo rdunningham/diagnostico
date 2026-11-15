@@ -1,103 +1,29 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0a0702">
-  <meta name="description" content="Uma dinâmica guiada para investigar bloqueios ligados ao dinheiro e repetir o procedimento quando um novo bloqueio aparecer.">
-  <link rel="icon" type="image/png" sizes="32x32" href="https://ocodigointerno.com.br/assets/favicon-32-v1.png?v=20261105">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="O Código Interno">
-  <meta property="og:title" content="O Ponto de Virada — O Código Interno">
-  <meta property="og:description" content="Investigue bloqueios ligados ao dinheiro e repita o procedimento quando um novo bloqueio aparecer.">
-  <meta property="og:url" content="https://ocodigointerno.com.br/ponto-de-virada/oferta/">
-  <meta property="og:image" content="https://ocodigointerno.com.br/assets/og-codigo-interno-v2.png?v=20261107">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#0a0702">
+  <meta name="description" content="Uma experiência guiada em áudio para observar sua relação com o dinheiro, registrar o que percebeu e escolher um próximo passo.">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://ocodigointerno.com.br/assets/favicon-32-v1.png?v=20261108"><link rel="apple-touch-icon" sizes="180x180" href="https://ocodigointerno.com.br/assets/apple-touch-icon-v1.png?v=20261108">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <meta property="og:type" content="website"><meta property="og:site_name" content="O Código Interno"><meta property="og:title" content="O Ponto de Virada — O Código Interno"><meta property="og:description" content="Observe sua relação com o dinheiro e registre o que você percebeu em uma experiência guiada em áudio."><meta property="og:url" content="https://ocodigointerno.com.br/ponto-de-virada/oferta/"><meta property="og:image" content="https://ocodigointerno.com.br/assets/og-ponto-de-virada-v2.png?v=20261108"><meta property="og:image:secure_url" content="https://ocodigointerno.com.br/assets/og-ponto-de-virada-v2.png?v=20261108"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="1734"><meta property="og:image:height" content="907"><meta property="og:image:alt" content="Uma pessoa diante de uma porta iluminada, simbolizando uma pausa para observar escolhas e caminhos."><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="O Ponto de Virada — O Código Interno"><meta name="twitter:description" content="Uma experiência guiada em áudio para refletir sobre sua relação com o dinheiro."><meta name="twitter:image" content="https://ocodigointerno.com.br/assets/og-ponto-de-virada-v2.png?v=20261108">
   <title>O Ponto de Virada — O Código Interno</title>
   <style>
-    :root{color-scheme:dark;--bg:#0a0702;--panel:#151108;--gold:#c9a84c;--light:#e8c96a;--cream:#f2e8d0;--muted:#aaa18f;--line:#c9a84c40;--soft:#c8bfad}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}
-    .shell{width:min(100% - 32px,760px);min-height:100svh;margin:auto;display:flex;flex-direction:column}
-    header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
-    .brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}
-    .label,.eyebrow{font:500 9px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}
-    main{flex:1;display:flex;align-items:center;justify-content:center;padding:58px 0}
-    .card{width:100%;padding:clamp(25px,6vw,56px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08);text-align:center}
-    .symbol{width:54px;height:54px;margin:0 auto 24px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--light);font:24px 'Cormorant Garamond',serif}
-    .eyebrow{margin:0 0 16px}
-    h1{max-width:790px;margin:0 auto;color:var(--cream);font:300 clamp(39px,6.3vw,64px)/1.04 'Cormorant Garamond',serif;letter-spacing:-.02em}
-    h1 em{color:var(--light);font-weight:300}
-    .copy{max-width:660px;margin:29px auto 0;color:var(--soft);font-size:15px;line-height:1.75;text-align:left}
-    .copy p{margin:0}
-    .copy p+p{margin-top:18px}
-    .copy p:first-child{padding:15px 18px;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--cream);font:400 21px/1.4 'Cormorant Garamond',serif}
-    .pricing{max-width:660px;margin:34px auto 0;padding-top:27px;border-top:1px solid var(--line)}
-    .price{margin:0 0 4px;color:var(--light);font:400 clamp(48px,9vw,64px)/1 'Cormorant Garamond',serif}
-    .payment{margin:9px 0 23px;color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
-    .email-label{display:block;margin:20px 0 7px;color:var(--soft);font-size:12px;text-align:left}
-    .email-input{display:block;width:100%;min-height:52px;padding:13px 14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px 'DM Sans',sans-serif}
-    .email-input:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}
-    .cta{display:flex;width:100%;min-height:58px;align-items:center;justify-content:center;margin-top:13px;padding:16px 22px;border:0;background:var(--gold);color:#0a0702;font:600 11px 'Cinzel',serif;letter-spacing:.11em;text-decoration:none;text-transform:uppercase;cursor:pointer;transition:filter .18s ease}
-    .cta:hover{filter:brightness(1.1)}.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}.cta:disabled{opacity:.6;cursor:wait}
-    .notice{min-height:20px;margin:10px 0 0;color:#ffb7a9;font-size:12px;text-align:left}
-    footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}
-    @media(max-width:520px){header{height:66px}.label{font-size:7px}.card{padding:27px 20px}.copy{font-size:14px;line-height:1.7;margin-top:23px}.copy p+p{margin-top:15px}.copy p:first-child{font-size:19px;padding:13px 15px}.pricing{margin-top:28px;padding-top:23px}.cta{font-size:10px;line-height:1.5}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+    :root{color-scheme:dark;--bg:#0a0702;--panel:#151108;--gold:#c9a84c;--light:#e8c96a;--cream:#f2e8d0;--muted:#aaa18f;--line:#c9a84c40;--soft:#c8bfad}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 76% 0,#c9a84c13,transparent 38%),var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;font-weight:300}.shell{width:min(100% - 32px,900px);margin:auto}header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{font:700 14px 'Cinzel',serif;letter-spacing:.08em;color:var(--cream);text-decoration:none}.brand span{color:var(--gold)}.label,.eyebrow{font:500 9px 'Cinzel',serif;letter-spacing:.2em;color:var(--gold)}main{padding:clamp(34px,7vw,74px) 0}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.8fr);gap:clamp(26px,5vw,58px);align-items:center}.heroCopy{padding:8px 0}.eyebrow{margin:0 0 17px}h1{max-width:650px;margin:0;color:var(--cream);font:300 clamp(42px,6.5vw,70px)/.99 'Cormorant Garamond',serif;letter-spacing:-.025em}h1 em{color:var(--light);font-weight:300}.lead{max-width:590px;margin:22px 0 0;color:var(--soft);font-size:16px;line-height:1.7}.heroNote{margin:21px 0 0;color:#ddd3bf;font-size:13px;line-height:1.65}.buyCard{padding:clamp(22px,4vw,34px);border:1px solid var(--line);background:linear-gradient(145deg,#17130b,#100d08);text-align:center}.priceLabel{margin:0 auto 12px;color:var(--light);font:500 11px/1.55 'Cinzel',serif;letter-spacing:.1em;text-transform:uppercase}.price{margin:0;color:var(--light);font:400 clamp(48px,8vw,66px)/.96 'Cormorant Garamond',serif}.payment{margin:9px 0 17px;color:var(--muted);font-size:12px}.productLine{margin:0 auto 19px;padding-top:16px;border-top:1px solid var(--line);color:var(--cream);font-size:14px;line-height:1.6}.email-label{display:block;margin:18px 0 7px;color:var(--soft);font-size:12px;text-align:left}.email-input{display:block;width:100%;min-height:52px;padding:13px 14px;border:1px solid var(--line);background:#100d08;color:var(--cream);font:400 14px 'DM Sans',sans-serif}.email-input:focus{outline:2px solid #c9a84c55;border-color:var(--gold)}.cta{display:flex;width:100%;min-height:56px;align-items:center;justify-content:center;margin-top:12px;padding:15px 18px;border:0;background:var(--gold);color:#0a0702;font:600 10px/1.5 'Cinzel',serif;letter-spacing:.07em;text-decoration:none;text-transform:uppercase;cursor:pointer}.cta:hover{filter:brightness(1.1)}.cta:focus-visible{outline:3px solid var(--cream);outline-offset:4px}.cta:disabled{opacity:.6;cursor:wait}.notice{min-height:18px;margin:9px 0 0;color:#ffb7a9;font-size:12px;text-align:left}.fine{margin:12px 0 0;color:#928979;font-size:10px;line-height:1.55}.section{margin-top:clamp(48px,8vw,84px);padding-top:clamp(28px,5vw,46px);border-top:1px solid var(--line)}.section h2{max-width:700px;margin:8px 0 14px;color:var(--cream);font:400 clamp(32px,5vw,48px)/1.05 'Cormorant Garamond',serif}.sectionIntro{max-width:660px;color:var(--soft);font-size:14px;line-height:1.7}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}.infoCard{padding:21px;border:1px solid var(--line);background:#151108}.infoCard b{display:block;margin-bottom:9px;color:var(--light);font:500 12px 'Cinzel',serif;letter-spacing:.05em}.infoCard p{margin:0;color:var(--soft);font-size:13px;line-height:1.65}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}.step{border-left:2px solid var(--gold);padding:4px 0 4px 16px}.step span{display:block;margin-bottom:7px;color:var(--gold);font:500 9px 'Cinzel',serif;letter-spacing:.15em}.step p{margin:0;color:var(--soft);font-size:13px;line-height:1.65}.noticeBox{max-width:760px;margin-top:32px;padding:19px 21px;border-left:2px solid var(--gold);background:#c9a84c0b;color:var(--soft);font-size:12px;line-height:1.7}.noticeBox strong{color:var(--cream)}.faq{margin-top:16px;border-bottom:1px solid var(--line)}.faq details{padding:16px 0;border-top:1px solid var(--line)}.faq summary{color:var(--cream);font:500 16px 'Cormorant Garamond',serif;cursor:pointer}.faq p{max-width:700px;margin:11px 0 0;color:var(--soft);font-size:13px;line-height:1.7}.lastCta{max-width:560px;margin:30px 0 0}.lastCta .cta{margin-top:0}footer{border-top:1px solid var(--line);padding:18px 0 26px;color:#797262;font-size:10px;letter-spacing:.08em;text-align:center}@media(max-width:700px){.hero{grid-template-columns:1fr;gap:24px}.heroCopy{padding:0}.lead{font-size:15px}.buyCard{max-width:530px;width:100%;margin:auto}.cards,.steps{grid-template-columns:1fr;gap:10px}.infoCard{padding:17px}.label{font-size:7px}header{height:66px}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
 </head>
-<body>
-  <div class="shell">
-    <header>
-      <a class="brand" href="https://ocodigointerno.com.br/">O Código <span>Interno</span></a>
-      <span class="label">UMA EXPERIÊNCIA GUIADA</span>
-    </header>
-    <main>
-      <section class="card" aria-labelledby="title">
-        <div class="symbol" aria-hidden="true">◇</div>
-        <p class="eyebrow">O PONTO DE VIRADA · CÓDIGO DA PROSPERIDADE</p>
-        <h1 id="title">Você se esforça para ganhar dinheiro, mas parece que algo sempre atrapalha?</h1>
-        <div class="copy">
-          <p>Preciso te dizer: você não é amaldiçoado, não é azarado, nem está sendo castigado por Deus.</p>
-          <p>O dinheiro não chega, ou, se chega, não fica, porque seu inconsciente criou uma barreira para impedir você de ganhar mais dinheiro. Acredite: seu cérebro acredita que ganhar mais dinheiro é algo perigoso para você e, por isso, ele te protege. É um mecanismo de proteção que protege seus padrões de comportamento e de relacionamentos.</p>
-          <p>Eu desenvolvi esse procedimento guiado para encontrar esse bloqueio e liberar o fluxo para o dinheiro finalmente chegar até você.</p>
-          <p>Você vai poder repetir o procedimento sempre que encontrar um novo bloqueio.</p>
-        </div>
-        <div class="pricing">
-          <div class="price">R$ 27,90</div>
-          <p class="payment">Pagamento único</p>
-          <form id="purchaseForm" novalidate>
-            <label class="email-label" for="purchaseEmail">Seu e-mail para receber o acesso</label>
-            <input class="email-input" id="purchaseEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required>
-            <button class="cta" id="purchaseButton" type="submit">Continuar para o pagamento →</button>
-            <p class="notice" id="notice" role="alert" aria-live="polite"></p>
-            <p class="fine">Verifique seu e-mail para acessar.</p>
-          </form>
-        </div>
-      </section>
-    </main>
-    <footer>O Código Interno · Ravel Dunningham · Brasil</footer>
-  </div>
-  <script>
-    const form = document.getElementById('purchaseForm');
-    const emailInput = document.getElementById('purchaseEmail');
-    const button = document.getElementById('purchaseButton');
-    const notice = document.getElementById('notice');
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      const email = emailInput.value.trim().toLowerCase();
-      if (!email || !emailInput.validity.valid) {
-        notice.textContent = 'Digite um e-mail válido para receber seu acesso.';
-        emailInput.focus();
-        return;
-      }
-      button.disabled = true;
-      button.textContent = 'Preparando pagamento…';
-      location.assign('https://app.ocodigointerno.com.br/ponto-de-virada/comprar?email=' + encodeURIComponent(email));
-    });
-  </script>
-</body>
-</html>
+<body><div class="shell">
+  <header><a class="brand" href="https://ocodigointerno.com.br/">O Código <span>Interno</span></a><span class="label">UMA EXPERIÊNCIA GUIADA EM ÁUDIO</span></header>
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <div class="heroCopy"><p class="eyebrow">O PONTO DE VIRADA · CÓDIGO DA PROSPERIDADE</p><h1 id="title">Você se esforça para ganhar dinheiro, mas sente que algo sempre atrapalha?</h1><p class="lead">Faça uma pausa para observar sua relação com o dinheiro, perceber o que aparece e registrar o que merece atenção na sua vida hoje.</p><p class="heroNote">O Ponto de Virada é uma experiência guiada em áudio, feita para você realizar no seu ritmo. Não é mais um curso para deixar para depois: é uma prática curta, com começo, registro e um próximo passo possível.</p></div>
+      <section class="buyCard" id="comprar" aria-label="Acesso ao Ponto de Virada"><p class="priceLabel">Acesso à experiência</p><p class="price">R$ 27,90</p><p class="payment">pagamento único</p><p class="productLine">Áudio guiado + espaço para registrar o que você percebeu e salvar sua experiência.</p><form id="purchaseForm" novalidate><label class="email-label" for="purchaseEmail">Seu e-mail para vincular o acesso</label><input class="email-input" id="purchaseEmail" name="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required><button class="cta" id="purchaseButton" type="submit">Quero fazer O Ponto de Virada →</button><p class="notice" id="notice" role="alert" aria-live="polite"></p><p class="fine">Use esse mesmo e-mail na sua conta. Pagamento processado pela InfinitePay.</p></form></section>
+    </section>
+    <section class="section" aria-labelledby="recebeTitle"><p class="eyebrow">O QUE VOCÊ RECEBE</p><h2 id="recebeTitle">Uma prática para observar, escrever e levar consigo.</h2><p class="sectionIntro">Você não precisa chegar com uma resposta pronta. O áudio conduz a dinâmica; depois, o espaço de registro ajuda você a organizar o que percebeu e consultar esse material mais tarde.</p><div class="cards"><article class="infoCard"><b>Áudio guiado</b><p>Uma condução para fazer a experiência com calma e prestar atenção às imagens que surgirem.</p></article><article class="infoCard"><b>Registro pessoal</b><p>Responda às perguntas com suas próprias palavras. Não existe resposta certa.</p></article><article class="infoCard"><b>PDF para guardar</b><p>Salve uma cópia da sua experiência e volte a ela quando quiser.</p></article></div></section>
+    <section class="section" aria-labelledby="passosTitle"><p class="eyebrow">COMO FUNCIONA</p><h2 id="passosTitle">Você faz no seu tempo.</h2><div class="steps"><div class="step"><span>1 · COMPRE</span><p>Informe seu e-mail e conclua o pagamento único pelo checkout.</p></div><div class="step"><span>2 · ACESSE</span><p>Entre no app O Código Interno com o e-mail usado na compra.</p></div><div class="step"><span>3 · REGISTRE</span><p>Ouça o áudio, escreva o que percebeu e salve seu PDF.</p></div></div><aside class="noticeBox"><strong>Uma observação importante:</strong> a dinâmica é uma ferramenta de reflexão pessoal. Não promete ganhos financeiros, não substitui orientação financeira e não é diagnóstico ou tratamento psicológico.</aside></section>
+    <section class="section" aria-labelledby="faqTitle"><p class="eyebrow">ANTES DE COMEÇAR</p><h2 id="faqTitle">Dúvidas rápidas</h2><div class="faq"><details><summary>Preciso entender de símbolos?</summary><p>Não. Faça o áudio e escreva o que apareceu para você, sem buscar uma interpretação perfeita.</p></details><details><summary>O acesso é uma sessão com Ravel?</summary><p>Não. O Ponto de Virada é uma experiência guiada e autoguiada. Não inclui atendimento ou análise individual.</p></details><details><summary>O áudio garante que vou ganhar mais dinheiro?</summary><p>Não. A experiência ajuda você a refletir e registrar suas percepções; não promete resultados financeiros.</p></details><details><summary>Como recebo o acesso?</summary><p>Informe o e-mail que usará na sua conta. Depois da confirmação do pagamento, entre no app O Código Interno com esse mesmo e-mail.</p></details></div><div class="lastCta"><a class="cta" href="#comprar">Quero começar O Ponto de Virada →</a></div></section>
+  </main><footer>O Código Interno · Ravel Dunningham · Brasil</footer>
+</div>
+<script>
+  const form=document.getElementById('purchaseForm'),emailInput=document.getElementById('purchaseEmail'),button=document.getElementById('purchaseButton'),notice=document.getElementById('notice');
+  form.addEventListener('submit',event=>{event.preventDefault();const email=emailInput.value.trim().toLowerCase();if(!email||!emailInput.validity.valid){notice.textContent='Digite um e-mail válido para receber seu acesso.';emailInput.focus();return;}button.disabled=true;button.textContent='Preparando pagamento…';notice.textContent='';location.assign('https://app.ocodigointerno.com.br/ponto-de-virada/comprar?email='+encodeURIComponent(email));});
+</script></body></html>
