@@ -27,12 +27,14 @@
     @media(max-width:700px){.pdfProof{min-height:690px}.pdfProofPhoto{top:275px;height:240px;object-fit:contain;object-position:center}.pdfProofCopy{left:6%;top:5%;width:88%;max-width:420px}.pdfProofCopy h2{max-width:340px}.pdfProofCopy p{max-width:320px}.pdfSheet{left:42%;top:41%;width:45%;height:32%;padding:1.2% 1.5%}.pdfSheetBrand{font-size:5px;margin-bottom:2%}.pdfSheet h3{font-size:12px}.pdfSheetLead,.pdfAnswer p{font-size:5px}.pdfAnswer{padding:1.4% 0}.pdfAnswer b{font-size:5px}.pdfNote{right:12px;bottom:8px;font-size:9px}}
   </style>
   <style>
-    /* Topo organizado: texto e imagem lado a lado, com checkout separado abaixo. */
-    .hero{grid-template-columns:minmax(0,1.05fr) minmax(250px,.8fr);grid-template-rows:auto auto;column-gap:clamp(24px,4vw,46px);row-gap:30px;align-items:center}
-    .heroCopy{grid-column:1;grid-row:1;align-self:center;position:relative;z-index:1;padding:10px 0}
-    .heroThumb{grid-column:2;grid-row:1;display:block;width:100%;height:clamp(330px,38vw,430px);min-height:0;aspect-ratio:auto;object-fit:cover;object-position:100% center;border:1px solid var(--line);border-radius:2px;background:#100d08;opacity:.94;filter:saturate(.82);box-shadow:0 18px 48px #0005}
-    .buyCard{grid-column:1/-1;grid-row:2;position:relative;z-index:1;width:min(100%,650px);justify-self:center;margin:0}
-    @media(max-width:700px){.hero{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:18px}.heroCopy{grid-column:1;grid-row:1;padding:0}.heroThumb{grid-column:1;grid-row:2;width:100%;height:auto;min-height:0;aspect-ratio:1.35;object-position:100% center}.buyCard{grid-column:1;grid-row:3;margin:2px auto 0}}
+    /* A arte funciona como capa da oferta; headline e compra vêm abaixo, sem sobreposição. */
+    .hero{display:flex;flex-direction:column;align-items:stretch;gap:clamp(22px,3.5vw,34px)}
+    .heroThumb{order:0;display:block;width:min(100%,860px);height:auto;aspect-ratio:1734/907;object-fit:contain;object-position:center;margin:0 auto;border:1px solid var(--line);border-radius:2px;background:#0a0702;opacity:1;filter:none;box-shadow:0 16px 42px #0004}
+    .heroCopy{order:1;width:min(100%,760px);margin:0 auto;padding:0}
+    .heroCopy h1{max-width:720px;font-size:clamp(38px,5.2vw,58px);line-height:1.02}
+    .heroCopy .lead{max-width:680px}
+    .buyCard{order:2;position:static;width:min(100%,650px);margin:0 auto}
+    @media(max-width:700px){.hero{gap:22px}.heroThumb{width:100%;aspect-ratio:1734/907}.heroCopy h1{font-size:clamp(38px,10vw,50px)}}
   </style>
 </head>
 <body><div class="shell">
