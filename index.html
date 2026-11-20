@@ -633,7 +633,7 @@ footer a{color:rgba(201,168,76,.55);text-decoration:none}
   <section class="purchase-dialog-card" role="dialog" aria-modal="true" aria-labelledby="sessionPurchaseTitle" aria-describedby="sessionPurchaseDescription">
     <button class="purchase-dialog-close" id="sessionPurchaseClose" type="button" aria-label="Fechar">×</button>
     <p class="section-label" id="purchaseDialogEyebrow" style="margin:0 0 .7rem;color:var(--gold);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase">PLATAFORMA + SESSÃO INDIVIDUAL</p>
-    <h2 id="sessionPurchaseTitle">Vincule seu e-mail à compra</h2>
+    <h2 id="sessionPurchaseTitle">Use seu e-mail principal para acessar</h2>
     <p id="sessionPurchaseDescription">Use o mesmo endereço que você vai informar no checkout. Após o pagamento, crie sua conta com esse e-mail para liberar o acesso completo à plataforma.</p>
     <form id="sessionPurchaseForm" novalidate>
       <label for="sessionPurchaseEmail">Seu e-mail</label>
@@ -714,8 +714,8 @@ footer a{color:rgba(201,168,76,.55);text-decoration:none}
   let purchaseDialogOpener=null;
   let selectedPurchasePlan='session';
   const purchasePlans={
-    platform:{eyebrow:'ACESSO COMPLETO À PLATAFORMA',title:'Vincule seu e-mail à compra',description:'Use este mesmo e-mail no checkout. Após a confirmação do pagamento, crie sua conta com ele para liberar o acesso completo ao Código Interno.',hint:'Oferta: 12x de R$ 29<span class="price-cents">,70</span> ou R$ 297<span class="price-cents">,00</span> no Pix · acesso total à plataforma.',endpoint:'https://app.ocodigointerno.com.br/api/map/guest-checkout'},
-    session:{eyebrow:'PLATAFORMA + SESSÃO INDIVIDUAL',title:'Vincule seu e-mail à compra',description:'Use o mesmo endereço que você vai informar no checkout. Após o pagamento, crie sua conta com esse e-mail para liberar o acesso completo à plataforma.',hint:'Oferta: 12x de R$ 89<span class="price-cents">,69</span> · acesso total + sessão individual de 45 minutos.',endpoint:'https://app.ocodigointerno.com.br/api/atendimento/codigo-interno/checkout'}
+    platform:{eyebrow:'ACESSO COMPLETO À PLATAFORMA',title:'Use seu e-mail principal para acessar',description:'Use este mesmo e-mail no checkout. Após a confirmação do pagamento, crie sua conta com ele para liberar o acesso completo ao Código Interno.',hint:'Oferta: 12x de R$ 29<span class="price-cents">,70</span> ou R$ 297<span class="price-cents">,00</span> no Pix · acesso total à plataforma.',endpoint:'https://app.ocodigointerno.com.br/api/map/guest-checkout'},
+    session:{eyebrow:'PLATAFORMA + SESSÃO INDIVIDUAL',title:'Use seu e-mail principal para acessar',description:'Use o mesmo endereço que você vai informar no checkout. Após o pagamento, crie sua conta com esse e-mail para liberar o acesso completo à plataforma.',hint:'Oferta: 12x de R$ 89<span class="price-cents">,69</span> · acesso total + sessão individual de 45 minutos.',endpoint:'https://app.ocodigointerno.com.br/api/atendimento/codigo-interno/checkout'}
   };
   const openPurchaseDialog=(opener=null)=>{
     purchaseDialogOpener=opener;
