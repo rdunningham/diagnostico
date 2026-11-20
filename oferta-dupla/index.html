@@ -87,20 +87,6 @@
     .closed{display:none;max-width:700px;margin:30px auto;padding:24px;border:1px solid var(--line);background:var(--panel);text-align:center}
     .closed h2{margin:0;color:var(--cream);font:400 34px 'Cormorant Garamond',serif}
     .closed p{margin:10px 0 0;color:var(--soft);line-height:1.7}
-    .emailDialog{position:fixed;inset:0;z-index:20;display:none;place-items:center;padding:18px;background:#050403d9;backdrop-filter:blur(12px)}
-    .emailDialog[aria-hidden="false"]{display:grid}
-    .emailDialogCard{position:relative;width:min(100%,560px);max-height:min(90vh,760px);overflow:auto;padding:clamp(25px,6vw,44px);border:1px solid #c9a84c88;background:radial-gradient(ellipse at 25% 0,#c9a84c12,transparent 56%),linear-gradient(145deg,#17130b,#100d08);box-shadow:0 24px 80px #000b}
-    .emailDialogClose{position:absolute;top:13px;right:13px;width:42px;height:42px;border:1px solid var(--line);background:transparent;color:var(--cream);font-size:23px;cursor:pointer}
-    .emailDialogLabel{margin:0 48px 12px 0;color:var(--gold);font:500 10px "Cinzel",serif;letter-spacing:.18em;text-transform:uppercase}
-    .emailDialogCard h2{margin:0;color:var(--cream);font:400 clamp(34px,7vw,48px)/1.03 "Cormorant Garamond",serif}
-    .emailDialogCard>p:not(.emailDialogLabel){margin:13px 0 22px;color:var(--soft);font-size:14px;line-height:1.7}
-    .emailDialogCard label{display:block;margin:0 0 8px;color:var(--cream);font-size:13px}
-    .emailDialogCard input{width:100%;min-height:54px;padding:13px 15px;border:1px solid var(--line);background:#0d0a05;color:var(--cream);font:400 16px "DM Sans",sans-serif}
-    .emailDialogCard input:focus{outline:2px solid var(--gold);outline-offset:2px}
-    .emailDialogHint{margin:9px 0 0;color:var(--muted);font-size:11px;line-height:1.6}
-    .emailDialogError{margin:13px 0 0;padding:11px 13px;border-left:2px solid #d88772;background:#d8877214;color:#f0c8bb;font-size:13px;line-height:1.55}
-    .emailDialogError[hidden]{display:none}
-    .emailDialogCard form .cta{margin-top:18px}
     .isClosed .hero,.isClosed .productGrid,.isClosed .included,.isClosed .how,.isClosed .faqSection{display:none}
     .isClosed .closed{display:block}
     @media(max-width:760px){.shell{width:min(100% - 26px,1040px)}header{height:64px}.headerTag{max-width:145px;font-size:8px;line-height:1.4;text-align:right;letter-spacing:.1em}.hero{grid-template-columns:1fr;gap:25px;padding:26px 20px}.intro{font-size:14px}.purchase{padding:22px 18px}.productGrid{grid-template-columns:1fr;gap:14px}.productBody{padding:0 20px 21px}.includedGrid{grid-template-columns:1fr;gap:9px}.includedItem{min-height:0;padding:16px}.steps{grid-template-columns:1fr;gap:15px}.how{padding:22px 18px}.faqCta{max-width:none}}
@@ -124,8 +110,8 @@
           <p class="priceCaption">Hoje, as duas por</p>
           <p class="price">R$ 29<span class="priceCents">,90</span></p>
           <p class="once">pagamento único</p>
-          <button class="cta checkoutLink" type="button">Quero acessar as duas →</button>
-          <p class="microcopy">Informe seu e-mail primeiro. O checkout será criado para esse endereço e ele será usado para liberar as duas experiências.</p>
+          <a class="cta checkoutLink" href="https://checkout.infinitepay.io/rd-retratos/uKmLsI6HmJ">Quero acessar as duas →</a>
+          <p class="microcopy">Pagamento pela InfinitePay. Use no checkout o e-mail que usará para entrar na plataforma.</p>
         </aside>
       </section>
 
@@ -172,27 +158,12 @@
           <details><summary>Como recebo acesso às duas imersões?</summary><p>Após a confirmação do pagamento, entre ou crie sua conta com o mesmo e-mail informado na compra. As duas experiências estarão disponíveis na plataforma.</p></details>
           <details><summary>A oferta inclui uma análise individual ou o Código Interno completo?</summary><p>Não. Esta oferta libera somente 24h para curar sua Criança Interior e 24h para Prosperar, com o registro pessoal em PDF.</p></details>
         </div>
-        <div class="faqCta"><button class="cta checkoutLink" type="button">Quero começar minhas duas experiências →</button></div>
+        <div class="faqCta"><a class="cta checkoutLink" href="https://checkout.infinitepay.io/rd-retratos/uKmLsI6HmJ">Quero começar minhas duas experiências →</a></div>
       </section>
 
       <section class="closed" aria-live="polite"><p class="eyebrow">OFERTA ENCERRADA</p><h2>Esta condição especial terminou.</h2><p>Obrigado pelo interesse. Você pode conhecer as experiências disponíveis na página do Código Interno.</p><a class="cta" href="https://ocodigointerno.com.br/">Conhecer O Código Interno →</a></section>
     </main>
     <footer>O Código Interno · Ravel Dunningham · Brasil</footer>
-  </div>
-  <div class="emailDialog" id="emailDialog" aria-hidden="true">
-    <section class="emailDialogCard" role="dialog" aria-modal="true" aria-labelledby="emailDialogTitle" aria-describedby="emailDialogDescription">
-      <button class="emailDialogClose" id="emailDialogClose" type="button" aria-label="Fechar">×</button>
-      <p class="emailDialogLabel">Oferta dupla · acesso</p>
-      <h2 id="emailDialogTitle">Use seu e-mail principal para acessar</h2>
-      <p id="emailDialogDescription">Informe o e-mail que você usará para entrar na plataforma. Vamos vinculá-lo ao pedido antes de abrir o checkout.</p>
-      <form id="offerCheckoutForm" novalidate>
-        <label for="offerCheckoutEmail">Seu e-mail</label>
-        <input id="offerCheckoutEmail" name="email" type="email" inputmode="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com" required>
-        <p class="emailDialogHint">Depois do pagamento, crie ou acesse sua conta com esse mesmo endereço.</p>
-        <p class="emailDialogError" id="offerCheckoutError" role="alert" hidden></p>
-        <button class="cta" id="offerCheckoutSubmit" type="submit">Continuar para o pagamento →</button>
-      </form>
-    </section>
   </div>
   <script>
     // Ative/desative manualmente antes de publicar: true mostra a oferta; false exibe o aviso de encerramento.
@@ -202,45 +173,6 @@
       page.classList.add('isClosed');
       document.querySelectorAll('.checkoutLink').forEach(link => link.addEventListener('click', event => event.preventDefault()));
     }
-    const dialog = document.getElementById("emailDialog");
-    const emailInput = document.getElementById("offerCheckoutEmail");
-    const closeDialog = () => { dialog.setAttribute("aria-hidden", "true"); document.body.style.overflow = ""; };
-    document.querySelectorAll(".checkoutLink").forEach(button => button.addEventListener("click", () => {
-      if (!OFERTA_ATIVA) return;
-      dialog.setAttribute("aria-hidden", "false");
-      document.body.style.overflow = "hidden";
-      setTimeout(() => emailInput.focus(), 0);
-    }));
-    document.getElementById("emailDialogClose").addEventListener("click", closeDialog);
-    dialog.addEventListener("click", event => { if (event.target === dialog) closeDialog(); });
-    document.addEventListener("keydown", event => { if (event.key === "Escape" && dialog.getAttribute("aria-hidden") === "false") closeDialog(); });
-    const form = document.getElementById("offerCheckoutForm");
-    const submitButton = document.getElementById("offerCheckoutSubmit");
-    const errorBox = document.getElementById("offerCheckoutError");
-    form.addEventListener("submit", async event => {
-      event.preventDefault();
-      const email = emailInput.value.trim().toLowerCase();
-      if (!emailInput.checkValidity()) { emailInput.reportValidity(); return; }
-      submitButton.disabled = true;
-      submitButton.textContent = "Preparando checkout…";
-      errorBox.hidden = true;
-      try {
-        const response = await fetch("https://app.ocodigointerno.com.br/api/oferta-dupla/checkout", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ email }),
-          cache: "no-store",
-        });
-        const body = await response.json();
-        if (!response.ok || !body.url) throw new Error(body.error || "Não foi possível abrir o checkout agora. Tente novamente.");
-        window.location.assign(body.url);
-      } catch (error) {
-        errorBox.textContent = error instanceof Error ? error.message : "Não foi possível abrir o checkout agora. Tente novamente.";
-        errorBox.hidden = false;
-        submitButton.disabled = false;
-        submitButton.textContent = "Continuar para o pagamento →";
-      }
-    });
   </script>
 </body>
 </html>
